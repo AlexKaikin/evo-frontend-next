@@ -1,0 +1,53 @@
+.aside__nav {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--light);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px 0;
+
+  .nav__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    position: relative;
+
+    padding: 5px 15px;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      padding: 5px 10px;
+      border-radius: 10px;
+
+      transition: all ease 0.3s;
+    }
+
+    &.active {
+      span {
+        background-color: var(--white);
+        color: var(--primary);
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -3px;
+          width: 8px;
+          border-radius: 5px;
+          height: 25px;
+          background-color: var(--primary);
+        }
+      }
+    }
+
+    &:hover {
+      span {
+        background-color: var(--white);
+        color: var(--primary);
+      }
+    }
+  }
+}

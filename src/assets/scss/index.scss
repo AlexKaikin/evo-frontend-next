@@ -1,0 +1,366 @@
+@import './_null';
+@import './_var';
+@import './_preloader';
+@import './_animation';
+
+body {
+  font-family: var(--font-jost);
+  font-size: 16px;
+  line-height: 25px;
+  background-color: var(--bg-body-color);
+  color: var(--text-color);
+  user-select: none;
+
+  // @media only screen and (max-width: 940px) {
+  //   padding: 10px;
+  // }
+
+  @media only screen and (max-width: 576px) {
+    padding: 0px;
+    background-color: var(--bg-color);
+  }
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+
+  background-color: var(--bg-color);
+  box-shadow: 0px 0px 50px 0 rgb(0 0 0 / 20%);
+  overflow: hidden;
+  min-width: 300px;
+  min-height: 600px;
+  max-width: 1100px;
+  margin: 0px auto;
+  padding: 00px 40px;
+
+  // @media only screen and (max-width: 940px) {
+  //   padding: 5px;
+  //   border-radius: 10px;
+  // }
+
+  @media only screen and (max-width: 576px) {
+    padding: 10px;
+    border-radius: 0px;
+    box-shadow: none;
+  }
+
+  .main {
+    flex: 1 1 auto;
+  }
+}
+
+aside {
+  flex: 0 0 190px;
+  padding: 3% 0;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.section {
+  padding: 3% 0;
+
+  animation-name: fadeIn;
+  animation-duration: 1s;
+
+  .section__title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0px 0 20px 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 10px;
+
+    @media only screen and (max-width: 530px) {
+      padding: 0 5px;
+    }
+  }
+}
+
+a {
+  color: var(--text-color);
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+.btn {
+  padding: 15px 30px;
+  background-color: var(--primary);
+  border: 2px solid var(--bg-color);
+  color: white;
+  border-radius: 30px;
+  transition: all 0.5s ease 0s;
+  cursor: pointer;
+  width: max-content;
+
+  &.btn-light {
+    color: var(--text-color);
+    background: var(--light);
+
+    &:hover {
+      background-color: var(--light);
+    }
+  }
+
+  &.btn-warning {
+    color: white;
+    background: var(--dark);
+  }
+
+  &:hover {
+    background-color: var(--primary);
+    border: 2px solid var(--bg-color);
+    box-shadow: 0 0 0 3px var(--primary);
+  }
+
+  &.radius-5 {
+    border-radius: 5px;
+  }
+
+  &.radius-10 {
+    border-radius: 10px;
+  }
+
+  &.radius-30 {
+    border-radius: 30px;
+  }
+
+  &.p-5 {
+    padding: 5px 10px;
+  }
+
+  &.p10 {
+    padding: 10px 20px;
+  }
+
+  &.p-10 {
+    padding: 10px 20px;
+  }
+
+  &.width-100 {
+    width: 100%;
+  }
+}
+
+.form {
+  .form__field {
+    position: relative;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-color: var(--light);
+    border: 2px solid var(--bg-color);
+    width: 100%;
+
+    transition: all ease 0.3s;
+
+    label {
+      position: absolute;
+      font-size: 13px;
+      top: 3px;
+      left: 10px;
+      opacity: 0.5;
+    }
+
+    input,
+    textarea {
+      padding: 30px 10px 10px 10px;
+      transition: all 0.5s ease 0s;
+      width: 100%;
+      resize: none;
+    }
+
+    textarea {
+      height: 150px;
+      margin-top: 30px;
+      padding: 0px 10px 10px 10px;
+    }
+
+    &.form__field_error {
+      box-shadow: 0 0 0 3px #934444;
+    }
+
+    &:hover {
+      border: 2px solid var(--bg-color);
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+
+    &.disabled {
+      &:hover {
+        border: 2px solid var(--bg-color);
+        box-shadow: none;
+
+        input,
+        textarea {
+          cursor: default !important;
+        }
+      }
+    }
+  }
+
+  .form__select {
+    position: relative;
+    margin-bottom: 20px;
+
+    label {
+      position: absolute;
+      font-size: 13px;
+      top: 3px;
+      left: 10px;
+      opacity: 0.5;
+    }
+
+    select {
+      font-size: inherit;
+      padding: 30px 10px 14px 10px;
+      transition: all 0.5s ease 0s;
+      border-radius: 10px;
+      background-color: var(--light);
+
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    select:not([multiple]) {
+      padding-right: 2em;
+      background-repeat: no-repeat;
+      background-position: calc(100% - 0.5em) 2.2em;
+      background-size: 0.8em auto;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+    }
+
+    /* скроет иконку стрелки в IE */
+    select::-ms-expand {
+      display: none;
+    }
+  }
+
+  .form__checkbox {
+    margin-bottom: 20px;
+  }
+
+  .form__footer {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 20px;
+  }
+
+  .form__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    background-color: var(--primary);
+    border: 2px solid var(--bg-color);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px;
+    transition: all 0.5s ease 0s;
+
+    &:hover {
+      background-color: var(--primary);
+      border: 2px solid var(--bg-color);
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+
+    &.btn-delete {
+      background-color: var(--dark-red);
+      color: white;
+
+      &:hover {
+        box-shadow: 0 0 0 3px var(--dark-red);
+      }
+    }
+  }
+
+  .form__text_error {
+    color: var(--white-always);
+    background-color: var(--dark-red);
+    box-shadow: 0 0 0 3px var(--dark-red);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    top: -10px;
+  }
+}
+
+.button-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+.column-2 {
+  display: flex;
+  gap: 20px;
+
+  .img-container {
+    flex: 0 0 200px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    img {
+      border-radius: 10px;
+      width: 100%;
+    }
+
+    .img__control {
+      display: flex;
+      gap: 20px;
+    }
+  }
+
+  .info-container {
+    flex: 1 1 auto;
+  }
+}
+
+.round-wrap {
+  background-color: var(--light);
+  border: 2px solid var(--bg-color);
+  border-radius: 50%;
+  padding: 10px;
+  line-height: 0;
+
+  transition: all ease 0.3s;
+
+  svg {
+    position: relative;
+    left: -1px;
+  }
+}
+
+.go-back-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover {
+    .round-wrap {
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+  }
+}
+
+.fade-in {
+  animation-name: fadeIn;
+  animation-duration: 0.3s;
+}

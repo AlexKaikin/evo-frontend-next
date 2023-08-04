@@ -1,0 +1,48 @@
+.fade {
+  transition: opacity 500ms ease;
+  opacity: 0;
+
+  &.fade-entering {
+    opacity: 1;
+  }
+
+  &.fade-entered {
+    opacity: 1;
+  }
+
+  &.fade-exiting {
+    opacity: 0;
+  }
+
+  &.fade-exited {
+    opacity: 0;
+  }
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
