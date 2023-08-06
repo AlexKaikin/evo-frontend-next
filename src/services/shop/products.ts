@@ -1,7 +1,7 @@
 import { api } from '@/config/api'
 import {
   CreateProductType,
-  FilterProductsType,
+  IFilterProducts,
   PaginationType,
   IProduct,
 } from '@/types/shop/products'
@@ -18,29 +18,29 @@ export const productService = {
 }
 
 export const productAdminService = {
-  getProducts(filter: FilterProductsType, pagination: PaginationType) {
-    const { currentPage, limitItems } = pagination
-    const { query, category, sort } = filter
-    const $q = query === '' ? `` : `q=${query}&`
-    const $category = category === 'Все чаи' ? `` : `category=${category}&`
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-    const sorting = (sort: string) => {
-      switch (sort) {
-        case 'priceDecrease':
-          return `_sort=price&_order=desc&`
-        case 'priceIncrease':
-          return `_sort=price&_order=asc&`
-        case 'pop':
-          return `_sort=rating&_order=desc&`
-        default:
-          return `_sort=id&_order=desc&`
-      }
-    }
+  // getProducts(filter: IFilterProducts, pagination: PaginationType) {
+  //   const { currentPage, limitItems } = pagination
+  //   const { query, category, sort } = filter
+  //   const $q = query === '' ? `` : `q=${query}&`
+  //   const $category = category === 'Все чаи' ? `` : `category=${category}&`
+  //   const $pagination = `_page=${currentPage}&_limit=${limitItems}`
+  //   const sorting = (sort: string) => {
+  //     switch (sort) {
+  //       case 'priceDecrease':
+  //         return `_sort=price&_order=desc&`
+  //       case 'priceIncrease':
+  //         return `_sort=price&_order=asc&`
+  //       case 'pop':
+  //         return `_sort=rating&_order=desc&`
+  //       default:
+  //         return `_sort=id&_order=desc&`
+  //     }
+  //   }
 
-    return api.get<IProduct[]>(
-      `admin/products/?${$q + $category + sorting(sort) + $pagination}`
-    )
-  },
+  //   return api.get<IProduct[]>(
+  //     `admin/products/?${$q + $category + sorting(sort) + $pagination}`
+  //   )
+  // },
 
   getProduct(id: number) {
     return api.get<IProduct>(`admin/products/${id}`)

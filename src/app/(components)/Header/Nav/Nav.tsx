@@ -7,11 +7,11 @@ import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { BsTextLeft } from 'react-icons/bs'
 
-type PropsType = {
+interface IProps{
   items: INavigationItem[]
 }
 
-export default function Nav({ items }: PropsType) {
+export default function Nav({ items }: IProps) {
   const menuRef = useRef<HTMLElement>(null)
   const [menuShow, setMenuShow] = useState<boolean>(false)
 

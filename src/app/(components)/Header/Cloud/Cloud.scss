@@ -17,7 +17,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 2;
 
     background-color: var(--bg-color);
     box-shadow: 0 0 50px 50px var(--bg-color);
@@ -46,8 +46,8 @@
           align-items: center;
 
           svg {
-            width: 30px;
-            height: 30px;
+            width: 20px;
+            height: 20px;
           }
         }
 
@@ -154,6 +154,10 @@
         transition: all 0.5s ease 0s;
         opacity: 0;
         visibility: hidden;
+
+        @media only screen and (max-width: 570px) {
+          position: fixed;
+        }
 
         &.show {
           opacity: 1;

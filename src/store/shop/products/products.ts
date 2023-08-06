@@ -1,7 +1,7 @@
 import { productService } from '@/services/shop/products'
 import { RootState } from '@/store/store'
 import {
-  FilterProductsType,
+  IFilterProducts,
   IProduct,
   ProductsStateType,
 } from '@/types/shop/products'
@@ -28,16 +28,10 @@ const initialState: ProductsStateType = {
   filter: {
     category: 'Все чаи',
     sort: 'new',
-    query: '',
-    priceFrom: '',
-    priceTo: '',
-    ratings: [
-      { id: 1, name: 'rating1', checked: false },
-      { id: 2, name: 'rating2', checked: false },
-      { id: 3, name: 'rating3', checked: false },
-      { id: 4, name: 'rating4', checked: false },
-      { id: 5, name: 'rating5', checked: false },
-    ],
+    q: '',
+    price_gte: '',
+    price_lte: '',
+    ratings: '',
     manufacturer: '',
   },
   status: Status.Loading,
@@ -67,28 +61,22 @@ export const productsSlice = createSlice({
       state.filter.sort = action.payload
     },
     setProductsQuery: (state, action: PayloadAction<string>) => {
-      state.filter.query = action.payload
+      state.filter.q = action.payload
     },
     setProductsStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setProductsFilter: (state, action: PayloadAction<FilterProductsType>) => {
+    setProductsFilter: (state, action: PayloadAction<IFilterProducts>) => {
       state.filter = { ...action.payload }
     },
     setProductsFilterDefault: state => {
       state.filter = {
         category: 'Все чаи',
         sort: 'new',
-        query: '',
-        priceFrom: '',
-        priceTo: '',
-        ratings: [
-          { id: 1, name: 'rating1', checked: false },
-          { id: 2, name: 'rating2', checked: false },
-          { id: 3, name: 'rating3', checked: false },
-          { id: 4, name: 'rating4', checked: false },
-          { id: 5, name: 'rating5', checked: false },
-        ],
+        q: '',
+        price_gte: '',
+        price_lte: '',
+        ratings: '',
         manufacturer: '',
       }
     },
@@ -120,21 +108,21 @@ export const productsSelector = (state: RootState) => state.products
  * thunk
  * загрузка товаров
  */
-export const getProducts =
-  () => async (dispatch: Function, getState: Function) => {
-    dispatch(setProductsStatus(Status.Loading))
-    try {
-      const res = await productService.getProducts(
-        getState().products.filter,
-        getState().products.pagination
-      )
-      dispatch(setProducts(res.data))
-      res.headers['x-total-count'] &&
-        dispatch(setProductsTotalItems(res.headers['x-total-count']))
-    } catch (err) {
-      dispatch(setProductsStatus(Status.Error))
-      console.log(err)
-    }
-  }
+// export const getProducts =
+//   () => async (dispatch: Function, getState: Function) => {
+//     dispatch(setProductsStatus(Status.Loading))
+//     try {
+//       const res = await productService.getAll(
+//         getState().products.filter,
+//         getState().products.pagination
+//       )
+//       dispatch(setProducts(res.data))
+//       res.headers['x-total-count'] &&
+//         dispatch(setProductsTotalItems(res.headers['x-total-count']))
+//     } catch (err) {
+//       dispatch(setProductsStatus(Status.Error))
+//       console.log(err)
+//     }
+//   }
 
-export const productsActions = { ...productsSlice.actions, getProducts }
+export const productsActions = { ...productsSlice.actions }

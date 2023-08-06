@@ -1,7 +1,7 @@
 export type ProductsStateType = {
   productItems: ProductItemType[]
   pagination: PaginationType
-  filter: FilterProductsType
+  filter: IFilterProducts
   status: string
 }
 
@@ -25,12 +25,12 @@ export type IProduct = {
   rating: number
   ratingCount: number
   manufacturer: string
-  property: PropertyType
+  property: IProperty
   text: string
   published: boolean
 }
 
-type PropertyType = {
+interface IProperty {
   country: string
   town: string
   year: number
@@ -43,17 +43,17 @@ export type PaginationType = {
   currentPage: number
 }
 
-export type FilterProductsType = {
+export interface IFilterProducts {
   category: string
   sort: string
-  query: string
-  priceFrom: string
-  priceTo: string
-  ratings: RatingsType[]
+  q: string
+  price_gte: string
+  price_lte: string
+  ratings: string
   manufacturer: string
 }
 
-type RatingsType = {
+interface IRatings {
   id: number
   name: string
   checked: boolean
@@ -70,7 +70,7 @@ export type CreateProductType = {
   quantity: number
   category: string
   manufacturer: string
-  property: PropertyType
+  property: IProperty
   text: string
   published: boolean
 }

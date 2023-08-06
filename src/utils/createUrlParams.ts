@@ -4,9 +4,9 @@ export interface IParams {
 
 export function createUrlParams(searchParams: IParams) {
   let params = '?'
-  for (const param in searchParams.searchParams) {
+  for (const param in searchParams) {
     // @ts-ignore
-    params += `&${param}=${searchParams.searchParams[param]}`
+    params += `&${param}=${searchParams[param]}`
   }
   return params
 }

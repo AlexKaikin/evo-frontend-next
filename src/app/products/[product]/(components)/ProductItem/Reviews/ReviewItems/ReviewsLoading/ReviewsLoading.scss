@@ -1,0 +1,75 @@
+.reviews__items.skeleton {
+  .reviews__item {
+    .review__user {
+      .review__avatar {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: var(--light);
+
+        animation: fade 1s linear infinite alternate;
+      }
+
+      .review__name {
+        width: 70px;
+        height: 25px;
+        border-radius: 10px;
+        background: var(--light);
+
+        animation: fade 1s linear infinite alternate;
+      }
+    }
+
+    .review__body {
+      width: 100%;
+
+      .review__header {
+        .review__name {
+          width: 70px;
+          height: 25px;
+          border-radius: 10px;
+          background: var(--light);
+
+          animation: fade 1s linear infinite alternate;
+        }
+
+        .review__date {
+          width: 150px;
+          height: 25px;
+          border-radius: 10px;
+          background: var(--light);
+
+          animation: fade 1s linear infinite alternate;
+        }
+      }
+
+      .review__rating {
+        width: 100px;
+        height: 25px;
+        border-radius: 10px;
+        background: var(--light);
+
+        animation: fade 1s linear infinite alternate;
+      }
+
+      p {
+        width: 100%;
+        height: 25px;
+        border-radius: 10px;
+        background: var(--light);
+        margin-bottom: 10px;
+
+        animation: fade 1s linear infinite alternate;
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}

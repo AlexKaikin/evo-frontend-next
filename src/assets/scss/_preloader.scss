@@ -1,5 +1,5 @@
 .preloader {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
@@ -12,7 +12,7 @@
   justify-content: center;
   flex-direction: column;
 
-  background-color: white;
+  background-color: var(--bg-color);
   transition: all ease 1s;
 
   &.hide {

@@ -6,6 +6,10 @@ import { IParams } from '@/utils/createUrlParams'
 import { Posts, Products, Slider } from './(components)'
 import './styles.scss'
 
+interface IProps {
+  searchParams: IParams
+}
+
 async function getProducts(searchParams: IParams) {
   const res = await productService.getAll(searchParams)
   let products = res.data
@@ -20,7 +24,7 @@ async function getPosts(searchParams: IParams) {
   return posts
 }
 
-export default async function Home(searchParams: IParams) {
+export default async function Home({ searchParams }: IProps) {
   const productsData: IProduct[] = await getProducts(searchParams)
   const postsData: IPost[] = await getPosts(searchParams)
   const [products, posts] = await Promise.all([productsData, postsData])

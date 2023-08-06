@@ -18,7 +18,7 @@ export default function Search() {
 
   function searchClick(e: any) {
     e.preventDefault()
-    if (query) router.push(`products/?q=${query}`)
+    if (query) router.push(`/products/?q=${query}`)
     else router.push(`products`)
   }
 
