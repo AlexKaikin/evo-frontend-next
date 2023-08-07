@@ -55,7 +55,7 @@ export default function ProductItem({product}: IProps){
             <div className="tab__titles items">
               <button
                 onClick={() => setTabActive(1)}
-                className={cn('btn btn-light radius-10 tab__title title-1', {
+                className={cn('btn btn-light radius-5 tab__title title-1', {
                   active: tabActive === 1,
                 })}
               >
@@ -63,7 +63,7 @@ export default function ProductItem({product}: IProps){
               </button>
               <button
                 onClick={() => setTabActive(2)}
-                className={cn('btn btn-light radius-10 tab__title title-2', {
+                className={cn('btn btn-light radius-5 tab__title title-2', {
                   active: tabActive === 2,
                 })}
               >
@@ -71,7 +71,7 @@ export default function ProductItem({product}: IProps){
               </button>
               <button
                 onClick={() => setTabActive(3)}
-                className={cn('btn btn-light radius-10 tab__title title-3', {
+                className={cn('btn btn-light radius-5 tab__title title-3', {
                   active: tabActive === 3,
                 })}
               >

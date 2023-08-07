@@ -19,7 +19,7 @@ export default function Reviews({ product_Id }: IProps) {
 
   return (
     <div className="product__reviews review">
-      <div className="btn p-10 radius-10" onClick={() => setShowModal(true)}>
+      <div className="btn p-10 radius-5" onClick={() => setShowModal(true)}>
         Написать отзыв
       </div>
       {showModal && (

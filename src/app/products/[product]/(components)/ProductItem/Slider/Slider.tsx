@@ -1,13 +1,14 @@
-import cn from 'classnames'
-import { useState } from 'react'
 import { IProduct } from '@/types/shop/products'
-import {BsChevronCompactDown, BsChevronCompactUp} from 'react-icons/bs'
+import cn from 'classnames'
+import Image from 'next/image'
+import { useState } from 'react'
+import { BsChevronCompactDown, BsChevronCompactUp } from 'react-icons/bs'
 
-type IPropsType = {
+interface IProps {
   product: IProduct
 }
 
-function Slider({ product }: IPropsType) {
+export default function Slider({ product }: IProps) {
   const [imgActive, setImgActive] = useState(product?.imgUrl)
   const [offset, setOffset] = useState(0)
 
@@ -70,9 +71,10 @@ function Slider({ product }: IPropsType) {
                 active: imgActive === product.imgUrl,
               })}
             >
-              <img
-                onClick={() => setImgActive(product.imgUrl)}
+              <Image
                 src={product.imgUrl}
+                fill
+                onClick={() => setImgActive(product.imgUrl)}
                 alt="Картинка не загрузилась"
               />
             </div>
@@ -83,9 +85,10 @@ function Slider({ product }: IPropsType) {
                   active: imgActive === item,
                 })}
               >
-                <img
-                  onClick={() => setImgActive(item)}
+                <Image
                   src={item}
+                  fill
+                  onClick={() => setImgActive(item)}
                   alt="Картинка не загрузилась"
                 />
               </div>
@@ -97,10 +100,8 @@ function Slider({ product }: IPropsType) {
         </button>
       </div>
       <div className="slider__img">
-        <img src={imgActive} alt="Картинка не загрузилась" />
+        <Image src={imgActive} fill alt="Картинка не загрузилась" />
       </div>
     </div>
   )
 }
-
-export default Slider

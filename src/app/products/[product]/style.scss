@@ -39,6 +39,11 @@
         width: 130px;
         max-height: 400px;
 
+        @media only screen and (max-width: 450px) {
+          width: 60px;
+          max-height: 220px;
+        }
+
         .carousel__up,
         .carousel__down {
           border-radius: 10px;
@@ -102,19 +107,24 @@
             transition: all ease 0.3s;
 
             @media only screen and (max-width: 450px) {
-              max-height: 150px;
+              max-height: 220px;
             }
 
             .carousel__item {
               border: 5px solid transparent;
               border-radius: 50%;
-              //padding: 5px;
               transition: all 0.5s ease 0s;
               cursor: pointer;
+              width: 100%;
+              overflow: hidden;
 
               img {
-                width: 100%;
                 border-radius: 50%;
+                border-radius: 5px;
+                object-fit: contain;
+                width: 100% !important;
+                position: relative !important;
+                height: unset !important;
               }
 
               &:hover {
@@ -130,9 +140,14 @@
       }
 
       .slider__img {
+        width: 100%;
+
         img {
-          width: 100%;
           border-radius: 5px;
+          object-fit: contain;
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
         }
       }
     }

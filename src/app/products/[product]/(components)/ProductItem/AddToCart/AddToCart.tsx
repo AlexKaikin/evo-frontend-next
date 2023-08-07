@@ -8,11 +8,11 @@ import { getLocalStorage } from '@/utils/localStorage'
 import BookMarkButton from '../BookMarkButton/BookMarkButton'
 import FavoritesButton from '../FavoritesButton/FavoritesButton'
 
-type PropsType = {
+interface IProps {
   product: IProduct
 }
 
-function AddToCart({ product }: PropsType) {
+export default function AddToCart({ product }: IProps) {
   const dispatch = useAppDispatch()
   const [quantity, setQuantity] = useState(1)
   const [cost, setCost] = useState(product.price)
@@ -125,7 +125,7 @@ function AddToCart({ product }: PropsType) {
         <FavoritesButton product={product} />
         <button
           ref={addCartRef}
-          className="btn radius-10"
+          className="btn radius-5"
           onClick={addToCartClick}
         >
           В корзину <BsBag />
@@ -134,5 +134,3 @@ function AddToCart({ product }: PropsType) {
     </>
   )
 }
-
-export default AddToCart
