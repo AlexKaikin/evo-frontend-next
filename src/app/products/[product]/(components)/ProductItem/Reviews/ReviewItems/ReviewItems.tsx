@@ -1,23 +1,24 @@
-import { ReviewsError, ReviewsLoading, ReviewsNull } from '.'
+import defautAvatar from '@/assets/img/user/defaultAvatar.png'
+import Rating from '@/components/Rating/Rating'
+import { useActions } from '@/hooks/useActions'
+import { reviewSelector } from '@/store/shop/reviews/reviews'
+import { useAppDispatch, useAppSelector } from '@/store/store'
+import { formatTime } from '@/utils/utils'
+import Image from 'next/image'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import defautAvatar from '@assets/img/user/defaultAvatar.png'
-import Rating from '@common/Rating/Rating'
-import { getReviews, reviewSelector } from '@store/shop/reviews/reviews'
-import { useAppDispatch } from '@store/store'
-import { formatTime } from '@utils/utils'
+import { ReviewsError, ReviewsLoading, ReviewsNull } from '.'
 
 type PropsType = {
   product_Id: string
 }
 
-function ReviewItems({ product_Id }: PropsType) {
-  const { reviewItems, status } = useSelector(reviewSelector)
+export default function ReviewItems({ product_Id }: PropsType) {
+  const { getReviews } = useActions()
+  const { reviewItems, status } = useAppSelector(reviewSelector)
 
-  const dispatch = useAppDispatch()
   useEffect(() => {
-    dispatch(getReviews(product_Id))
-  }, [dispatch, product_Id])
+    getReviews(product_Id)
+  }, [getReviews, product_Id])
 
   if (status === 'loading') return <ReviewsLoading />
   if (status === 'error') return <ReviewsError />
@@ -26,16 +27,15 @@ function ReviewItems({ product_Id }: PropsType) {
   return (
     <div className="reviews__items">
       {reviewItems.map(review => (
-        <div key={review.id} className="reviews__item review">
+        <div key={review.id} className="reviews__item review fade-in">
           <div className="review__user">
             <div className="review__avatar">
-              <img
+              <Image
                 src={
-                  review.user.avatarUrl
-                    ? (process.env.REACT_APP_SERVER_URL || '') +
-                      review.user.avatarUrl
-                    : defautAvatar
+                  review.user.avatarUrl ? review.user.avatarUrl : defautAvatar
                 }
+                width={70}
+                height={70}
                 alt="avatar"
               />
             </div>
@@ -57,5 +57,3 @@ function ReviewItems({ product_Id }: PropsType) {
     </div>
   )
 }
-
-export default ReviewItems

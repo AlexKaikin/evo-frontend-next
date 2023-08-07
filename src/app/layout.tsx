@@ -5,6 +5,7 @@ import { Jost } from 'next/font/google'
 import Header from './(components)/Header/Header'
 
 const jost = Jost({
+  weight: ['300', '400', '700'],
   subsets: ['cyrillic'],
   variable: '--font-jost',
   display: 'swap',

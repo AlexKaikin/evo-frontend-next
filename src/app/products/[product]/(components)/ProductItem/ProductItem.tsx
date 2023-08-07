@@ -8,6 +8,7 @@ import Rating from '@/components/Rating/Rating'
 import { getNoun } from '@/utils/utils'
 import Slider from './Slider/Slider'
 import { IProduct } from "@/types/shop/products"
+import Reviews from './Reviews/Reviews'
 
 interface IProps {
     product: IProduct
@@ -107,7 +108,7 @@ export default function ProductItem({product}: IProps){
 
             {tabActive === 3 && (
               <div className="tab__content content-3">
-                {/* <Reviews product_Id={product._id} /> */}
+                <Reviews product_Id={product._id} />
               </div>
             )}
           </div>

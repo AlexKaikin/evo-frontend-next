@@ -19,6 +19,7 @@ import { productsFavoritesActions } from './shop/favorites/favorites'
 import { orderActions } from './shop/order/order'
 import { productActions } from './shop/product/product'
 import { productsActions } from './shop/products/products'
+import { reviewsActions } from './shop/reviews/reviews'
 import { setTheme } from './theme/theme'
 
 export const actions = {
@@ -26,6 +27,7 @@ export const actions = {
   ...authActions,
   ...productsFavoritesActions,
   ...productsActions,
+  ...reviewsActions,
   ...productActions,
   ...cartActions,
   ...orderActions,

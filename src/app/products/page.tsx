@@ -3,6 +3,7 @@ import { IProduct } from '@/types/shop/products'
 import { IParams } from '@/utils/createUrlParams'
 import { Pagination, ProductItems, Selection } from './(componnets)/'
 import './styles.scss'
+import { Metadata } from 'next'
 
 interface IProps {
   searchParams: IParams
@@ -11,6 +12,11 @@ interface IProps {
 interface IProductsResponse {
   products: IProduct[]
   totalCount: string
+}
+
+export const metadata: Metadata = {
+  title: 'Товары |  EVO PLACE',
+  description: 'Товары...',
 }
 
 async function getProducts(searchParams: IParams) {

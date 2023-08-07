@@ -29,7 +29,7 @@ export type PaginationType = {
   currentPage: number
 }
 
-export type CreateReviewItemType = {
+export interface ICreateReview {
   rating: number
   body: string
   product: string

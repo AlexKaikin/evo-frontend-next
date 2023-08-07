@@ -48,7 +48,7 @@ function Slider({ product }: IPropsType) {
       sliderItems.style.top = offset - (heightSlide + 10) + 'px'
       carouselUp.style.visibility = 'visible'
 
-      if (offset < -1 * heightSlide * (slidesCount - 1) && carouselDown)
+      if (offset < -1 * heightSlide * (slidesCount - 3) && carouselDown)
         carouselDown.style.visibility = 'hidden'
     }
   }

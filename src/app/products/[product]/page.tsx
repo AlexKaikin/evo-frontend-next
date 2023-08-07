@@ -18,8 +18,8 @@ async function getProduct(productId: string) {
 export async function generateMetadata({ params }: IProps) {
   const product: IProduct = await getProduct(params.product)
   return {
-    title: product.title,
-    description: product.text,
+    title: product.title +  ` |  EVO PLACE`,
+    description: product.text.slice(0, 180).concat('...'),
   }
 }
 

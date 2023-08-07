@@ -54,7 +54,7 @@
             top: 0;
             left: 0;
             transition: all 1s ease 0s;
-            border-radius: 10px;
+            border-radius: 5px;
           }
         }
 
@@ -162,7 +162,7 @@
       padding: 0 0 100% 0;
 
       background: var(--light);
-      border-radius: 50%;
+      border-radius: 5px;
 
       animation: fade 1s linear infinite alternate;
     }
@@ -173,7 +173,7 @@
       display: inline-block;
 
       background: var(--light);
-      border-radius: 10px;
+      border-radius: 5px;
       margin: 10px 20px 0 20px;
       position: relative;
       width: 130px;
@@ -188,7 +188,7 @@
       display: inline-block;
 
       background: var(--light);
-      border-radius: 10px;
+      border-radius: 5px;
       margin: 10px 20px 0 20px;
       position: relative;
       width: 100px;
@@ -203,7 +203,7 @@
       span {
         display: inline-block;
         background: var(--light);
-        border-radius: 10px;
+        border-radius: 5px;
         width: 60px;
         height: 25px;
 

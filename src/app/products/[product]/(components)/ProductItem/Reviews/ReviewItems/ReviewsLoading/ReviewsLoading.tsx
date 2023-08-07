@@ -1,6 +1,6 @@
 import './ReviewsLoading.scss'
 
-function ReviewsLoading() {
+export default function ReviewsLoading() {
   return (
     <div className="reviews__items skeleton">
       <div className="reviews__item review">
@@ -21,5 +21,3 @@ function ReviewsLoading() {
     </div>
   )
 }
-
-export default ReviewsLoading

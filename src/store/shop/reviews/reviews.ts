@@ -1,15 +1,11 @@
 import { reviewService } from '@/services/shop/reviews'
 import {
-  CreateReviewItemType,
+  ICreateReview,
   ReviewItemType,
   ReviewStateType,
 } from '@/types/shop/reviews'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
-
-/**
- * Отзывы
- */
 
 enum Status {
   Loading = 'loading',
@@ -28,7 +24,7 @@ const initialState: ReviewStateType = {
   status: Status.Loading,
 }
 
-export const reviews = createSlice({
+export const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
   reducers: {
@@ -36,18 +32,22 @@ export const reviews = createSlice({
       state.reviewItems = action.payload
       state.status = Status.Success
     },
+
     setTotalItems: (state, action: PayloadAction<string>) => {
       state.pagination.totalItems = +action.payload
       state.pagination.pagesCount = Math.ceil(
         +action.payload / initialState.pagination.limitItems
       )
     },
+
     setCurrentPage: (state, action: PayloadAction<number>) => {
       state.pagination.currentPage = action.payload
     },
+
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
+
     setUpdateReview: (state, action: PayloadAction<ReviewItemType>) => {
       const newItem = action.payload
       state.reviewItems.splice(
@@ -59,27 +59,17 @@ export const reviews = createSlice({
   },
 })
 
-/**
- * Action
- */
 export const {
   setReviews,
   setTotalItems,
   setCurrentPage,
   setStatus,
   setUpdateReview,
-} = reviews.actions
-
-export default reviews.reducer
-
-/**
- * Selector
- */
+} = reviewsSlice.actions
+export default reviewsSlice.reducer
 export const reviewSelector = (state: RootState) => state.reviews
 
-/**
- * thunk
- */
+
 export const getReviews =
   (product_Id: string) => async (dispatch: Function) => {
     dispatch(setStatus(Status.Loading))
@@ -107,7 +97,7 @@ export const getReviewsProfile =
   }
 
 export const createReview =
-  (values: CreateReviewItemType) =>
+  (values: ICreateReview) =>
   async (dispatch: Function, getState: Function) => {
     try {
       await reviewService.createReview(values)
@@ -148,3 +138,5 @@ export const deleteReview = (id: number) => async (dispatch: Function) => {
     console.log(err)
   }
 }
+
+export const reviewsActions = { ...reviewsSlice.actions, getReviews, createReview }
