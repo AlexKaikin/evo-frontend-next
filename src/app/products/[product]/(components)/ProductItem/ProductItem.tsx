@@ -5,7 +5,7 @@ import cn from 'classnames'
 import { useState } from 'react'
 import GoBackButton from '@/components/GoBackButton/GoBackButton'
 import Rating from '@/components/Rating/Rating'
-import { getNoun } from '@/utils/utils'
+import { getNoun } from '@/utils'
 import Slider from './Slider/Slider'
 import { IProduct } from "@/types/shop/products"
 import Reviews from './Reviews/Reviews'
