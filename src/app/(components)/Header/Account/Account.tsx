@@ -49,7 +49,7 @@ export default function Account({ auth }: IProps) {
           />
         </div>
       </button>
-      <ul className={cn('auth__items', { show: authShow })}>
+      {/* <ul className={cn('auth__items', { show: authShow })}>
         {auth.data ? (
           <>
             <li className="auth__item">
@@ -101,7 +101,7 @@ export default function Account({ auth }: IProps) {
             </li>
           </>
         )}
-      </ul>
+      </ul> */}
     </div>
   )
 }

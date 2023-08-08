@@ -7,7 +7,7 @@ import {BsSortDown} from 'react-icons/bs'
 //import SortingSkeleton from '@/components/common/Skeleton/SortingSkeleton/SortingSkeleton'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { scrollToTop } from '@/utils/utils'
+import { scrollToTop } from '@/utils'
 
 type PropsType = {
   items: SortItemType[]

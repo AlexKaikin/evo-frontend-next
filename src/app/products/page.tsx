@@ -1,9 +1,9 @@
 import { productService } from '@/services/shop/products'
 import { IProduct } from '@/types/shop/products'
-import { IParams } from '@/utils/createUrlParams'
+import { IParams } from '@/utils/url'
+import { Metadata } from 'next'
 import { Pagination, ProductItems, Selection } from './(componnets)/'
 import './styles.scss'
-import { Metadata } from 'next'
 
 interface IProps {
   searchParams: IParams
@@ -33,8 +33,8 @@ export default async function Products({ searchParams }: IProps) {
   return (
     <>
       <Selection />
-        <ProductItems products={products} />
-        <Pagination totalCount={totalCount} />
+      <ProductItems products={products} />
+      <Pagination totalCount={totalCount} />
     </>
   )
 }

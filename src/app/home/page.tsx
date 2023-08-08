@@ -2,7 +2,7 @@ import { postService } from '@/services/blog/posts'
 import { productService } from '@/services/shop/products'
 import { IPost } from '@/types/blog/posts'
 import { IProduct } from '@/types/shop/products'
-import { IParams } from '@/utils/createUrlParams'
+import { IParams } from '@/utils/url'
 import { Posts, Products, Slider } from './(components)'
 import './styles.scss'
 

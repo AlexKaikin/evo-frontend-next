@@ -1,5 +1,5 @@
 import { IPost } from '@/types/blog/posts'
-import { formatTime } from '@/utils/utils'
+import { formatTime } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 import { BsChevronRight, BsClock, BsEye, BsFolder2Open } from 'react-icons/bs'

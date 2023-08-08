@@ -3,7 +3,7 @@
 import { Rating } from '@/components'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { IFilterProducts } from '@/types/shop/products'
-import { scrollToTop } from '@/utils/utils'
+import { scrollToTop } from '@/utils'
 import cn from 'classnames'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'

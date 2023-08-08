@@ -1,11 +1,6 @@
 import { api } from '@/config/api'
-import {
-  CreateProductType,
-  IFilterProducts,
-  PaginationType,
-  IProduct,
-} from '@/types/shop/products'
-import { IParams, createUrlParams } from '@/utils/createUrlParams'
+import { CreateProductType, IProduct } from '@/types/shop/products'
+import { IParams, createUrlParams } from '@/utils/url'
 
 export const productService = {
   getAll(searchParams: IParams) {

@@ -1,6 +1,6 @@
 import { Rating } from '@/components'
 import { IProduct } from '@/types/shop/products'
-import { getNoun } from '@/utils/utils'
+import { getNoun } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
 

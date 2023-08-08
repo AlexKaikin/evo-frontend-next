@@ -1,6 +1,6 @@
 'use client'
 
-import { scrollToTop } from '@/utils/utils'
+import { scrollToTop } from '@/utils'
 import cn from 'classnames'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'

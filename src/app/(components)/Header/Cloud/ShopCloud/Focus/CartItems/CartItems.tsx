@@ -28,7 +28,7 @@ export default function CartItems({ cartState, showCartOnClick }: IProps) {
         <div key={product.id} className="cart__item">
           <div className="product__img">
             <Image
-              src={(process.env.REACT_APP_SERVER_URL || '') + product.imgUrl}
+              src={product.imgUrl}
               alt={product.title}
               width={80}
               height={80}

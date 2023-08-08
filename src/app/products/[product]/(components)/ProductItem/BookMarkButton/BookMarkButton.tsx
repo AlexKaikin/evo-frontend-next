@@ -6,7 +6,7 @@ import { IProduct } from '@/types/shop/products'
 import {BsBookmark} from 'react-icons/bs'
 import { compareSelector, getCompare } from '@/store/shop/compare/compare'
 import { useAppDispatch } from '@/store/store'
-import { getLocalStorage } from '@/utils/localStorage'
+import { getLocalStorage } from '@/utils'
 
 type PropsType = {
   product: IProduct

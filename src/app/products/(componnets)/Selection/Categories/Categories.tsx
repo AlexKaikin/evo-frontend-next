@@ -3,7 +3,7 @@
 //import CategoriesSkeleton from '@/components/common/Skeleton/CategoriesSkeleton/CategoriesSkeleton'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { CategoryItemType } from '@/types/navigation'
-import { scrollToTop } from '@/utils/utils'
+import { scrollToTop } from '@/utils'
 import cn from 'classnames'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'

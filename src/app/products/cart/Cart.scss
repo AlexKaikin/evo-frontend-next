@@ -1,0 +1,199 @@
+.section.cart {
+  .container {
+    .cart__items {
+      display: flex;
+      gap: 10px;
+      flex-direction: column;
+      overflow: auto;
+      padding: 10px 0;
+      max-width: 700px;
+      margin: 20px auto;
+
+      .cart__item.product {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+
+        @media only screen and (max-width: 700px) {
+          flex-wrap: wrap;
+          gap: 10px;
+
+          margin-bottom: 20px;
+          padding: 5px;
+        }
+
+        .product__img {
+          flex: 0 0 100px;
+
+          @media only screen and (max-width: 600px) {
+            flex: 0 0 80px;
+          }
+
+          @media only screen and (max-width: 540px) {
+            flex: auto;
+
+            text-align: center;
+            width: 50%;
+          }
+
+          img {
+            border-radius: 5px;
+            object-fit: contain;
+            width: 100% !important;
+            position: relative !important;
+            height: unset !important;
+          }
+        }
+
+        .product__title {
+          flex: 0 1 130px;
+
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+
+          @media only screen and (max-width: 540px) {
+            flex: 1 1 auto;
+
+            width: 100%;
+            font-weight: bold;
+            text-align: center;
+          }
+
+          a {
+            color: var(--text-color);
+          }
+        }
+
+        .product__quantity {
+          flex: 0 0 135px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .quantity__content {
+            font-size: 1.5rem;
+            background-color: var(--light);
+            border: 2px solid var(--bg-color);
+            padding: 5px 20px;
+            border-radius: 30px;
+            display: flex;
+            transition: all 0.5s ease 0s;
+
+            button{
+              display: flex;
+              align-items: center;
+            }
+
+            .quantity__number {
+              margin: 0 10px;
+              display: inline-block;
+              width: 25px;
+              text-align: center;
+            }
+
+            &:hover {
+              box-shadow: 0 0 0 3px var(--primary);
+            }
+          }
+        }
+
+        .product__cost {
+          flex: 0 0 80px;
+
+          display: flex;
+          justify-content: center;
+
+          span {
+            font-weight: bold;
+          }
+        }
+
+        .product__delete.delete {
+          flex: 0 0 40px;
+
+          display: flex;
+          justify-content: flex-end;
+
+          .delete__btn {
+            font-size: 1rem;
+            border: 1px solid silver;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 2px;
+            border-radius: 50%;
+
+            transition: all ease 0.5s;
+
+            svg {
+              fill: var(--text-color);
+            }
+
+            &:hover {
+              background-color: var(--dark-red);
+              border: 1px solid var(--dark-red);
+
+              svg {
+                fill: var(--white-always);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .cart__total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+
+      span {
+        font-weight: bold;
+      }
+
+      @media only screen and (max-width: 530px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .cart__btn {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+
+      .btn {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      @media only screen and (max-width: 530px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
+}
+
+.order-form {
+  .container {
+    max-width: 700px;
+
+    .form {
+      .form__wrapper {
+        display: flex;
+        gap: 20px;
+
+        .form__column {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

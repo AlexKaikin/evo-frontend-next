@@ -68,7 +68,7 @@ export default function Focus(props: IProps) {
           <Link
             onClick={showCartOnClick}
             href="/products/cart"
-            className="btn radius-10 p-10"
+            className="btn p-10"
           >
             Перейти в корзину
           </Link>

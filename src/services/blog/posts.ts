@@ -1,11 +1,11 @@
 import { api } from '@/config/api'
 import {
   FilterType,
+  IPost,
   NewPostItemType,
   PaginationType,
-  IPost,
 } from '@/types/blog/posts'
-import { IParams, createUrlParams } from '@/utils/createUrlParams'
+import { IParams, createUrlParams } from '@/utils/url'
 
 export const postService = {
   getPosts(filter: FilterType, pagination: PaginationType) {
