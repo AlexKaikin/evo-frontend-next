@@ -1,11 +1,7 @@
-import { postService } from '@/services/blog/posts'
+//import { postService } from '@/services/blog/posts'
 import { RootState } from '@/store/store'
-import { PostItemType, PostsStateType } from '@/types/blog/posts'
+import { IPost, PostsStateType } from '@/types/blog/posts'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-
-/**
- * Статьи блога
- */
 
 enum Status {
   Loading = 'loading',
@@ -33,7 +29,7 @@ export const posts = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    setPosts: (state, action: PayloadAction<PostItemType[]>) => {
+    setPosts: (state, action: PayloadAction<IPost[]>) => {
       state.postItems = action.payload
       state.status = Status.Success
     },
@@ -82,31 +78,23 @@ export const {
 } = posts.actions
 
 export default posts.reducer
-
-/**
- * Selector
- */
 export const postsSelector = (state: RootState) => state.posts
 
-/**
- * thunk
- * загрузка постов
- */
-export const getPosts =
-  () => async (dispatch: Function, getState: Function) => {
-    dispatch(setPostsStatus(Status.Loading))
-    try {
-      const res = await postService.getPosts(
-        getState().posts.filter,
-        getState().posts.pagination
-      )
-      dispatch(setPosts(res.data))
-      res.headers['x-total-count'] &&
-        dispatch(setPostsTotalItems(res.headers['x-total-count']))
-    } catch (err) {
-      dispatch(setPostsStatus(Status.Error))
-      console.log(err)
-    }
-  }
+// export const getPosts =
+//   () => async (dispatch: Function, getState: Function) => {
+//     dispatch(setPostsStatus(Status.Loading))
+//     try {
+//       const res = await postService.all(
+//         getState().posts.filter,
+//         getState().posts.pagination
+//       )
+//       dispatch(setPosts(res.data))
+//       res.headers['x-total-count'] &&
+//         dispatch(setPostsTotalItems(res.headers['x-total-count']))
+//     } catch (err) {
+//       dispatch(setPostsStatus(Status.Error))
+//       console.log(err)
+//     }
+//   }
 
-export const postsActions = { ...posts.actions, getPosts }
+export const postsActions = { ...posts.actions }

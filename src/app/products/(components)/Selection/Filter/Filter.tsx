@@ -252,14 +252,14 @@ export default function Filter() {
             </div>
           </div>
           <div className="filter__footer">
-            <button className="btn radius-10 p-10" type="submit">
+            <button className="btn p-10" type="submit">
               Применить
             </button>
             {(isDirty || checkChangedFilter()) && (
               <button
                 onClick={formReset}
                 type="reset"
-                className="btn btn-light radius-10 p-10"
+                className="btn btn-light p-10"
               >
                 Сброс
               </button>

@@ -20,7 +20,12 @@ export default function ProductItems({ products }: IProps) {
               className="product__item"
             >
               <div className="product__img">
-                <Image src={product.imgUrl} fill alt={product.title} />
+                <Image
+                  src={product.imgUrl}
+                  fill
+                  sizes="(max-width: 1800px) 50vw"
+                  alt={product.title}
+                />
               </div>
               <div className="product__title">
                 {product.title} <span className="from">- от</span>{' '}

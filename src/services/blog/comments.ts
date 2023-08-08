@@ -7,8 +7,6 @@ import {
 
 export const commentService = {
   getComments(post_id: string) {
-    //const pagination = `_page=${currentPage}&_limit=${limitItems}`
-
     return api.get<CommentItemType[]>(`posts/${post_id}/comments`)
   },
 

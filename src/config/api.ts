@@ -7,6 +7,19 @@ export const api = axios.create({
   baseURL: SERVER_URL + '/api',
 })
 
+export const options = {
+  multipart: {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  },
+  json: {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  },
+}
+
 // api.interceptors.request.use(async config => {
 //   const isServer = typeof window === 'undefined'
 //   console.log(isServer)

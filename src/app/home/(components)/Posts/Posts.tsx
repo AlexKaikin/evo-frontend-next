@@ -23,7 +23,12 @@ export default function Posts({ posts }: IProps) {
               className={`post__item fade-in post-${i + 1}`}
             >
               <div className="post__img">
-                <Image fill src={post.imgUrl} alt={`${post.title} фото`} />
+                <Image
+                  fill
+                  sizes="(max-width: 1800px) 50vw"
+                  src={post.imgUrl}
+                  alt={`${post.title} фото`}
+                />
               </div>
               <div className="post__body">
                 <div className="post__title">{post.title}</div>

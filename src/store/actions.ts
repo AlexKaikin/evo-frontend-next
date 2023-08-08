@@ -3,6 +3,7 @@ import { authActions } from './auth/auth'
 import { commentsActions } from './blog/comments/comments'
 import { postsActions } from './blog/posts/posts'
 import { postActions } from './blog/post/post'
+import { postsFavoritesActions } from './blog/favorites/postsFavorites'
 import { eventsActions } from './club/events/events'
 import { groupActions } from './club/group/group'
 import { groupsActions } from './club/groups/groups'
@@ -35,6 +36,7 @@ export const actions = {
   ...orderActions,
   ...postsActions,
   ...postActions,
+  ...postsFavoritesActions,
   ...commentsActions,
   ...usersActions,
   ...userActions,

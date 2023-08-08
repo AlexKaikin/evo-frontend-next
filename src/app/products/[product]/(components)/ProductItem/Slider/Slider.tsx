@@ -74,6 +74,7 @@ export default function Slider({ product }: IProps) {
               <Image
                 src={product.imgUrl}
                 fill
+                sizes="(max-width: 1800px) 33vw"
                 onClick={() => setImgActive(product.imgUrl)}
                 alt="Картинка не загрузилась"
               />
@@ -88,6 +89,7 @@ export default function Slider({ product }: IProps) {
                 <Image
                   src={item}
                   fill
+                  sizes="(max-width: 1800px) 33vw"
                   onClick={() => setImgActive(item)}
                   alt="Картинка не загрузилась"
                 />
@@ -100,7 +102,12 @@ export default function Slider({ product }: IProps) {
         </button>
       </div>
       <div className="slider__img">
-        <Image src={imgActive} fill alt="Картинка не загрузилась" />
+        <Image
+          src={imgActive}
+          fill
+          sizes="(max-width: 1800px) 50vw"
+          alt="Картинка не загрузилась"
+        />
       </div>
     </div>
   )

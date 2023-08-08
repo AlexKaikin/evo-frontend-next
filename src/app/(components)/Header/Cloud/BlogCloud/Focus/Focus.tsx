@@ -1,24 +1,21 @@
 import { PostsFavoritesItemType } from '@/types/blog/postsFavorites'
-import { HeartSVG } from '@common/svg'
-import { NavLink } from 'react-router-dom'
+import Link from 'next/link'
+import { BsHeart } from 'react-icons/bs'
 
-type PropsType = {
+interface IProps {
   favoritesItems: PostsFavoritesItemType[]
 }
 
-function Focus(props: PropsType) {
+export default function Focus(props: IProps) {
   const { favoritesItems } = props
-
   return (
     <div className="store__info items">
-      <NavLink to="/posts/favorites" className="item">
+      <Link href="/posts/favorites" className="item">
         {favoritesItems.length > 0 && (
           <div className="count">{favoritesItems.length}</div>
         )}
-        <HeartSVG />
-      </NavLink>
+        <BsHeart />
+      </Link>
     </div>
   )
 }
-
-export default Focus

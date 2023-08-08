@@ -1,76 +1,47 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+'use client'
 
-import { useActions } from '@hooks/useActions'
-import { SearchSVG } from '@components/common/svg'
+import { useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { BsSearch } from 'react-icons/bs'
 
-type PropsType = {
-  query: string
-}
+export default function Search() {
+  const searchParams = useSearchParams()
+  const queryParam = getQueryParam()
+  const [query, setQuery] = useState(queryParam)
+  const router = useRouter()
 
-function Search({ query }: PropsType) {
-  const { setPostsCategory, setPostsPage, setPostsQuery } = useActions()
-  const [searchValue, setSearchValue] = useState<string>(query)
-  const navigate = useNavigate()
-  const searchRef = useRef<HTMLFormElement>(null)
-
-  function SearchValueChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setSearchValue(e.target.value)
-    if (e.target.value === '') setPostsQuery('')
+  function getQueryParam() {
+    const queryParam = searchParams.get('q')
+    if (queryParam) return queryParam
+    else return ''
   }
 
-  function searchClick(
-    e: React.MouseEvent<HTMLButtonElement>,
-    searchValue: string
-  ) {
+  function searchClick(e: any) {
     e.preventDefault()
-    if (searchValue !== '') {
-      setSearchValue(searchValue)
-      navigate(`/posts?q=${searchValue}`)
-      setPostsQuery(searchValue)
-      setPostsPage(1)
-      setPostsCategory('Все статьи')
-    } else {
-      const error = '<p class="error">Пожалуйста, введите запрос</p>'
-      searchRef.current?.insertAdjacentHTML('beforeend', error)
-      setTimeout(() => {
-        if (searchRef.current?.querySelector('.error')) {
-          let msgShow = searchRef.current.querySelector('.error')
-          if (msgShow !== null) msgShow.outerHTML = ''
-        }
-      }, 2000)
-    }
+    if (query) router.push(`/posts/?q=${query}`)
+    else router.push(`posts`)
   }
-
-  const queryValue = new URLSearchParams(useLocation().search).get('q') || ''
 
   useEffect(() => {
-    if (queryValue !== '') {
-      setPostsQuery(queryValue)
-      setSearchValue(queryValue)
-    }
-  }, [setPostsQuery, queryValue])
+    const qParam = searchParams.get('q')
+    if (qParam !== null) setQuery(qParam)
+    else setQuery('')
+  }, [searchParams])
 
   return (
     <div className="store__search">
-      <form ref={searchRef} action="#" className="form">
+      <form className="form">
         <input
-          onChange={SearchValueChange}
-          value={searchValue}
+          onChange={e => setQuery(e.target.value)}
+          value={query}
           type="text"
           placeholder="Найти статью..."
           required
         />
-        <button
-          onClick={(e) => searchClick(e, searchValue)}
-          type="submit"
-          className=""
-        >
-          <SearchSVG />
+        <button onClick={searchClick} type="submit" className="">
+          <BsSearch />
         </button>
       </form>
     </div>
   )
 }
-
-export default Search

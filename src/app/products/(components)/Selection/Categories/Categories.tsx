@@ -1,6 +1,5 @@
 'use client'
 
-//import CategoriesSkeleton from '@/components/common/Skeleton/CategoriesSkeleton/CategoriesSkeleton'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { CategoryItemType } from '@/types/navigation'
 import { scrollToTop } from '@/utils'
@@ -25,11 +24,6 @@ export default function Categories({ items }: IProps) {
 
   useOnClickOutside(categoryRef, () => setCategoryShow(false))
 
-  const categoryShowChange = () => {
-    if (categoryShow) setCategoryShow(false)
-    else setCategoryShow(true)
-  }
-
   const changeCategoryActive = (item: string) => {
     if (item === 'Все чаи') item = ''
 
@@ -44,6 +38,8 @@ export default function Categories({ items }: IProps) {
         queryParams.append('category', String(item))
       }
 
+      if(item === '') queryParams.delete('category')
+
       if (queryParams.has('_page')) {
         queryParams.set('_page', String(1))
       }
@@ -51,13 +47,17 @@ export default function Categories({ items }: IProps) {
     const path = window.location.pathname + '?' + queryParams?.toString()
     router.push(path)
     scrollToTop()
+    setCategoryShow(false)
   }
 
   //if (!items.length) return <CategoriesSkeleton />
 
   return (
     <div ref={categoryRef} className="filter__category">
-      <button onClick={categoryShowChange} className="category__mobile">
+      <button
+        onClick={() => setCategoryShow(!categoryShow)}
+        className="category__mobile"
+      >
         <BsGrid />
         <span>{categoryActive}</span>
       </button>

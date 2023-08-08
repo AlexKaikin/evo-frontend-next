@@ -1,0 +1,29 @@
+.pagination {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  margin: 20px 0;
+
+  .page {
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    background-color: var(--light);
+    border: 2px solid var(--bg-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.5s ease 0s;
+
+    &:hover {
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+
+    &.active {
+      background-color: var(--primary);
+      color: white;
+    }
+  }
+}

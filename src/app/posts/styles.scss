@@ -1,0 +1,99 @@
+.posts {
+  .container {
+    .posts__items.post {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+
+      @media only screen and (max-width: 700px) {
+        grid-template-columns: 1fr;
+      }
+
+      .post__item {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        transition: all 0.5s ease 0s;
+        padding: 10px;
+
+        &:hover {
+          box-shadow: 0 0 20px 0 gainsboro;
+          border-radius: 5px;
+        }
+
+        .post__img {
+          overflow: hidden;
+          position: relative;
+          padding: 0 0 50% 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 1s ease 0s;
+            border-radius: 5px;
+          }
+        }
+
+        .post__title {
+          display: inline-block;
+
+          position: relative;
+
+          margin-bottom: 10px;
+          color: var(--dark-text);
+          font-weight: bold;
+          font-size: 1.5rem;
+        }
+
+        .post__meta {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 5px;
+          margin-bottom: 20px;
+          opacity: 0.5;
+
+          .post__category {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            margin-right: 20px;
+          }
+
+          .post__view {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            margin-right: 20px;
+          }
+
+          .post__date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+          }
+        }
+
+        @media only screen and (max-width: 940px) {
+          flex: 0 0 47%;
+        }
+
+        @media only screen and (max-width: 767px) {
+          flex: 0 0 47%;
+        }
+
+        @media only screen and (max-width: 530px) {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  }
+}

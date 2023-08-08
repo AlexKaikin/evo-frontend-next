@@ -1,4 +1,4 @@
-import { api } from '@/config/api'
+import { api, options } from '@/config/api'
 import { CreateProductType, IProduct } from '@/types/shop/products'
 import { IParams, createUrlParams } from '@/utils/url'
 
@@ -10,58 +10,30 @@ export const productService = {
   getOne(id: number) {
     return api.get<IProduct>(`products/${id}`)
   },
-}
 
-export const productAdminService = {
-  // getProducts(filter: IFilterProducts, pagination: PaginationType) {
-  //   const { currentPage, limitItems } = pagination
-  //   const { query, category, sort } = filter
-  //   const $q = query === '' ? `` : `q=${query}&`
-  //   const $category = category === 'Все чаи' ? `` : `category=${category}&`
-  //   const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-  //   const sorting = (sort: string) => {
-  //     switch (sort) {
-  //       case 'priceDecrease':
-  //         return `_sort=price&_order=desc&`
-  //       case 'priceIncrease':
-  //         return `_sort=price&_order=asc&`
-  //       case 'pop':
-  //         return `_sort=rating&_order=desc&`
-  //       default:
-  //         return `_sort=id&_order=desc&`
-  //     }
-  //   }
+  getAllForAdmin(searchParams: IParams) {
+    return api.get<IProduct[]>(
+      `admin/products/?${createUrlParams(searchParams)}`
+    )
+  },
 
-  //   return api.get<IProduct[]>(
-  //     `admin/products/?${$q + $category + sorting(sort) + $pagination}`
-  //   )
-  // },
-
-  getProduct(id: number) {
+  getOneForAdmin(id: number) {
     return api.get<IProduct>(`admin/products/${id}`)
   },
+
   uploadProductImg(formData: any) {
-    return api.post('/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    return api.post('/upload', formData, options.multipart)
   },
-  createProduct(data: CreateProductType) {
-    return api.post<IProduct>(`admin/products/`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+
+  create(data: CreateProductType) {
+    return api.post<IProduct>(`admin/products/`, data, options.json)
   },
-  updateProduct(data: IProduct) {
-    return api.patch<IProduct>(`admin/products/${data.id}`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+
+  update(data: IProduct) {
+    return api.patch<IProduct>(`admin/products/${data.id}`, data, options.json)
   },
-  deleteProduct(id: number) {
+
+  delete(id: number) {
     return api.delete<IProduct>(`admin/products/${id}`)
   },
 }

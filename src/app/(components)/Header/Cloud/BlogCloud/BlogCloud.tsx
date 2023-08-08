@@ -1,27 +1,22 @@
-import {
-  getPostsFavorites,
-  postsFavoritesSelector,
-} from '@/store/blog/favorites/postsFavorites'
-import { postsSelector } from '@/store/blog/posts/posts'
-import { useAppDispatch } from '@/store/store'
+import { useActions } from '@/hooks/useActions'
+import { postsFavoritesSelector } from '@/store/blog/favorites/postsFavorites'
+import { useAppSelector } from '@/store/store'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
 import Focus from './Focus/Focus'
 import Search from './Search/Search'
 
 export default function BlogCloud() {
-  const { filter } = useSelector(postsSelector)
-  const { postsFavoritesItems } = useSelector(postsFavoritesSelector)
-  const dispatch = useAppDispatch()
+  const { getPostsFavorites } = useActions()
+  const { postsFavoritesItems } = useAppSelector(postsFavoritesSelector)
 
   useEffect(() => {
-    dispatch(getPostsFavorites())
-  }, [dispatch])
+    getPostsFavorites()
+  }, [getPostsFavorites])
 
   return (
     <section className="cloud">
       <div className="container">
-        <Search query={filter.query} />
+        <Search />
         <Focus favoritesItems={postsFavoritesItems} />
       </div>
     </section>

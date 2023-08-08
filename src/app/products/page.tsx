@@ -2,7 +2,7 @@ import { productService } from '@/services/shop/products'
 import { IProduct } from '@/types/shop/products'
 import { IParams } from '@/utils/url'
 import { Metadata } from 'next'
-import { Pagination, ProductItems, Selection } from './(componnets)/'
+import { Pagination, ProductItems, Selection } from './(components)'
 import './styles.scss'
 
 interface IProps {

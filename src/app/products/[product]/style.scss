@@ -111,6 +111,8 @@
             }
 
             .carousel__item {
+              position: relative;
+
               border: 5px solid transparent;
               border-radius: 50%;
               transition: all 0.5s ease 0s;
@@ -140,6 +142,8 @@
       }
 
       .slider__img {
+        position: relative;
+        
         width: 100%;
 
         img {

@@ -1,7 +1,7 @@
-import { productAdminService } from '@/services/shop/products'
+import { productService } from '@/services/shop/products'
 import {
   CreateProductType,
-  ProductItemType,
+  IProduct,
   ProductsStateType,
 } from '@/types/shop/products'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
@@ -29,16 +29,10 @@ const initialState: ProductsStateType = {
   filter: {
     category: 'Все чаи',
     sort: 'new',
-    query: '',
-    priceFrom: '',
-    priceTo: '',
-    ratings: [
-      { id: 1, name: 'rating1', checked: false },
-      { id: 2, name: 'rating2', checked: false },
-      { id: 3, name: 'rating3', checked: false },
-      { id: 4, name: 'rating4', checked: false },
-      { id: 5, name: 'rating5', checked: false },
-    ],
+    q: '',
+    price_gte: '',
+    price_lte: '',
+    ratings: '',
     manufacturer: '',
   },
   status: Status.Loading,
@@ -48,7 +42,7 @@ export const productsAdmin = createSlice({
   name: 'productsAdmin',
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<ProductItemType[]>) => {
+    setProducts: (state, action: PayloadAction<IProduct[]>) => {
       state.productItems = action.payload
       state.status = Status.Success
     },
@@ -68,7 +62,7 @@ export const productsAdmin = createSlice({
       state.filter.sort = action.payload
     },
     setQuery: (state, action: PayloadAction<string>) => {
-      state.filter.query = action.payload
+      state.filter.q = action.payload
     },
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
@@ -100,27 +94,27 @@ export const productsAdminSelector = (state: RootState) => state.productsAdmin
  * thunk
  * загрузка товаров
  */
-export const getProductsAdmin =
-  () => async (dispatch: Function, getState: Function) => {
-    dispatch(setStatus(Status.Loading))
-    try {
-      const res = await productAdminService.getProducts(
-        getState().productsAdmin.filter,
-        getState().productsAdmin.pagination
-      )
-      dispatch(setProducts(res.data))
-      res.headers['x-total-count'] &&
-        dispatch(setTotalItems(res.headers['x-total-count']))
-    } catch (err) {
-      dispatch(setStatus(Status.Error))
-      console.log(err)
-    }
-  }
+// export const getProductsAdmin =
+//   () => async (dispatch: Function, getState: Function) => {
+//     dispatch(setStatus(Status.Loading))
+//     try {
+//       const res = await productService.getAllForAdmin(
+//         getState().productsAdmin.filter,
+//         getState().productsAdmin.pagination
+//       )
+//       dispatch(setProducts(res.data))
+//       res.headers['x-total-count'] &&
+//         dispatch(setTotalItems(res.headers['x-total-count']))
+//     } catch (err) {
+//       dispatch(setStatus(Status.Error))
+//       console.log(err)
+//     }
+//   }
 
 export const getProductAdmin = (id: number) => async (dispatch: Function) => {
   dispatch(setStatus(Status.Loading))
   try {
-    const res = await productAdminService.getProduct(id)
+    const res = await productService.getOneForAdmin(id)
     dispatch(setProduct(res.data))
   } catch (err) {
     dispatch(setStatus(Status.Error))
@@ -134,7 +128,7 @@ export const getProductAdmin = (id: number) => async (dispatch: Function) => {
 export const createProduct =
   (data: CreateProductType) => async (dispatch: Function) => {
     try {
-      const res = await productAdminService.createProduct(data)
+      const res = await productService.create(data)
       dispatch(setProduct(res.data))
     } catch (err) {
       console.log(err)
@@ -145,9 +139,9 @@ export const createProduct =
  * обновить товар
  */
 export const updateProduct =
-  (data: ProductItemType) => async (dispatch: Function) => {
+  (data: IProduct) => async (dispatch: Function) => {
     try {
-      await productAdminService.updateProduct(data)
+      await productService.update(data)
       dispatch(setProduct(data))
     } catch (err) {
       console.log(err)
@@ -159,7 +153,7 @@ export const updateProduct =
  */
 export const deleteProduct = (id: number) => async (dispatch: Function) => {
   try {
-    await productAdminService.deleteProduct(id)
+    await productService.delete(id)
   } catch (err) {
     console.log(err)
   }

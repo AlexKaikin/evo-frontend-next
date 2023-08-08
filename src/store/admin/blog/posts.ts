@@ -1,7 +1,7 @@
-import { postAdminService } from '@/services/blog/posts'
+import { postService } from '@/services/blog/posts'
 import {
   NewPostItemType,
-  PostItemType,
+  IPost,
   PostsStateType,
 } from '@/types/blog/posts'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
@@ -38,7 +38,7 @@ export const postsAdmin = createSlice({
   name: 'postsAdmin',
   initialState,
   reducers: {
-    setPosts: (state, action: PayloadAction<PostItemType[]>) => {
+    setPosts: (state, action: PayloadAction<IPost[]>) => {
       state.postItems = action.payload
       state.status = Status.Success
     },
@@ -90,27 +90,27 @@ export const postsAdminSelector = (state: RootState) => state.postsAdmin
  * thunk
  * загрузка постов
  */
-export const getPostsAdmin =
-  () => async (dispatch: Function, getState: Function) => {
-    dispatch(setStatus(Status.Loading))
-    try {
-      const res = await postAdminService.getPosts(
-        getState().postsAdmin.filter,
-        getState().postsAdmin.pagination
-      )
-      dispatch(setPosts(res.data))
-      res.headers['x-total-count'] &&
-        dispatch(setTotalItems(res.headers['x-total-count']))
-    } catch (err) {
-      dispatch(setStatus(Status.Error))
-      console.log(err)
-    }
-  }
+// export const getPostsAdmin =
+//   () => async (dispatch: Function, getState: Function) => {
+//     dispatch(setStatus(Status.Loading))
+//     try {
+//       const res = await postService.getAllForAdmin(
+//         getState().postsAdmin.filter,
+//         getState().postsAdmin.pagination
+//       )
+//       dispatch(setPosts(res.data))
+//       res.headers['x-total-count'] &&
+//         dispatch(setTotalItems(res.headers['x-total-count']))
+//     } catch (err) {
+//       dispatch(setStatus(Status.Error))
+//       console.log(err)
+//     }
+//   }
 
 export const getPostAdmin = (id: number) => async (dispatch: Function) => {
   dispatch(setStatus(Status.Loading))
   try {
-    const res = await postAdminService.getPost(id)
+    const res = await postService.getOneForAdmin(id)
     dispatch(setPost(res.data))
   } catch (err) {
     dispatch(setStatus(Status.Error))
@@ -124,7 +124,7 @@ export const getPostAdmin = (id: number) => async (dispatch: Function) => {
 export const createPost =
   (data: NewPostItemType) => async (dispatch: Function) => {
     try {
-      const res = await postAdminService.createPost(data)
+      const res = await postService.create(data)
       dispatch(setPost(res.data))
     } catch (err) {
       console.log(err)
@@ -135,9 +135,9 @@ export const createPost =
  * обновить запись
  */
 export const updatePost =
-  (data: PostItemType) => async (dispatch: Function) => {
+  (data: IPost) => async (dispatch: Function) => {
     try {
-      await postAdminService.updatePost(data)
+      await postService.update(data)
       dispatch(setPost(data))
     } catch (err) {
       console.log(err)
@@ -149,7 +149,7 @@ export const updatePost =
  */
 export const deletePost = (id: number) => async (dispatch: Function) => {
   try {
-    await postAdminService.deletePost(id)
+    await postService.delete(id)
   } catch (err) {
     console.log(err)
   }

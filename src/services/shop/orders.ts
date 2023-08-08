@@ -6,27 +6,27 @@ import {
 } from '@/types/shop/order'
 
 export const orderService = {
-  getOrders(pagination: PaginationType) {
+  getAll(pagination: PaginationType) {
     const { currentPage, limitItems } = pagination
     const $pagination = `_page=${currentPage}&_limit=${limitItems}`
     return api.get<OrderItemType[]>(`orders?${$pagination}`)
   },
 
-  getOrdersAdmin(pagination: PaginationType) {
+  getAllForAdmin(pagination: PaginationType) {
     const { currentPage, limitItems } = pagination
     const $pagination = `_page=${currentPage}&_limit=${limitItems}`
     return api.get<OrderItemType[]>(`admin/orders?${$pagination}`)
   },
 
-  createOrder(values: CreateOrderItemType) {
+  create(values: CreateOrderItemType) {
     return api.post<OrderItemType>(`orders`, values)
   },
 
-  updateOrder(data: OrderItemType) {
+  update(data: OrderItemType) {
     return api.patch<OrderItemType>(`admin/orders/${data.id}`, data)
   },
 
-  deleteOrder(id: number) {
+  delete(id: number) {
     return api.delete<OrderItemType>(`admin/orders/${id}`)
   },
 }

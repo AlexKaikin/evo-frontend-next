@@ -1,35 +1,31 @@
 'use client'
 
-import { cartSelector, getCart } from '@/store/shop/cart/cart'
-import { compareSelector, getCompare } from '@/store/shop/compare/compare'
-import {
-  favoritesSelector,
-  getProductsFavorites,
-} from '@/store/shop/favorites/favorites'
-//import { productsSelector } from '@/store/shop/products/products'
-import { useAppDispatch } from '@/store/store'
+import { cartSelector } from '@/store/shop/cart/cart'
+import { compareSelector } from '@/store/shop/compare/compare'
+import { favoritesSelector } from '@/store/shop/favorites/favorites'
+import { useAppSelector } from '@/store/store'
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+
+import { useActions } from '@/hooks/useActions'
 import Focus from './Focus/Focus'
 import Search from './Search/Search'
 
 export default function ShopCloud() {
-  //const { filter } = useSelector(productsSelector)
-  const cartState = useSelector(cartSelector)
-  const { compareItems } = useSelector(compareSelector)
-  const { favoritesItems } = useSelector(favoritesSelector)
-  const dispatch = useAppDispatch()
+  const { getCart, getCompare, getProductsFavorites } = useActions()
+  const cartState = useAppSelector(cartSelector)
+  const { compareItems } = useAppSelector(compareSelector)
+  const { favoritesItems } = useAppSelector(favoritesSelector)
 
   useEffect(() => {
-    dispatch(getCart())
-    dispatch(getCompare())
-    dispatch(getProductsFavorites())
-  }, [dispatch])
+    getCart()
+    getCompare()
+    getProductsFavorites()
+  }, [getCart, getCompare, getProductsFavorites])
 
   return (
     <section className="cloud">
       <div className="container">
-        <Search/>
+        <Search />
         <Focus
           cartState={cartState}
           compareItems={compareItems}

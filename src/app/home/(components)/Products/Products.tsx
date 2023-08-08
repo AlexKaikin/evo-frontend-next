@@ -29,6 +29,7 @@ export default function Products({ products }: IProps) {
               <div className="product__img">
                 <Image
                   fill
+                  sizes="(max-width: 1800px) 50vw"
                   src={product.imgUrl}
                   alt={`${product.title} фото`}
                 />

@@ -23,21 +23,15 @@ export const postsFavorites = createSlice({
   },
 })
 
-/**
- * Action
- */
 export const { setPostFavorite } = postsFavorites.actions
-
 export default postsFavorites.reducer
-
-/**
- * Selector
- */
 export const postsFavoritesSelector = (state: RootState) => state.postsFavorites
 
-/**
- * thunk
- */
 export const getPostsFavorites = () => (dispatch: Function) => {
   dispatch(setPostFavorite(getLocalStorage('postsFavorites')))
+}
+
+export const postsFavoritesActions = {
+  ...postsFavorites.actions,
+  getPostsFavorites,
 }

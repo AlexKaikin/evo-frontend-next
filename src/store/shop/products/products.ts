@@ -7,10 +7,6 @@ import {
 } from '@/types/shop/products'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-/**
- * Товары
- */
-
 enum Status {
   Loading = 'loading',
   Success = 'success',
@@ -83,9 +79,6 @@ export const productsSlice = createSlice({
   },
 })
 
-/**
- * Action
- */
 export const {
   setProducts,
   setProductsTotalItems,
@@ -98,10 +91,6 @@ export const {
 } = productsSlice.actions
 
 export default productsSlice.reducer
-
-/**
- * Selector
- */
 export const productsSelector = (state: RootState) => state.products
 
 /**
