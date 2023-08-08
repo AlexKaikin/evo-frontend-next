@@ -2,7 +2,7 @@ import {
   PostsFavoritesItemType,
   PostsFavoritesStateType,
 } from '@/types/blog/postsFavorites'
-import { getLocalStorage } from '@/utils/utils'
+import { getLocalStorage } from '@/utils/localStorage'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 

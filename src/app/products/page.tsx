@@ -33,8 +33,8 @@ export default async function Products({ searchParams }: IProps) {
   return (
     <>
       <Selection />
-      <ProductItems products={products} />
-      <Pagination totalCount={totalCount} />
+        <ProductItems products={products} />
+        <Pagination totalCount={totalCount} />
     </>
   )
 }

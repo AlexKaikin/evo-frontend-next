@@ -24,6 +24,7 @@
           padding: 10px 20px;
           background-color: var(--light);
           transition: all 0.5s ease 0s;
+          border-radius: 30px;
 
           &.active {
             background-color: var(--brown);

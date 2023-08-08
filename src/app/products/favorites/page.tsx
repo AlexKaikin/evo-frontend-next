@@ -1,5 +1,5 @@
-import '../styles.scss'
 import { Metadata } from 'next'
+import '../styles.scss'
 import FavoriteItems from './(components)/FavoriteItems'
 
 export const metadata: Metadata = {

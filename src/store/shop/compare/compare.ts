@@ -19,9 +19,8 @@ export const compare = createSlice({
 
 export const { setCompare } = compare.actions
 export default compare.reducer
-
 export const compareSelector = (state: RootState) => state.compare
-
 export const getCompare = () => (dispatch: Function) => {
   dispatch(setCompare(getLocalStorage('compare')))
 }
+export const compareActions = { ...compare.actions, getCompare }
