@@ -2,9 +2,11 @@
 //import { removeTokensInLocalStorage } from '@/services/auth/auth.helpers'
 import axios from 'axios'
 import { SERVER_URL } from './url'
+//import { cookies } from 'next/headers'
 
 export const api = axios.create({
   baseURL: SERVER_URL + '/api',
+  //withCredentials: true
 })
 
 export const options = {
@@ -19,6 +21,13 @@ export const options = {
     },
   },
 }
+
+// api.interceptors.request.use(async config => {
+//   const cookieStore = cookies()
+//   const accessToken = cookieStore.get('accessToken')
+//   console.log(accessToken)
+//   return config
+// })
 
 // api.interceptors.request.use(async config => {
 //   const isServer = typeof window === 'undefined'
@@ -93,13 +102,3 @@ export const options = {
 //     : error.message
 // }
 
-// function getCookie(name: string) {
-//   var matches = document.cookie.match(
-//     new RegExp(
-//       '(?:^|; )' +
-//         name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
-//         '=([^;]*)'
-//     )
-//   )
-//   return matches ? decodeURIComponent(matches[1]) : undefined
-// }

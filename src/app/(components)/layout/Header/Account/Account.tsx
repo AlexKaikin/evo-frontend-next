@@ -1,17 +1,17 @@
 'use client'
 
-import cn from 'classnames'
-import { useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { AuthStateType } from '@/types/auth'
-import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
 import { useActions } from '@//hooks/useActions'
+import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { authSelector } from '@/store/auth/auth'
-import Link from 'next/link'
+import { AuthStateType } from '@/types/auth'
+import cn from 'classnames'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-type IProps = {
+interface IProps {
   auth: AuthStateType
 }
 
@@ -40,16 +40,14 @@ export default function Account({ auth }: IProps) {
       <button className="auth__btn" onClick={AuthShowChange}>
         <div className="auth__avatar">
           <Image
-            src={
-              user?.avatarUrl
-                ? (process.env.REACT_APP_SERVER_URL || '') + user.avatarUrl
-                : defaultAvatar
-            }
+            height={50}
+            width={50}
+            src={user?.avatarUrl ? user.avatarUrl : defaultAvatar}
             alt="avatar"
           />
         </div>
       </button>
-      {/* <ul className={cn('auth__items', { show: authShow })}>
+      <ul className={cn('auth__items', { show: authShow })}>
         {auth.data ? (
           <>
             <li className="auth__item">
@@ -101,7 +99,7 @@ export default function Account({ auth }: IProps) {
             </li>
           </>
         )}
-      </ul> */}
+      </ul>
     </div>
   )
 }

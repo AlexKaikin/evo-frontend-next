@@ -1,5 +1,5 @@
 // возвращает cookie если есть или undefined
-function getCookie(name: string) {
+export function getCookie(name: string) {
   var matches = document.cookie.match(
     new RegExp(
       '(?:^|; )' +
@@ -11,7 +11,7 @@ function getCookie(name: string) {
 }
 
 // уcтанавливает cookie
-function setCookie(
+export function setCookie(
   name: string,
   value: string | null,
   props: { expires: number | string | Date }
@@ -50,7 +50,7 @@ function setCookie(
 }
 
 // удаляет cookie
-function deleteCookie(name: string) {
+export function deleteCookie(name: string) {
   setCookie(name, null, { expires: -1 })
 }
 /*

@@ -1,5 +1,4 @@
 import { authService } from '@/services/auth/auth'
-import { removeTokensInLocalStorage } from '@/services/auth/auth.helpers'
 import {
   AuthDataType,
   AuthStateType,
@@ -10,6 +9,7 @@ import {
 } from '@/types/auth'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
+import { token } from '@/utils'
 
 /**
  * Авторизация
@@ -32,7 +32,7 @@ export const authSlice = createSlice({
   reducers: {
     logout: state => {
       state.data = null
-      removeTokensInLocalStorage()
+      token.removeAll()
     },
 
     setLogin: (state, action: PayloadAction<AuthDataType | null>) => {
@@ -140,10 +140,12 @@ export const register =
     dispatch(setAuthStatus(Status.Loading))
     try {
       const res = await authService.register(values)
-      dispatch(setLogin(res))
+      dispatch(setLogin(res.data.user))
+      return res
     } catch (err) {
       dispatch(setAuthStatus(Status.Error))
       console.log(err)
+      return err
     }
   }
 
@@ -151,13 +153,11 @@ export const login = (values: LoginType) => async (dispatch: Function) => {
   dispatch(setAuthStatus(Status.Loading))
   try {
     const res = await authService.login(values)
-    dispatch(setLogin(res))
-
+    dispatch(setLogin(res.data.user))
     return res
   } catch (err) {
     dispatch(setAuthStatus(Status.Error))
     console.log(err)
-
     return err
   }
 }
