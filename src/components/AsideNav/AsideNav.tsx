@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router-dom'
+import Link from 'next/link'
 import './AsideNav.scss'
 
-type PropsType = {
+interface IProps {
   navItems: {
     id: number
     url: string
@@ -11,18 +11,20 @@ type PropsType = {
   }[]
 }
 
-function AsideNav({ navItems }: PropsType) {
+export default function AsideNav({ navItems }: IProps) {
   return (
     <nav className="aside__nav">
       {navItems.map(item => (
-        <NavLink key={item.id} to={item.url} className="nav__item" end={item.end}>
+        <Link
+          key={item.id}
+          href={item.url}
+          className="nav__item"
+        >
           <span>
             {item.icon} {item.title}
           </span>
-        </NavLink>
+        </Link>
       ))}
     </nav>
   )
 }
-
-export default AsideNav

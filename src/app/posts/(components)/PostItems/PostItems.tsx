@@ -1,10 +1,8 @@
-
 import { IPost } from '@/types/blog/posts'
-
-import {BsClock, BsEye, BsFolder2Open} from 'react-icons/bs'
 import { formatTime } from '@/utils'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BsClock, BsEye, BsFolder2Open } from 'react-icons/bs'
 
 interface IProps {
   posts: IPost[]

@@ -1,19 +1,27 @@
+import './styles.scss'
+
 export default function PostsSkeleton() {
   return (
-    <div className="section products">
+    <div className="section posts">
       <div className="container">
-        <div className="skeleton products">
-          {Array(8)
+        <div className="posts__items post">
+          {Array(4)
             .fill('item')
             .map((_, i) => (
-              <div key={i} className="product__item">
-                <div className="product__img">
-                  <div></div>
-                </div>
-                <div className="product__title"></div>
-                <div className="product__rating"></div>
-                <div className="product__price">
-                  <span></span> <span></span>
+              <div key={i} className="post__item post skeleton">
+                <div className="post__img"></div>
+                <div className="post__content">
+                  <div className="post__title"></div>
+                  <div className="post__meta">
+                    <div className="post__category"></div>
+                    <div className="post__view"></div>
+                    <div className="post__date"></div>
+                  </div>
+                  <div className="post__text">
+                    <p></p>
+                    <p></p>
+                    <p></p>
+                  </div>
                 </div>
               </div>
             ))}

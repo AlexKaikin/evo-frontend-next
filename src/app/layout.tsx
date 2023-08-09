@@ -25,10 +25,10 @@ export default function RootLayout({
     <html lang="ru" data-theme="light">
       <body className={jost.className}>
         <Providers>
-        <div id="root">
-          <Header />
-          <main>{children}</main>
-        </div>
+          <div id="root">
+            <Header />
+            <main>{children}</main>
+          </div>
         </Providers>
       </body>
     </html>
