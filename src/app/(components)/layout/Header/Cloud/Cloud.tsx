@@ -1,7 +1,7 @@
+import { usePathname } from 'next/navigation'
+import BlogCloud from './BlogCloud/BlogCloud'
 import './Cloud.scss'
 import ShopCloud from './ShopCloud/ShopCloud'
-import BlogCloud from './BlogCloud/BlogCloud'
-import { usePathname } from 'next/navigation'
 
 export default function Cloud() {
   const pathname = usePathname()

@@ -1,6 +1,6 @@
 'use client'
 
-import Loader from '@/components/Loader/Loader'
+import Loader from '@/app/(components)/Loader/Loader'
 import { useActions } from '@/hooks/useActions'
 import { useEffect } from 'react'
 

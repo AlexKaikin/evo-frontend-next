@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import Modal from '@/components/Modal/Modal'
-import { ICreateReview } from '@/types/shop/reviews'
-import { useForm } from 'react-hook-form'
+import Modal from '@/app/(components)/Modal/Modal'
 import { useActions } from '@/hooks/useActions'
+import { ICreateReview } from '@/types/shop/reviews'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 
 interface IProps {
   product_Id: string

@@ -1,10 +1,8 @@
 'use client'
 
-
 import { useState } from 'react'
 
-import { CreateCommentType } from '@/types/blog/comments'
-import { Modal } from '@/components'
+import { Modal } from '@/app/(components)'
 import { useActions } from '@/hooks/useActions'
 import { authSelector } from '@/store/auth/auth'
 import { useAppSelector } from '@/store/store'
@@ -42,7 +40,8 @@ export default function CreateComment({ post_id, hideModal }: IProps) {
     return (
       <div className="not-auth">
         Чтобы написать комментарий нужно авторизоваться.{' '}
-        <Link href="/login">Вход</Link> | <Link href="/register">Регистрация</Link>
+        <Link href="/login">Вход</Link> |{' '}
+        <Link href="/register">Регистрация</Link>
       </div>
     )
 

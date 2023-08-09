@@ -2,7 +2,7 @@ import '@/assets/scss/index.scss'
 import Providers from '@/hocs/Providers'
 import type { Metadata } from 'next'
 import { Jost } from 'next/font/google'
-import Header from './(components)/Header/Header'
+import Header from './(components)/layout/Header/Header'
 
 const jost = Jost({
   weight: ['300', '400', '700'],

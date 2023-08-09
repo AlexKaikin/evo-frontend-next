@@ -1,16 +1,14 @@
+import { Modal } from '@/app/(components)'
 import { useState } from 'react'
-import { Modal } from '@/components'
+import CreateReview from './CreateReview/CreateReview'
 import ReviewItems from './ReviewItems/ReviewItems'
 import './Reviews.scss'
-import CreateReview from './CreateReview/CreateReview'
-
 
 interface IProps {
   product_Id: string
 }
 
 export default function Reviews({ product_Id }: IProps) {
-
   const [showModal, setShowModal] = useState(false)
 
   function hideModal() {

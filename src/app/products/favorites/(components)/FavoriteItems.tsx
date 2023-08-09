@@ -1,10 +1,11 @@
 'use client'
 
-import { Rating } from '@/components/'
-import { getNoun } from '@/utils/noun'
-import Link from 'next/link'
-import { useAppSelector } from '@/store/store'
+import { Rating } from '@/app/(components)'
 import { favoritesSelector } from '@/store/shop/favorites/favorites'
+import { useAppSelector } from '@/store/store'
+import { getNoun } from '@/utils/noun'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function FavoriteItems() {
   const { favoritesItems } = useAppSelector(favoritesSelector)
@@ -18,7 +19,9 @@ export default function FavoriteItems() {
           className="product__item"
         >
           <div className="product__img">
-            <img
+            <Image
+              fill
+              sizes="(max-width: 1800px) 50vw"
               src={product.imgUrl}
               alt={`${product.title} фото`}
             />

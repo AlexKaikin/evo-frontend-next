@@ -1,13 +1,13 @@
 'use client'
 
-import { CompareItemType } from '@/types/shop/compare'
-import { Rating } from '@/components'
-import {BsXLg} from 'react-icons/bs'
+import { Rating } from '@/app/(components)'
+import { useActions } from '@/hooks/useActions'
 import { compareSelector } from '@/store/shop/compare/compare'
+import { useAppSelector } from '@/store/store'
+import { CompareItemType } from '@/types/shop/compare'
 import { getLocalStorage, getNoun } from '@/utils'
 import Link from 'next/link'
-import { useAppSelector } from '@/store/store'
-import { useActions } from '@/hooks/useActions'
+import { BsXLg } from 'react-icons/bs'
 
 export default function CompareItems() {
   const { getCompare } = useActions()

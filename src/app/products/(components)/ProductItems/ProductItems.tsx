@@ -1,4 +1,4 @@
-import { Rating } from '@/components'
+import { Rating } from '@/app/(components)'
 import { IProduct } from '@/types/shop/products'
 import { getNoun } from '@/utils'
 import Image from 'next/image'

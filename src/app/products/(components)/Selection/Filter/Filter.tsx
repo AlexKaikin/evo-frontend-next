@@ -1,6 +1,6 @@
 'use client'
 
-import { Rating } from '@/components'
+import { Rating } from '@/app/(components)'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { IFilterProducts } from '@/types/shop/products'
 import { scrollToTop } from '@/utils'
@@ -39,15 +39,15 @@ export default function Filter() {
 
     if (typeof window !== 'undefined') {
       queryParams = new URLSearchParams(window.location.search)
-       if (
-         queryParams.has('q') ||
-         queryParams.has('manufacturer') ||
-         queryParams.has('price_gte') ||
-         queryParams.has('price_lte') ||
-         queryParams.has('ratings')
-       )
-         return true
-       return false
+      if (
+        queryParams.has('q') ||
+        queryParams.has('manufacturer') ||
+        queryParams.has('price_gte') ||
+        queryParams.has('price_lte') ||
+        queryParams.has('ratings')
+      )
+        return true
+      return false
     }
   }
 

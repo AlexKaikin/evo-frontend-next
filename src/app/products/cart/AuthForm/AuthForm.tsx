@@ -1,4 +1,4 @@
-import Modal from '@/components/Modal/Modal'
+import Modal from '@/app/(components)/Modal/Modal'
 import Link from 'next/link'
 
 interface IProps {

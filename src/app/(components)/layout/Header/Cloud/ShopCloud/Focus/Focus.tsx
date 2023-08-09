@@ -1,13 +1,13 @@
+import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { CartStateType } from '@/types/shop/cart'
 import { CompareItemType } from '@/types/shop/compare'
 import { FavoriteItemType } from '@/types/shop/favorites'
-import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import cn from 'classnames'
 import { useRef, useState } from 'react'
 import { BsBag, BsBookmarks, BsHeart, BsXLg } from 'react-icons/bs'
 
-import CartItems from './CartItems/CartItems'
 import Link from 'next/link'
+import CartItems from './CartItems/CartItems'
 
 interface IProps {
   cartState: CartStateType
@@ -77,4 +77,3 @@ export default function Focus(props: IProps) {
     </div>
   )
 }
-

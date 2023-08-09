@@ -1,11 +1,11 @@
 'use client'
 
-import GoBackButton from '@/components/GoBackButton/GoBackButton'
+import GoBackButton from '@/app/(components)/GoBackButton/GoBackButton'
 import { IPost } from '@/types/blog/posts'
 import { formatTime } from '@/utils'
 import Image from 'next/image'
 import { BsClock, BsEye, BsFolder2Open } from 'react-icons/bs'
-import Comments from "../Comments/Comments"
+import Comments from '../Comments/Comments'
 import FavoritesButton from '../FavoritesButton/FavoritesButton'
 
 interface IProps {

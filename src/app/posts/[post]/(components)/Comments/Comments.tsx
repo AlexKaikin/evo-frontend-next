@@ -1,7 +1,7 @@
 'use client'
 
+import { Modal } from '@/app/(components)'
 import { useState } from 'react'
-import { Modal } from '@/components'
 import CommentItems from './CommentItems/CommentItems'
 import './Comments.scss'
 import CreateComment from './CreateComment.tsx/CreateComment'
