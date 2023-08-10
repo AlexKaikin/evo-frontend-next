@@ -52,7 +52,7 @@ export default function Account({ auth }: IProps) {
           <>
             <li className="auth__item">
               <Link
-                href="/profile"
+                href="/account/profile"
                 onClick={AuthShowChange}
                 className="auth__link"
               >

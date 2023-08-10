@@ -4,7 +4,7 @@ export type OrderStateType = {
   status: string
 }
 
-export type OrderItemType = {
+export interface IOrder {
   _id?: number
   id: number
   name: string

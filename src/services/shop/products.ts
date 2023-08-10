@@ -1,9 +1,9 @@
 import { api, options } from '@/config/api'
 import { CreateProductType, IProduct } from '@/types/shop/products'
-import { IParams, createUrlParams } from '@/utils/url'
+import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const productService = {
-  getAll(searchParams: IParams) {
+  getAll(searchParams: IUrlParams) {
     return api.get<IProduct[]>(`products/?${createUrlParams(searchParams)}`)
   },
 
@@ -11,7 +11,7 @@ export const productService = {
     return api.get<IProduct>(`products/${id}`)
   },
 
-  getAllForAdmin(searchParams: IParams) {
+  getAllForAdmin(searchParams: IUrlParams) {
     return api.get<IProduct[]>(
       `admin/products/?${createUrlParams(searchParams)}`
     )

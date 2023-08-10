@@ -1,12 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-
 import { Modal } from '@/app/(components)'
 import { useActions } from '@/hooks/useActions'
 import { authSelector } from '@/store/auth/auth'
 import { useAppSelector } from '@/store/store'
 import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import { ICreateComment } from '@/types/blog/comments'
 
 interface IProps {
   post_id: string
@@ -17,24 +18,29 @@ export default function CreateComment({ post_id, hideModal }: IProps) {
   const { createComment } = useActions()
   const { data } = useAppSelector(authSelector)
   const [modalShow, setModalShow] = useState(false)
-  const modaltoggle2 = () => {
+  const { register, handleSubmit, formState } = useForm<ICreateComment>()
+  const { errors } = formState
+
+  function hideModalModeration() {
     setModalShow(!modalShow)
     hideModal()
   }
 
-  // const formState: CreateCommentType = {
-  //   body: '',
-  //   post: post_id,
-  // }
+  const bodyValidate = {
+    required: {
+      value: true,
+      message: 'Пожалуйста, напишите свой отзыв',
+    },
+    minLength: {
+      value: 10,
+      message: 'Комментарий длжен быть от 10 символов',
+    },
+  }
 
-  // async function formSubmit(values: CreateCommentType) {
-  //   const res: any = await createComment(values)
-  //   res === 'ok' && setModalShow(true)
-  // }
-
-  // function commentValidate(value: string) {
-  //   if (!value) return 'Обязательное поле'
-  // }
+  async function onSubmit(data: ICreateComment) {
+    const res: any = await createComment(data)
+    if (res === 'ok') setModalShow(true)
+  }
 
   if (!data)
     return (
@@ -47,31 +53,24 @@ export default function CreateComment({ post_id, hideModal }: IProps) {
 
   return (
     <>
-      {/* <Formik initialValues={formState} onSubmit={formSubmit}>
-        {({ errors, touched }) => (
-          <Form className="form">
-            <div className="form__field">
-              <label>Комментарий</label>
-              <Field
-                type="text"
-                name="body"
-                as="textarea"
-                validate={commentValidate}
-              />
-            </div>
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <div className="form__field">
+          <label>Комментарий</label>
+          <textarea {...register('body', bodyValidate)} name="body" />
+        </div>
 
-            {errors.body && touched.body && (
-              <div className="form__text_error">{errors.body}</div>
-            )}
-
-            <button type="submit" className="form__btn">
-              Отправить
-            </button>
-          </Form>
+        {errors.body && (
+          <div className="form__text_error">{errors.body.message}</div>
         )}
-      </Formik> */}
+
+        <input {...register('post')} defaultValue={post_id} type="hidden" />
+
+        <button type="submit" className="form__btn">
+          Отправить
+        </button>
+      </form>
       {modalShow && (
-        <Modal title="" modalMaxContent hideModal={modaltoggle2}>
+        <Modal title="" modalMaxContent hideModal={hideModalModeration}>
           Комментарий отправлен на проверку
         </Modal>
       )}

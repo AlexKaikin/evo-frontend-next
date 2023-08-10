@@ -1,0 +1,93 @@
+.two {
+  display: flex;
+  gap: 20px;
+}
+
+.profile {
+  width: 100%;
+
+  .container {
+    .profile__columns {
+      display: flex;
+      gap: 20px;
+
+      .profile__avatar {
+        flex: 0 0 200px;
+
+        position: relative;
+
+        .avatar__wrapper {
+          position: relative;
+          
+          img {
+            object-fit: contain;
+            width: 100% !important;
+            position: relative !important;
+            height: unset !important;
+            border-radius: 5px;
+          }
+
+          .avatar__change {
+            display: none;
+          }
+        }
+
+        &:hover {
+          .avatar__wrapper {
+            .avatar__change {
+              display: flex;
+              gap: 10px;
+
+              position: absolute;
+              bottom: 10px;
+              right: 10px;
+
+              button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: white;
+                padding: 5px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px 0px #d1d1d1;
+              }
+            }
+          }
+        }
+      }
+
+      .profile__info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        width: 100%;
+
+        .info__field {
+          border: 3px solid var(--light);
+          padding: 10px;
+          border-radius: 10px;
+          width: 100%;
+
+          .field__label {
+            font-size: 0.8rem;
+            color: var(--darkLight);
+          }
+
+          .field__text {
+            font-size: 1rem;
+
+            p:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.col {
+  display: flex;
+  gap: 20px;
+}

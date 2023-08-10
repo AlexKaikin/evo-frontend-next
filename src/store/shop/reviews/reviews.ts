@@ -1,7 +1,7 @@
 import { reviewService } from '@/services/shop/reviews'
 import {
   ICreateReview,
-  ReviewItemType,
+  IReview,
   ReviewStateType,
 } from '@/types/shop/reviews'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
@@ -28,7 +28,7 @@ export const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
   reducers: {
-    setReviews: (state, action: PayloadAction<ReviewItemType[]>) => {
+    setReviews: (state, action: PayloadAction<IReview[]>) => {
       state.reviewItems = action.payload
       state.status = Status.Success
     },
@@ -48,7 +48,7 @@ export const reviewsSlice = createSlice({
       state.status = action.payload
     },
 
-    setUpdateReview: (state, action: PayloadAction<ReviewItemType>) => {
+    setUpdateReview: (state, action: PayloadAction<IReview>) => {
       const newItem = action.payload
       state.reviewItems.splice(
         state.reviewItems.findIndex(item => item.id === newItem.id),
@@ -87,7 +87,7 @@ export const getReviewsProfile =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setStatus(Status.Loading))
     try {
-      const res = await reviewService.getReviewsProfile(getState().pagination)
+      const res = await reviewService.getAllForAccount(getState().pagination)
       dispatch(setReviews(res.data))
       res.headers['x-total-count'] &&
         dispatch(setTotalItems(res.headers['x-total-count']))
@@ -100,7 +100,7 @@ export const createReview =
   (values: ICreateReview) =>
   async (dispatch: Function, getState: Function) => {
     try {
-      await reviewService.createReview(values)
+      await reviewService.create(values)
       return 'ok'
     } catch (err) {
       console.log(err)
@@ -121,9 +121,9 @@ export const getReviewsAdmin =
   }
 
 export const updateReview =
-  (value: ReviewItemType) => async (dispatch: Function) => {
+  (value: IReview) => async (dispatch: Function) => {
     try {
-      await reviewService.updateReview(value)
+      await reviewService.update(value)
       dispatch(setUpdateReview(value))
       return 'ok'
     } catch (err) {
@@ -133,7 +133,7 @@ export const updateReview =
 
 export const deleteReview = (id: number) => async (dispatch: Function) => {
   try {
-    await reviewService.deleteReview(id)
+    await reviewService.delete(id)
   } catch (err) {
     console.log(err)
   }

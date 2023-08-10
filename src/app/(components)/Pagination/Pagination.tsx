@@ -4,7 +4,7 @@ import { scrollToTop } from '@/utils'
 import cn from 'classnames'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
-import './PaginationCreator.scss'
+import './styles.scss'
 
 interface IProps {
   totalCount: string

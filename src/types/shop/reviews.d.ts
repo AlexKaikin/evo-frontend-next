@@ -1,10 +1,10 @@
 export type ReviewStateType = {
-  reviewItems: ReviewItemType[]
+  reviewItems: IReview[]
   pagination: PaginationType
   status: string
 }
 
-export type ReviewItemType = {
+export interface IReview {
   _id: string
   id: number
   rating: number

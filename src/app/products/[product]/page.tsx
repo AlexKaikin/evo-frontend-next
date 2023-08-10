@@ -1,8 +1,8 @@
+import { productService } from '@/services/shop/products'
 import { IProduct } from '@/types/shop/products'
 import { notFound } from 'next/navigation'
 import ProductItem from './(components)/ProductItem/ProductItem'
 import './style.scss'
-import { productService } from '@/services/shop/products'
 
 interface IProps {
   params: { product: string }
@@ -18,7 +18,7 @@ async function getProduct(productId: string) {
 export async function generateMetadata({ params }: IProps) {
   const product: IProduct = await getProduct(params.product)
   return {
-    title: product.title +  ` |  EVO PLACE`,
+    title: product.title + ` |  EVO PLACE`,
     description: product.text.slice(0, 180).concat('...'),
   }
 }

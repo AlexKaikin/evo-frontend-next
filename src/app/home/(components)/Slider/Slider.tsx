@@ -1,7 +1,7 @@
 import slide1Url from '@/assets/img/slider/slide-1.jpg'
-import {BsDot} from 'react-icons/bs'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { BsDot } from 'react-icons/bs'
 
 export default function Slider() {
   return (
@@ -15,7 +15,12 @@ export default function Slider() {
           <Link href="/club">Социальная сеть</Link>
         </div>
       </div>
-      <Image src={slide1Url} fill alt="slide" />
+      <Image
+        src={slide1Url}
+        fill
+        sizes="(max-width: 1800px) 100vw"
+        alt="slide"
+      />
     </div>
   )
 }

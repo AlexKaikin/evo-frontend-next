@@ -1,32 +1,26 @@
 import { api } from '@/config/api'
-import {
-  CreateOrderItemType,
-  OrderItemType,
-  PaginationType,
-} from '@/types/shop/order'
+import { CreateOrderItemType, IOrder } from '@/types/shop/order'
+import { createUrlParams } from '@/utils'
+import { IUrlParams } from '@/utils/url'
 
 export const orderService = {
-  getAll(pagination: PaginationType) {
-    const { currentPage, limitItems } = pagination
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-    return api.get<OrderItemType[]>(`orders?${$pagination}`)
+  getAll(searchParams: IUrlParams) {
+    return api.get<IOrder[]>(`orders?${createUrlParams(searchParams)}`)
   },
 
-  getAllForAdmin(pagination: PaginationType) {
-    const { currentPage, limitItems } = pagination
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-    return api.get<OrderItemType[]>(`admin/orders?${$pagination}`)
+  getAllForAdmin(searchParams: IUrlParams) {
+    return api.get<IOrder[]>(`admin/orders?${createUrlParams(searchParams)}`)
   },
 
   create(values: CreateOrderItemType) {
-    return api.post<OrderItemType>(`orders`, values)
+    return api.post<IOrder>(`orders`, values)
   },
 
-  update(data: OrderItemType) {
-    return api.patch<OrderItemType>(`admin/orders/${data.id}`, data)
+  update(data: IOrder) {
+    return api.patch<IOrder>(`admin/orders/${data.id}`, data)
   },
 
   delete(id: number) {
-    return api.delete<OrderItemType>(`admin/orders/${id}`)
+    return api.delete<IOrder>(`admin/orders/${id}`)
   },
 }

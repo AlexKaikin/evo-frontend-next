@@ -1,17 +1,13 @@
+import { Pagination } from '@/app/(components)'
 import { productService } from '@/services/shop/products'
-import { IProduct } from '@/types/shop/products'
-import { IParams } from '@/utils/url'
+import { IUrlParams } from '@/utils/url'
 import { Metadata } from 'next'
-import { Pagination, ProductItems, Selection } from './(components)'
+import { ProductItems, Selection } from './(components)'
+
 import './styles.scss'
 
 interface IProps {
-  searchParams: IParams
-}
-
-interface IProductsResponse {
-  products: IProduct[]
-  totalCount: string
+  searchParams: IUrlParams
 }
 
 export const metadata: Metadata = {
@@ -19,7 +15,7 @@ export const metadata: Metadata = {
   description: 'Товары...',
 }
 
-async function getProducts(searchParams: IParams) {
+async function getProducts(searchParams: IUrlParams) {
   const res = await productService.getAll(searchParams)
   const products = res.data
   const totalCount = res.headers['x-total-count']
@@ -27,9 +23,7 @@ async function getProducts(searchParams: IParams) {
 }
 
 export default async function Products({ searchParams }: IProps) {
-  const { products, totalCount }: IProductsResponse = await getProducts(
-    searchParams
-  )
+  const { products, totalCount } = await getProducts(searchParams)
   return (
     <>
       <Selection />

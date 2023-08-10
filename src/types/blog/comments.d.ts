@@ -1,10 +1,10 @@
 export type CommentsStateType = {
-  commentItems: CommentItemType[]
+  commentItems: IComment[]
   pagination: PaginationType
   status: string
 }
 
-export type CommentItemType = {
+export interface IComment {
   _id: string
   id: number
   body: string
@@ -28,7 +28,7 @@ export type PaginationType = {
   currentPage: number
 }
 
-export type CreateCommentType = {
+export interface ICreateComment {
   body: string
   post: string
 }

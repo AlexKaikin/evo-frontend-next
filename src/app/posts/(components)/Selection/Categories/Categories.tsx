@@ -43,6 +43,8 @@ export default function Categories({ items }: IProps) {
         queryParams.append('category', String(item))
       }
 
+      if (item === '') queryParams.delete('category')
+
       if (queryParams.has('_page')) {
         queryParams.set('_page', String(1))
       }

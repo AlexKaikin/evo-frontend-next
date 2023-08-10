@@ -1,38 +1,34 @@
 import { api } from '@/config/api'
-import {
-  CommentItemType,
-  CreateCommentType,
-  PaginationType,
-} from '@/types/blog/comments'
+import { IComment, ICreateComment, PaginationType } from '@/types/blog/comments'
+import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const commentService = {
   getComments(post_id: string) {
-    return api.get<CommentItemType[]>(`posts/${post_id}/comments`)
+    return api.get<IComment[]>(`posts/${post_id}/comments`)
   },
 
-  getCommentsProfile(pagination: PaginationType) {
-    const { currentPage, limitItems } = pagination
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-
-    return api.get<CommentItemType[]>(`profile/comments?${$pagination}`)
+  getAllForAccount(searchParams: IUrlParams) {
+    return api.get<IComment[]>(
+      `profile/comments?${createUrlParams(searchParams)}`
+    )
   },
 
   getCommentsAdmin(pagination: PaginationType) {
     const { currentPage, limitItems } = pagination
     const $pagination = `_page=${currentPage}&_limit=${limitItems}`
 
-    return api.get<CommentItemType[]>(`admin/comments?${$pagination}`)
+    return api.get<IComment[]>(`admin/comments?${$pagination}`)
   },
 
-  createComment(values: CreateCommentType) {
-    return api.post<CommentItemType>(`comments`, values)
+  createComment(values: ICreateComment) {
+    return api.post<IComment>(`comments`, values)
   },
 
-  updateComment(data: CommentItemType) {
-    return api.patch<CommentItemType>(`admin/comments/${data.id}`, data)
+  updateComment(data: IComment) {
+    return api.patch<IComment>(`admin/comments/${data.id}`, data)
   },
 
   deleteComment(id: string) {
-    return api.delete<CommentItemType>(`admin/comments/${id}`)
+    return api.delete<IComment>(`admin/comments/${id}`)
   },
 }

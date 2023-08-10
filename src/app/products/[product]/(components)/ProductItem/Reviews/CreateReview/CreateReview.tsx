@@ -1,6 +1,11 @@
+'use client'
+
 import Modal from '@/app/(components)/Modal/Modal'
 import { useActions } from '@/hooks/useActions'
+import { authSelector } from '@/store/auth/auth'
+import { useAppSelector } from '@/store/store'
 import { ICreateReview } from '@/types/shop/reviews'
+import Link from 'next/link'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -10,10 +15,10 @@ interface IProps {
 }
 
 export default function CreateReview({ product_Id, hideModal }: IProps) {
-  //const { data } = useSelector(authSelector)
+  const { data } = useAppSelector(authSelector)
   const { createReview } = useActions()
   const [modalShow, setModalShow] = useState(false)
-  const { register, handleSubmit, formState, reset } = useForm<ICreateReview>()
+  const { register, handleSubmit, formState } = useForm<ICreateReview>()
   const { errors } = formState
 
   const bodyValidate = {
@@ -22,8 +27,8 @@ export default function CreateReview({ product_Id, hideModal }: IProps) {
       message: 'Пожалуйста, напишите свой отзыв',
     },
     minLength: {
-      value: 12,
-      message: 'Отзыв длжен быть более 1 символа',
+      value: 10,
+      message: 'Отзыв длжен быть от 10 символов',
     },
   }
 
@@ -38,14 +43,14 @@ export default function CreateReview({ product_Id, hideModal }: IProps) {
     hideModal()
   }
 
-  // if (!data)
-  //   return (
-  //     <div className="not-auth">
-  //       Чтобы написать отзыв нужно авторизоваться.{' '}
-  //       <Link href="/login">Вход</Link> |{' '}
-  //       <Link href="/register">Регистрация</Link>
-  //     </div>
-  //   )
+  if (!data)
+    return (
+      <div className="not-auth">
+        Чтобы написать отзыв нужно авторизоваться.{' '}
+        <Link href="/login">Вход</Link> |{' '}
+        <Link href="/register">Регистрация</Link>
+      </div>
+    )
 
   return (
     <>

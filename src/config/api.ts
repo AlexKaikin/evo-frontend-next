@@ -1,8 +1,7 @@
 //import { authService } from '@/services/auth/auth'
-//import { removeTokensInLocalStorage } from '@/services/auth/auth.helpers'
+import { token } from '@/utils'
 import axios from 'axios'
 import { SERVER_URL } from './url'
-//import { cookies } from 'next/headers'
 
 export const api = axios.create({
   baseURL: SERVER_URL + '/api',
@@ -22,46 +21,22 @@ export const options = {
   },
 }
 
-// api.interceptors.request.use(async config => {
-//   const cookieStore = cookies()
-//   const accessToken = cookieStore.get('accessToken')
-//   console.log(accessToken)
-//   return config
-// })
-
-// api.interceptors.request.use(async config => {
-//   const isServer = typeof window === 'undefined'
-//   console.log(isServer)
-//   let accessToken
-//   if (isServer) {
-//     const { cookies } = await import('next/headers')
-//     const token = cookies().get('accessToken')?.value
-
-//     if (token) {
-      
-//       //accessToken = token
-
-//       if (config.headers && accessToken) {
-        
-//         config.headers.Authorization = `Bearer ${accessToken}`
-//       }
-//     }
-//   } else {
-//     const accessToken = getCookie('accessToken')
-//     //console.log(getCookie('accessToken'))
-//     if (config.headers && accessToken) {
-//       config.headers.Authorization = `Bearer ${accessToken}`
-//     }
-//   }
-//   //console.log(accessToken)
-//   //accessToken = window.localStorage.getItem('accessToken')
-
-//   // if (config.headers && accessToken) {
-//   //   config.headers.Authorization = `Bearer ${accessToken}`
-//   // }
-
-//   return config
-// })
+api.interceptors.request.use(async config => {
+  const isServer = typeof window === 'undefined'
+  if (isServer) {
+    const { cookies } = await import('next/headers')
+    const accessToken = cookies().get('accessToken')?.value
+    if (config.headers && accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
+  } else {
+    const accessToken = token.getAccess()
+    if (config.headers && accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`
+    }
+  }
+  return config
+})
 
 // api.interceptors.response.use(
 //   config => config,
@@ -101,4 +76,3 @@ export const options = {
 //       : message
 //     : error.message
 // }
-

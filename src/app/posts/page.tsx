@@ -2,16 +2,10 @@ import { IParams } from '@/utils/url'
 import { Metadata } from 'next'
 import { Pagination, PostItems, Selection } from './(components)/'
 import './styles.scss'
-import { IPost } from '@/types/blog/posts'
 import { postService } from '@/services/blog/posts'
 
 interface IProps {
   searchParams: IParams
-}
-
-interface IPostsResponse {
-  posts: IPost[]
-  totalCount: string
 }
 
 export const metadata: Metadata = {
@@ -27,7 +21,7 @@ async function getPosts(searchParams: IParams) {
 }
 
 export default async function Products({ searchParams }: IProps) {
-  const { posts, totalCount }: IPostsResponse = await getPosts(searchParams)
+  const { posts, totalCount } = await getPosts(searchParams)
   return (
     <>
       <Selection />

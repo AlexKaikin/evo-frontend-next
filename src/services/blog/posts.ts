@@ -1,9 +1,9 @@
 import { api, options } from '@/config/api'
 import { IPost, NewPostItemType } from '@/types/blog/posts'
-import { IParams, createUrlParams } from '@/utils/url'
+import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const postService = {
-  getAll(searchParams: IParams) {
+  getAll(searchParams: IUrlParams) {
     return api.get<IPost[]>(`posts/?${createUrlParams(searchParams)}`)
   },
 
@@ -11,7 +11,7 @@ export const postService = {
     return api.get<IPost>(`posts/${id}`)
   },
 
-  getAllForAdmin(searchParams: IParams) {
+  getAllForAccount(searchParams: IUrlParams) {
     return api.get<IPost[]>(`admin/posts/?${createUrlParams(searchParams)}`)
   },
 
