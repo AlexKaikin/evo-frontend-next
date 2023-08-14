@@ -1,8 +1,8 @@
 import { commentService } from '@/services/blog/comments'
 import {
-  CommentItemType,
+  IComment,
   CommentsStateType,
-  CreateCommentType,
+  ICreateComment,
 } from '@/types/blog/comments'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
@@ -32,7 +32,7 @@ export const comments = createSlice({
   name: 'comments',
   initialState,
   reducers: {
-    setComments: (state, action: PayloadAction<CommentItemType[]>) => {
+    setComments: (state, action: PayloadAction<IComment[]>) => {
       state.commentItems = action.payload
       state.status = Status.Success
     },
@@ -48,7 +48,7 @@ export const comments = createSlice({
     setCommentsStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setUpdateComment: (state, action: PayloadAction<CommentItemType>) => {
+    setUpdateComment: (state, action: PayloadAction<IComment>) => {
       const newItem = action.payload
       state.commentItems.splice(
         state.commentItems.findIndex(item => item.id === newItem.id),
@@ -96,7 +96,7 @@ export const getCommentsProfile =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setCommentsStatus(Status.Loading))
     try {
-      const res = await commentService.getCommentsProfile(getState().pagination)
+      const res = await commentService.getAllForAccount(getState().pagination)
       dispatch(setComments(res.data))
       res.headers['x-total-count'] &&
         dispatch(setCommentsTotalItems(res.headers['x-total-count']))
@@ -106,7 +106,7 @@ export const getCommentsProfile =
   }
 
 export const createComment =
-  (values: CreateCommentType) =>
+  (values: ICreateComment) =>
   async (dispatch: Function, getState: Function) => {
     try {
       await commentService.createComment(values)

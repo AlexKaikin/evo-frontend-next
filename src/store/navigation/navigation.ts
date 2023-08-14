@@ -1,4 +1,4 @@
-import { navigationhService } from '@/services/navigation'
+import { navigationService } from '@/services/navigation'
 import { INavigationItem, INavigationState } from '@/types/navigation'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
@@ -48,7 +48,7 @@ export const getNavigation = () => async (dispatch: Function) => {
   dispatch(setNavigationStatus(Status.Loading))
 
   try {
-    const res = await navigationhService.getAll()
+    const res = await navigationService.getAll()
     dispatch(setNavigation(res.data))
   } catch (err) {
     dispatch(setNavigationStatus(Status.Error))

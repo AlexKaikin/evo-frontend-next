@@ -1,6 +1,6 @@
 import { productService } from '@/services/shop/products'
 import {
-  CreateProductType,
+  ICreateProduct,
   IProduct,
   ProductsStateType,
 } from '@/types/shop/products'
@@ -126,7 +126,7 @@ export const getProductAdmin = (id: number) => async (dispatch: Function) => {
  * создать товар
  */
 export const createProduct =
-  (data: CreateProductType) => async (dispatch: Function) => {
+  (data: ICreateProduct) => async (dispatch: Function) => {
     try {
       const res = await productService.create(data)
       dispatch(setProduct(res.data))

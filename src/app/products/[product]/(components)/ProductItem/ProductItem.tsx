@@ -1,14 +1,11 @@
 'use client'
 
-import GoBackButton from '@/app/(components)/GoBackButton/GoBackButton'
-import Rating from '@/app/(components)/Rating/Rating'
+import { GoBackButton, Rating } from '@/app/(components)'
 import { IProduct } from '@/types/shop/products'
 import { getNoun } from '@/utils'
 import cn from 'classnames'
 import { useState } from 'react'
-import { AddCart } from './'
-import Reviews from './Reviews/Reviews'
-import Slider from './Slider/Slider'
+import { AddCart, Reviews, Slider } from '.'
 
 interface IProps {
   product: IProduct

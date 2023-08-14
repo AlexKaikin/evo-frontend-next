@@ -18,12 +18,20 @@
         padding: 20px;
 
         .product__img {
-          max-width: 200px;
-          margin: auto;
+          overflow: hidden;
+          position: relative;
+          padding: 0 0 100% 0;
 
           img {
             width: 100%;
-            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all 1s ease 0s;
+            border-radius: 5px;
           }
         }
 

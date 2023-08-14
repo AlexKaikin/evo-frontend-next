@@ -1,11 +1,13 @@
-import { IParams } from '@/utils/url'
+import { navigationService, postService } from '@/services'
+import { IUrlParams } from '@/utils/url'
 import { Metadata } from 'next'
-import { Pagination, PostItems, Selection } from './(components)/'
+import { Suspense } from 'react'
+import { Pagination } from '../(components)'
+import { PostItems, PostsSkeleton, Selection } from './(components)'
 import './styles.scss'
-import { postService } from '@/services/blog/posts'
 
 interface IProps {
-  searchParams: IParams
+  searchParams: IUrlParams
 }
 
 export const metadata: Metadata = {
@@ -13,7 +15,13 @@ export const metadata: Metadata = {
   description: 'Блог...',
 }
 
-async function getPosts(searchParams: IParams) {
+async function getNavigation() {
+  const res = await navigationService.getAll()
+  const navigation = res.data
+  return navigation
+}
+
+async function getPosts(searchParams: IUrlParams) {
   const res = await postService.getAll(searchParams)
   const posts = res.data
   const totalCount = res.headers['x-total-count']
@@ -21,12 +29,17 @@ async function getPosts(searchParams: IParams) {
 }
 
 export default async function Products({ searchParams }: IProps) {
-  const { posts, totalCount } = await getPosts(searchParams)
+  const postsData = await getPosts(searchParams)
+  const navigationData = await getNavigation()
+  const [{ posts, totalCount }, navigation] = await Promise.all([
+    postsData,
+    navigationData,
+  ])
   return (
-    <>
-      <Selection />
+    <Suspense fallback={<PostsSkeleton />}>
+      <Selection navigation={navigation} />
       <PostItems posts={posts} />
       <Pagination totalCount={totalCount} />
-    </>
+    </Suspense>
   )
 }

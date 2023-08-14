@@ -111,7 +111,7 @@ export const getReviewsAdmin =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setStatus(Status.Loading))
     try {
-      const res = await reviewService.getReviewsAdmin(getState().pagination)
+      const res = await reviewService.getAllForAdmin(getState().pagination)
       dispatch(setReviews(res.data))
       res.headers['x-total-count'] &&
         dispatch(setTotalItems(res.headers['x-total-count']))

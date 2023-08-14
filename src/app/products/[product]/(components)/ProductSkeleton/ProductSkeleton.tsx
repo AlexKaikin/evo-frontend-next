@@ -1,3 +1,5 @@
+import './styles.scss'
+
 export default function ProductSkeleton() {
   return (
     <section className="section product-one skeleton">

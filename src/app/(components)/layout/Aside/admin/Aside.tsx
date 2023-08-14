@@ -1,64 +1,57 @@
-import AsideNav from '@common/AsideNav/AsideNav'
+import AsideNav from '@/app/(components)/AsideNav/AsideNav'
 import {
-  BagSVG,
-  ChatTextSVG,
-  EnvelopeSVG,
-  PostcardSVG,
-  Speedometer2SVG,
-  StarHalfSVG,
-} from '@common/svg'
+  BsBag,
+  BsChatText,
+  BsEnvelope,
+  BsPostcard,
+  BsSpeedometer2,
+  BsStarHalf,
+} from 'react-icons/bs'
 import './Aside.scss'
 
-function Aside() {
+export default function Aside() {
   const navItems = [
     {
       id: 1,
       url: '/admin/dashboard',
-      icon: <Speedometer2SVG />,
+      icon: <BsSpeedometer2 />,
       title: 'Дашборд',
-      end: true,
     },
     {
       id: 2,
       url: '/admin/products',
-      icon: <PostcardSVG />,
+      icon: <BsPostcard />,
       title: 'Товары',
-      end: true,
     },
     {
       id: 3,
       url: '/admin/reviews',
-      icon: <StarHalfSVG />,
+      icon: <BsStarHalf />,
       title: 'Отзывы',
-      end: true,
     },
     {
       id: 4,
       url: '/admin/orders',
-      icon: <BagSVG />,
+      icon: <BsBag />,
       title: 'Заказы',
-      end: true,
     },
     {
       id: 5,
       url: '/admin/posts',
-      icon: <PostcardSVG />,
+      icon: <BsPostcard />,
       title: 'Статьи',
-      end: true,
     },
     {
       id: 6,
       url: '/admin/comments',
-      icon: <ChatTextSVG />,
+      icon: <BsChatText />,
       title: 'Комментарии',
-      end: true,
     },
     {
       id: 7,
       url: '/admin/feedback',
-      icon: <EnvelopeSVG />,
+      icon: <BsEnvelope />,
       title: 'Обратная связь',
-      end: true,
     },
   ]
 
@@ -68,5 +61,3 @@ function Aside() {
     </aside>
   )
 }
-
-export default Aside

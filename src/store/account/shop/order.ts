@@ -1,5 +1,5 @@
 import { orderService } from '@/services/shop/orders'
-import { OrderItemType, OrderStateType } from '@/types/shop/order'
+import { IOrder, OrderStateType } from '@/types/shop/order'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 
@@ -24,7 +24,7 @@ export const orderAccount = createSlice({
   name: 'orderAccount',
   initialState,
   reducers: {
-    setOrders: (state, action: PayloadAction<OrderItemType[]>) => {
+    setOrders: (state, action: PayloadAction<IOrder[]>) => {
       state.orderItems = action.payload
       state.status = Status.Success
     },
@@ -40,7 +40,7 @@ export const orderAccount = createSlice({
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setUpdateOrder: (state, action: PayloadAction<OrderItemType>) => {
+    setUpdateOrder: (state, action: PayloadAction<IOrder>) => {
       const newItem = action.payload
       state.orderItems.splice(
         state.orderItems.findIndex(item => item.id === newItem.id),
@@ -76,7 +76,7 @@ export const getOrders =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setStatus(Status.Loading))
     try {
-      const res = await orderService.getOrders(
+      const res = await orderService.getAll(
         getState().orderAccount.pagination
       )
       dispatch(setOrders(res.data))

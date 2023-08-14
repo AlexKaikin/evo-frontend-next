@@ -1,5 +1,5 @@
 import { reviewService } from '@/services/shop/reviews'
-import { ReviewItemType, ReviewStateType } from '@/types/shop/reviews'
+import { IReview, ReviewStateType } from '@/types/shop/reviews'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 
@@ -28,7 +28,7 @@ export const reviewsAccount = createSlice({
   name: 'reviewsAccount',
   initialState,
   reducers: {
-    setReviews: (state, action: PayloadAction<ReviewItemType[]>) => {
+    setReviews: (state, action: PayloadAction<IReview[]>) => {
       state.reviewItems = action.payload
       state.status = Status.Success
     },
@@ -44,7 +44,7 @@ export const reviewsAccount = createSlice({
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setUpdateReview: (state, action: PayloadAction<ReviewItemType>) => {
+    setUpdateReview: (state, action: PayloadAction<IReview>) => {
       const newItem = action.payload
       state.reviewItems.splice(
         state.reviewItems.findIndex(item => item.id === newItem.id),
@@ -80,7 +80,7 @@ export const getReviewsProfile =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setStatus(Status.Loading))
     try {
-      const res = await reviewService.getReviewsProfile(
+      const res = await reviewService.getAllForAccount(
         getState().reviewsAccount.pagination
       )
       dispatch(setReviews(res.data))

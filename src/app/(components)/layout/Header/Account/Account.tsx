@@ -4,18 +4,13 @@ import { useActions } from '@//hooks/useActions'
 import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { authSelector } from '@/store/auth/auth'
-import { AuthStateType } from '@/types/auth'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-interface IProps {
-  auth: AuthStateType
-}
-
-export default function Account({ auth }: IProps) {
+export default function Account() {
   const { data: user } = useSelector(authSelector)
   const { logout } = useActions()
   //const navigate = useNavigate()
@@ -48,7 +43,7 @@ export default function Account({ auth }: IProps) {
         </div>
       </button>
       <ul className={cn('auth__items', { show: authShow })}>
-        {auth.data ? (
+        {user ? (
           <>
             <li className="auth__item">
               <Link
@@ -60,7 +55,7 @@ export default function Account({ auth }: IProps) {
               </Link>
             </li>
 
-            {auth.data.role === 'admin' && (
+            {user.role === 'admin' && (
               <li className="auth__item">
                 <Link
                   href="/admin/dashboard"

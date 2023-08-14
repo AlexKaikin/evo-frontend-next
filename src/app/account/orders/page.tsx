@@ -25,7 +25,7 @@ async function getOrders(searchParams: IUrlParams) {
 export default async function Orders({ searchParams }: IProps) {
   const { orders, totalCount } = await getOrders(searchParams)
   return (
-    <div className="two">
+    <div className="col">
       <Aside />
       <div className="section orders">
         <div className="container">

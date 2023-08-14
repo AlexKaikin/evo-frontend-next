@@ -1,8 +1,8 @@
+import { postService } from '@/services/blog/posts'
+import { IPost } from '@/types/blog/posts'
 import { notFound } from 'next/navigation'
 import PostItem from './(components)/PostItem/PostItem'
 import './style.scss'
-import { IPost } from '@/types/blog/posts'
-import { postService } from '@/services/blog/posts'
 
 interface IProps {
   params: { post: string }
@@ -18,7 +18,7 @@ async function getPost(postId: string) {
 export async function generateMetadata({ params }: IProps) {
   const post: IPost = await getPost(params.post)
   return {
-    title: post.title +  ` |  EVO PLACE`,
+    title: post.title + ` |  EVO PLACE`,
     description: post.text.slice(0, 180).concat('...'),
   }
 }

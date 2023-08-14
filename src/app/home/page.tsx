@@ -1,23 +1,22 @@
-import { postService } from '@/services/blog/posts'
-import { productService } from '@/services/shop/products'
+import { postService, productService } from '@/services'
 import { IPost } from '@/types/blog/posts'
 import { IProduct } from '@/types/shop/products'
-import { IParams } from '@/utils/url'
+import { IUrlParams } from '@/utils/url'
 import { Posts, Products, Slider } from './(components)'
 import './styles.scss'
 
 interface IProps {
-  searchParams: IParams
+  searchParams: IUrlParams
 }
 
-async function getProducts(searchParams: IParams) {
+async function getProducts(searchParams: IUrlParams) {
   const res = await productService.getAll(searchParams)
   let products = res.data
   products = products.slice(0, 4)
   return products
 }
 
-async function getPosts(searchParams: IParams) {
+async function getPosts(searchParams: IUrlParams) {
   const res = await postService.getAll(searchParams)
   let posts = res.data
   posts = posts.slice(0, 3)
@@ -32,7 +31,7 @@ export default async function Home({ searchParams }: IProps) {
     <section className="home">
       <div className="container">
         <Slider />
-        <Products products={products} />
+          <Products products={products} />
         <Posts posts={posts} />
       </div>
     </section>

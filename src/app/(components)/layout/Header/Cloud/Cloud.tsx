@@ -1,3 +1,5 @@
+'use client'
+
 import { usePathname } from 'next/navigation'
 import BlogCloud from './BlogCloud/BlogCloud'
 import './Cloud.scss'

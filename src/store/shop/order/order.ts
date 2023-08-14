@@ -1,7 +1,7 @@
 import { orderService } from '@/services/shop/orders'
 import {
   CreateOrderItemType,
-  OrderItemType,
+  IOrder,
   OrderStateType,
 } from '@/types/shop/order'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
@@ -32,7 +32,7 @@ export const order = createSlice({
   name: 'order',
   initialState,
   reducers: {
-    setOrders: (state, action: PayloadAction<OrderItemType[]>) => {
+    setOrders: (state, action: PayloadAction<IOrder[]>) => {
       state.orderItems = action.payload
       state.status = Status.Success
     },
@@ -48,7 +48,7 @@ export const order = createSlice({
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setUpdateOrder: (state, action: PayloadAction<OrderItemType>) => {
+    setUpdateOrder: (state, action: PayloadAction<IOrder>) => {
       const newItem = action.payload
       state.orderItems.splice(
         state.orderItems.findIndex(item => item.id === newItem.id),
@@ -84,7 +84,7 @@ export const getOrders =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setStatus(Status.Loading))
     try {
-      const res = await orderService.getOrders(getState().order.pagination)
+      const res = await orderService.getAll(getState().order.pagination)
       dispatch(setOrders(res.data))
       res.headers['x-total-count'] &&
         dispatch(setTotalItems(res.headers['x-total-count']))
@@ -100,7 +100,7 @@ export const createOrder =
     values.totalCost = getState().cart.totalCost
 
     try {
-      await orderService.createOrder(values)
+      await orderService.create(values)
     } catch (err) {
       console.log(err)
     }

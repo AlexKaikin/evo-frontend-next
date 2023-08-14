@@ -1,6 +1,5 @@
 'use client'
 
-import { scrollToTop } from '@/utils'
 import cn from 'classnames'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { BsChevronLeft, BsChevronRight } from 'react-icons/bs'
@@ -63,7 +62,6 @@ export default function Pagination({ totalCount }: IProps) {
     }
     const path = window.location.pathname + '?' + queryParams?.toString()
     router.push(path)
-    scrollToTop()
   }
 
   if (pages.length === 1) return null

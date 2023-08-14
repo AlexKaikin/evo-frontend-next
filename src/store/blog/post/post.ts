@@ -1,5 +1,5 @@
 import { postService } from '@/services/blog/posts'
-import { PostItemType, PostStateType } from '@/types/blog/posts'
+import { IPost, PostStateType } from '@/types/blog/posts'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 
@@ -22,7 +22,7 @@ export const post = createSlice({
   name: 'post',
   initialState,
   reducers: {
-    setPost: (state, action: PayloadAction<PostItemType>) => {
+    setPost: (state, action: PayloadAction<IPost>) => {
       state.postItem = action.payload
       state.status = Status.Success
     },
@@ -48,15 +48,15 @@ export const postSelector = (state: RootState) => state.post
  * thunk
  * загрузка товара
  */
-export const getPost = (id: number) => async (dispatch: Function) => {
-  dispatch(setStatus(Status.Loading))
-  try {
-    const res = await postService.getPost(id)
-    dispatch(setPost(res.data))
-  } catch (err) {
-    dispatch(setStatus(Status.Error))
-    console.log(err)
-  }
-}
+// export const getPost = (id: number) => async (dispatch: Function) => {
+//   dispatch(setStatus(Status.Loading))
+//   try {
+//     const res = await postService.getAll(id)
+//     dispatch(setPost(res.data))
+//   } catch (err) {
+//     dispatch(setStatus(Status.Error))
+//     console.log(err)
+//   }
+// }
 
-export const postActions = { ...post.actions, getPost }
+export const postActions = { ...post.actions }

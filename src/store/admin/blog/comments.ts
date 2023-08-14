@@ -1,5 +1,5 @@
 import { commentService } from '@/services/blog/comments'
-import { CommentItemType, CommentsStateType } from '@/types/blog/comments'
+import { IComment, CommentsStateType } from '@/types/blog/comments'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 
@@ -28,7 +28,7 @@ export const commentsAdmin = createSlice({
   name: 'commentsAdmin',
   initialState,
   reducers: {
-    setComments: (state, action: PayloadAction<CommentItemType[]>) => {
+    setComments: (state, action: PayloadAction<IComment[]>) => {
       state.commentItems = action.payload
       state.status = Status.Success
     },
@@ -44,7 +44,7 @@ export const commentsAdmin = createSlice({
     setCommentsStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setUpdateComment: (state, action: PayloadAction<CommentItemType>) => {
+    setUpdateComment: (state, action: PayloadAction<IComment>) => {
       const newItem = action.payload
       state.commentItems.splice(
         state.commentItems.findIndex(item => item.id === newItem.id),
@@ -81,7 +81,7 @@ export const getCommentsAdmin =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setCommentsStatus(Status.Loading))
     try {
-      const res = await commentService.getCommentsAdmin(
+      const res = await commentService.getAllForAdmin(
         getState().commentsAdmin.pagination
       )
       dispatch(setComments(res.data))
@@ -93,7 +93,7 @@ export const getCommentsAdmin =
   }
 
 export const updateComment =
-  (value: CommentItemType) => async (dispatch: Function) => {
+  (value: IComment) => async (dispatch: Function) => {
     try {
       await commentService.updateComment(value)
       dispatch(setUpdateComment(value))

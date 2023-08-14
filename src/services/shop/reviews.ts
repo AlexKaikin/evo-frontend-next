@@ -1,5 +1,5 @@
 import { api } from '@/config/api'
-import { ICreateReview, IReview, PaginationType } from '@/types/shop/reviews'
+import { ICreateReview, IReview } from '@/types/shop/reviews'
 import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const reviewService = {
@@ -13,10 +13,8 @@ export const reviewService = {
     )
   },
 
-  getReviewsAdmin(pagination: PaginationType) {
-    const { currentPage, limitItems } = pagination
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-    return api.get<IReview[]>(`admin/reviews?${$pagination}`)
+  getAllForAdmin(searchParams: IUrlParams) {
+    return api.get<IReview[]>(`admin/reviews?${createUrlParams(searchParams)}`)
   },
 
   create(values: ICreateReview) {

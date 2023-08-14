@@ -1,12 +1,12 @@
 export type ProductsStateType = {
-  productItems: ProductItemType[]
+  productItems: IProduct[]
   pagination: PaginationType
   filter: IFilterProducts
   status: string
 }
 
 export type ProductStateType = {
-  productItem: ProductItemType | null
+  productItem: IProduct | null
   status: string
 }
 
@@ -25,12 +25,12 @@ export type IProduct = {
   rating: number
   ratingCount: number
   manufacturer: string
-  property: IProperty
+  property: IProductProperty
   text: string
   published: boolean
 }
 
-interface IProperty {
+interface IProductProperty {
   country: string
   town: string
   year: number
@@ -59,7 +59,7 @@ interface IRatings {
   checked: boolean
 }
 
-export type CreateProductType = {
+export interface ICreateProduct {
   title: string
   imgUrl: string
   galleryUrl: string[]
@@ -70,7 +70,11 @@ export type CreateProductType = {
   quantity: number
   category: string
   manufacturer: string
-  property: IProperty
+  property: IProductProperty
   text: string
   published: boolean
+}
+
+export interface IUpdateProduct extends ICreateProduct {
+  id: number
 }

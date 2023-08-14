@@ -1,0 +1,204 @@
+.col {
+  display: flex;
+  gap: 20px;
+}
+
+.admin {
+  width: 100%;
+  
+  .container {
+    .admin__items {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .admin__item {
+        display: grid;
+        grid-auto-columns: 12fr;
+        grid-template-columns: 5fr 2fr 2fr 2fr 1fr;
+        grid-template-rows: 1fr;
+        align-items: center;
+
+        border-radius: 5px;
+        padding: 10px;
+
+        transition: all ease 0.3s;
+
+        &:hover {
+          background-color: var(--light);
+        }
+
+        .product__title {
+          flex: 1 1 auto;
+          font-weight: bold;
+          color: var(--dark-text);
+        }
+
+        .product__controls {
+          display: flex;
+          justify-content: flex-end;
+
+          position: relative;
+
+          > button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: var(--light);
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+          }
+
+          .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            position: absolute;
+            width: 200px;
+            z-index: 1;
+            right: 0;
+            top: 50px;
+
+            background-color: var(--primary);
+            padding: 20px;
+            border-radius: 5px;
+            color: white;
+
+            > a {
+              color: white;
+            }
+
+            > button {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.form.create-product {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  .form__left,
+  .form__right {
+    flex: 0 0 45%;
+
+    img {
+      width: 100%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      flex: 0 0 100%;
+    }
+  }
+
+  .form__left {
+    .img__item {
+      position: relative;
+
+      img {
+        object-fit: contain;
+        width: 100% !important;
+        position: relative !important;
+        height: unset !important;
+        margin-bottom: 20px;
+        border-radius: 5px;
+      }
+
+      .remove {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        z-index: 1;
+        background-color: #ba5148;
+        color: white;
+        padding-top: 2px;
+        border-radius: 50%;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .btn {
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+  }
+
+  .form__right {
+    .img__items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      .img__item {
+        position: relative;
+        width: 46%;
+
+        img {
+          object-fit: contain;
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
+          margin-bottom: 20px;
+          border-radius: 5px;
+        }
+
+        .remove {
+          position: absolute;
+          right: 5px;
+          top: 5px;
+          z-index: 1;
+          background-color: #ba5148;
+          color: white;
+          padding-top: 2px;
+          border-radius: 50%;
+          cursor: pointer;
+          width: 35px;
+          height: 35px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+    .btn {
+      display: inline-block;
+    }
+  }
+
+  .form__full {
+    flex: 0 0 100%;
+
+    button {
+      background-color: var(--primary);
+      border: 2px solid var(--bg-color);
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      width: 100%;
+      transition: all 0.5s ease 0s;
+
+      &:hover {
+        background-color: var(--primary);
+        border: 2px solid var(--bg-color);
+        box-shadow: 0 0 0 3px var(--primary);
+      }
+    }
+  }
+}

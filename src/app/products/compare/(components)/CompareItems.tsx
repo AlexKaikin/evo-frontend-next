@@ -6,6 +6,7 @@ import { compareSelector } from '@/store/shop/compare/compare'
 import { useAppSelector } from '@/store/store'
 import { CompareItemType } from '@/types/shop/compare'
 import { getLocalStorage, getNoun } from '@/utils'
+import Image from 'next/image'
 import Link from 'next/link'
 import { BsXLg } from 'react-icons/bs'
 
@@ -29,8 +30,10 @@ export default function CompareItems() {
         return (
           <div key={product.id} className="compare__item product">
             <div className="product__img">
-              <img
-                src={(process.env.REACT_APP_SERVER_URL || '') + product.imgUrl}
+              <Image
+                src={product.imgUrl}
+                fill
+                sizes="(max-width: 1800px) 50vw"
                 alt={product.title}
               />
             </div>

@@ -1,30 +1,48 @@
-import AsideNav from '@common/AsideNav/AsideNav'
+import AsideNav from '@/app/(components)/AsideNav/AsideNav'
 import {
-  ChatTextSVG,
-  FlagSVG,
-  MegaphoneSVG,
-  PeopleSVG,
-  PersonCircleSVG,
-} from '@common/svg'
+  BsChatText,
+  BsFlag,
+  BsMegaphone,
+  BsPeople,
+  BsPersonCircle,
+} from 'react-icons/bs'
 
-function Aside() {
+export default function Aside() {
   const navItems = [
-    { id: 1, url: '/club', icon: <PersonCircleSVG />, title: 'Моя страница', end: true },
-    { id: 2, url: '/club/messages', icon: <ChatTextSVG />, title: 'Мессенджер', end: false },
-    { id: 3, url: '/club/groups', icon: <FlagSVG />, title: 'Группы', end: false },
+    {
+      id: 1,
+      url: '/club',
+      icon: <BsPersonCircle />,
+      title: 'Моя страница',
+      end: true,
+    },
+    {
+      id: 2,
+      url: '/club/messages',
+      icon: <BsChatText />,
+      title: 'Мессенджер',
+      end: false,
+    },
+    {
+      id: 3,
+      url: '/club/groups',
+      icon: <BsFlag />,
+      title: 'Группы',
+      end: false,
+    },
     {
       id: 4,
       url: '/club/users',
-      icon: <PeopleSVG />,
+      icon: <BsPeople />,
       title: 'Пользователи',
-      end: false
+      end: false,
     },
     {
       id: 5,
       url: '/club/events',
-      icon: <MegaphoneSVG />,
+      icon: <BsMegaphone />,
       title: 'События',
-      end: false
+      end: false,
     },
   ]
 
@@ -34,5 +52,3 @@ function Aside() {
     </aside>
   )
 }
-
-export default Aside

@@ -1,5 +1,5 @@
 import { api } from '@/config/api'
-import { IComment, ICreateComment, PaginationType } from '@/types/blog/comments'
+import { IComment, ICreateComment } from '@/types/blog/comments'
 import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const commentService = {
@@ -13,11 +13,10 @@ export const commentService = {
     )
   },
 
-  getCommentsAdmin(pagination: PaginationType) {
-    const { currentPage, limitItems } = pagination
-    const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-
-    return api.get<IComment[]>(`admin/comments?${$pagination}`)
+  getAllForAdmin(searchParams: IUrlParams) {
+    return api.get<IComment[]>(
+      `admin/comments?${createUrlParams(searchParams)}`
+    )
   },
 
   createComment(values: ICreateComment) {

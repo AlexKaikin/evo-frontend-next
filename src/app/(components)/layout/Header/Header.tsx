@@ -1,14 +1,15 @@
-'use client'
-
-import { authSelector } from '@/store/auth/auth'
-import { navigationSelector } from '@/store/navigation/navigation'
-import { useAppSelector } from '@/store/store'
+import { navigationService } from '@/services'
 import { Account, Cloud, Logo, Nav, Theme } from '.'
 import './styles.scss'
 
-export default function Header() {
-  const { navigation } = useAppSelector(navigationSelector)
-  const auth = useAppSelector(authSelector)
+async function getNavigation() {
+  const res = await navigationService.getAll()
+  const navigation = res.data
+  return navigation
+}
+
+export default async function Header() {
+  const navigation = await getNavigation()
   return (
     <header className="header">
       <div className="container">
@@ -16,7 +17,7 @@ export default function Header() {
         <Nav items={navigation} />
         <Cloud />
         <Theme />
-        <Account auth={auth} />
+        <Account />
       </div>
     </header>
   )

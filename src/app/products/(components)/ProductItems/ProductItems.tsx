@@ -18,6 +18,7 @@ export default function ProductItems({ products }: IProps) {
               href={`/products/${product.id}`}
               key={product.id}
               className="product__item"
+              scroll
             >
               <div className="product__img">
                 <Image

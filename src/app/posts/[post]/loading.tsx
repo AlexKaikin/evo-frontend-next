@@ -1,5 +1,5 @@
-import PostSkeleton from "./(components)/PostSkeleton/PostSkeleton";
+import PostSkeleton from './(components)/PostSkeleton/PostSkeleton'
 
-export default function Loading(){
-    return <PostSkeleton />
+export default function Loading() {
+  return <PostSkeleton />
 }

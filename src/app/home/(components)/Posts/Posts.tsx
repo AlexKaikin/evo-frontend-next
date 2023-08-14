@@ -19,6 +19,7 @@ export default function Posts({ posts }: IProps) {
           return (
             <Link
               href={`/posts/${post.id}`}
+              
               key={post.id}
               className={`post__item fade-in post-${i + 1}`}
             >
@@ -58,7 +59,7 @@ export default function Posts({ posts }: IProps) {
         })}
       </div>
       <div className="posts__footer">
-        <Link href={`/posts/`} className="btn radius-5 p-20 posts__all">
+        <Link href={`/posts/`} scroll className="btn radius-5 p-20 posts__all">
           Перейти в блог <BsChevronRight />
         </Link>
       </div>

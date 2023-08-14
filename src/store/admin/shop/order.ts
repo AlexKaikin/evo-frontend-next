@@ -1,5 +1,5 @@
 import { orderService } from '@/services/shop/orders'
-import { OrderItemType, OrderStateType } from '@/types/shop/order'
+import { IOrder, OrderStateType } from '@/types/shop/order'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
 
@@ -28,7 +28,7 @@ export const orderAdmin = createSlice({
   name: 'orderAdmin',
   initialState,
   reducers: {
-    setOrders: (state, action: PayloadAction<OrderItemType[]>) => {
+    setOrders: (state, action: PayloadAction<IOrder[]>) => {
       state.orderItems = action.payload
       state.status = Status.Success
     },
@@ -44,7 +44,7 @@ export const orderAdmin = createSlice({
     setStatus: (state, action: PayloadAction<string>) => {
       state.status = action.payload
     },
-    setUpdateOrder: (state, action: PayloadAction<OrderItemType>) => {
+    setUpdateOrder: (state, action: PayloadAction<IOrder>) => {
       const newItem = action.payload
       state.orderItems.splice(
         state.orderItems.findIndex(item => item.id === newItem.id),
@@ -82,7 +82,7 @@ export const getOrdersAdmin =
   () => async (dispatch: Function, getState: Function) => {
     dispatch(setStatus(Status.Loading))
     try {
-      const res = await orderService.getOrdersAdmin(
+      const res = await orderService.getAllForAdmin(
         getState().orderAdmin.pagination
       )
       dispatch(setOrders(res.data))
@@ -94,9 +94,9 @@ export const getOrdersAdmin =
   }
 
 export const updateOrder =
-  (value: OrderItemType) => async (dispatch: Function) => {
+  (value: IOrder) => async (dispatch: Function) => {
     try {
-      await orderService.updateOrder(value)
+      await orderService.update(value)
       dispatch(setUpdateOrder(value))
       return 'ok'
     } catch (err) {
@@ -106,7 +106,7 @@ export const updateOrder =
 
 export const deleteOrder = (id: number) => async (dispatch: Function) => {
   try {
-    await orderService.deleteOrder(id)
+    await orderService.delete(id)
   } catch (err) {
     console.log(err)
   }

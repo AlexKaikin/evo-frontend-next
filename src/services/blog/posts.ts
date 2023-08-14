@@ -11,7 +11,7 @@ export const postService = {
     return api.get<IPost>(`posts/${id}`)
   },
 
-  getAllForAccount(searchParams: IUrlParams) {
+  getAllForAdmin(searchParams: IUrlParams) {
     return api.get<IPost[]>(`admin/posts/?${createUrlParams(searchParams)}`)
   },
 

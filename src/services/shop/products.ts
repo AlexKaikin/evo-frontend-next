@@ -1,5 +1,5 @@
 import { api, options } from '@/config/api'
-import { CreateProductType, IProduct } from '@/types/shop/products'
+import { ICreateProduct, IProduct, IUpdateProduct } from '@/types/shop/products'
 import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const productService = {
@@ -25,11 +25,11 @@ export const productService = {
     return api.post('/upload', formData, options.multipart)
   },
 
-  create(data: CreateProductType) {
+  create(data: ICreateProduct) {
     return api.post<IProduct>(`admin/products/`, data, options.json)
   },
 
-  update(data: IProduct) {
+  update(data: IUpdateProduct) {
     return api.patch<IProduct>(`admin/products/${data.id}`, data, options.json)
   },
 

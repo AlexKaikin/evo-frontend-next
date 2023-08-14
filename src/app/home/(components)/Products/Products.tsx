@@ -14,7 +14,7 @@ export default function Products({ products }: IProps) {
     <div className="section home__products">
       <div className="products__header">
         <div className="products__title">Новые товары</div>
-        <Link href={`/products/`} className="products__all">
+        <Link href={`/products/`} scroll className="products__all">
           Посмотреть все <BsChevronRight />
         </Link>
       </div>

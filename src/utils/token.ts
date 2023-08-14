@@ -19,5 +19,7 @@ export const token = {
   removeAll() {
     window.localStorage.removeItem('accessToken')
     window.localStorage.removeItem('refreshToken')
+    document.cookie = 'accessToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
+    document.cookie = 'refreshToken= ; expires = Thu, 01 Jan 1970 00:00:00 GMT'
   },
 }

@@ -1,3 +1,5 @@
+import './styles.scss'
+
 export default function ProductsSkeleton() {
   return (
     <div className="section products">

@@ -23,6 +23,10 @@
     box-shadow: 0 0 10px 10px var(--bg-color);
   }
 
+  @media only screen and (max-width: 400px) {
+    padding: 0 10px;
+  }
+
   .container {
     display: flex;
     gap: 20px;

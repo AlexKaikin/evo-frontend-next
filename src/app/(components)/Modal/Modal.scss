@@ -51,6 +51,7 @@
       .modal__title {
         font-size: 2rem;
         font-weight: bold;
+        color: var(--dark-text);
       }
 
       .modal__close {
@@ -63,6 +64,7 @@
         top: -20px;
         right: -20px;
 
+        color: var(--dark-text);
         cursor: pointer;
       }
     }

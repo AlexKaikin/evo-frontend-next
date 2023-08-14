@@ -1,8 +1,10 @@
-.two {
+.col {
   display: flex;
   gap: 20px;
 
   .orders {
+    width: 100%;
+
     .container {
       .container {
         max-width: 700px;
