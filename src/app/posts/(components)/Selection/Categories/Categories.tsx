@@ -1,14 +1,13 @@
 import cn from 'classnames'
 import { useRef, useState } from 'react'
-import { CategoryItemType } from '@/types/navigation'
+import { ICategoryLink } from '@/types/navigation'
 import { BsGrid } from 'react-icons/bs' 
-//import CategoriesSkeleton from '@/common/Skeleton/CategoriesSkeleton/CategoriesSkeleton'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { scrollToTop } from '@/utils'
 
 interface IProps {
-  items: CategoryItemType[]
+  items: ICategoryLink[]
 }
 
 export default function Categories({ items }: IProps) {

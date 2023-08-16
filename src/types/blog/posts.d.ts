@@ -1,15 +1,3 @@
-export type PostsStateType = {
-  postItems: IPost[]
-  pagination: PaginationType
-  filter: FilterType
-  status: string
-}
-
-export type PostStateType = {
-  postItem: IPost | null
-  status: string
-}
-
 export interface IPost {
   _id: string
   id: number
@@ -23,27 +11,21 @@ export interface IPost {
   created?: string
 }
 
-export type PaginationType = {
-  pagesCount: number
-  totalItems: number
-  limitItems: number
-  currentPage: number
-}
-
-export type FilterType = {
+export interface IFilterPosts {
   category: string
   sort: string
   query: string
 }
 
-export type NewPostItemType = {
-  id: number
+export interface ICreatePost {
   title: string
   imgUrl: string
   galleryUrl: string[]
   category: string
-  viewsCount?: number
   text: string
   published: boolean
-  created?: string
+}
+
+export interface IUpdatePost extends ICreatePost {
+  id: number
 }

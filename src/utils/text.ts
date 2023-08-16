@@ -12,4 +12,9 @@ export const text = {
     else result = text
     return result
   },
+
+  cut(text: string, limit: number) {
+    if(text.length > limit) return text.slice(0, limit) + '...'
+    return text
+  },
 }

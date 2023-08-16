@@ -6,7 +6,7 @@ import { CreateProductForm } from '../crud'
 export default function AddProductButton() {
   const [createProductShow, setCreateProductShow] = useState<boolean>(false)
   
-  function createModaltoggle() {
+  function hideModal() {
     setCreateProductShow(false)
   }
 
@@ -19,7 +19,7 @@ export default function AddProductButton() {
         Добавить товар
       </button>
       {createProductShow && (
-        <CreateProductForm hideModal={createModaltoggle} />
+        <CreateProductForm hideModal={hideModal} />
       )}
     </>
   )

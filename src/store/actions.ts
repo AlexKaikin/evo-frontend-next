@@ -1,8 +1,6 @@
 import { commentsAdminActions } from './admin/blog/comments'
 import { authActions } from './auth/auth'
 import { commentsActions } from './blog/comments/comments'
-import { postsActions } from './blog/posts/posts'
-import { postActions } from './blog/post/post'
 import { postsFavoritesActions } from './blog/favorites/postsFavorites'
 import { eventsActions } from './club/events/events'
 import { groupActions } from './club/group/group'
@@ -34,8 +32,6 @@ export const actions = {
   ...productActions,
   ...cartActions,
   ...orderActions,
-  ...postsActions,
-  ...postActions,
   ...postsFavoritesActions,
   ...commentsActions,
   ...usersActions,

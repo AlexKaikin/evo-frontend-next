@@ -1,23 +1,23 @@
 export interface INavigationState {
-  navigation: INavigationItem[]
+  navigation: INavLink[]
   status: string
 }
 
-export interface INavigationItem {
+export interface INavLink {
   id: number
   title: string
   url: string
-  filter: CategoryItemType[]
-  sort: SortItemType[]
+  filter: ICategoryLink[]
+  sort: ISortLink[]
 }
 
-export type CategoryItemType = {
+export interface ICategoryLink {
   id: number
   title: string
   type: string
 }
 
-export type SortItemType = {
+export interface ISortLink {
   id: number
   title: string
   type: string

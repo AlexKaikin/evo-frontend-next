@@ -1,5 +1,4 @@
 import { Pagination } from '@/app/(components)'
-import Aside from '@/app/(components)/layout/Aside/profile/Aside'
 import { orderService } from '@/services/shop/orders'
 import { IUrlParams } from '@/utils/url'
 import { Metadata } from 'next'
@@ -25,13 +24,10 @@ async function getOrders(searchParams: IUrlParams) {
 export default async function Orders({ searchParams }: IProps) {
   const { orders, totalCount } = await getOrders(searchParams)
   return (
-    <div className="col">
-      <Aside />
-      <div className="section orders">
-        <div className="container">
-          <OrderItems orders={orders} />
-          <Pagination totalCount={totalCount} />
-        </div>
+    <div className="section orders">
+      <div className="container">
+        <OrderItems orders={orders} />
+        <Pagination totalCount={totalCount} />
       </div>
     </div>
   )

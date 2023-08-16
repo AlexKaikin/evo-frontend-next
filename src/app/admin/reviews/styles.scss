@@ -1,19 +1,19 @@
-.admin.products {
+.admin.reviews {
   width: 100%;
   
   > .container {
-    > .product__items {
-      margin-top: 20px;
+    > .review__items {
       display: flex;
       flex-direction: column;
       gap: 20px;
 
-      .product__item {
+      .review__item {
         display: grid;
         grid-auto-columns: 12fr;
-        grid-template-columns: 5fr 2fr 2fr 2fr 1fr;
+        grid-template-columns: 5fr 2fr 3fr 1fr 1fr;
         grid-template-rows: 1fr;
         align-items: center;
+        gap: 10px;
 
         border-radius: 5px;
         padding: 10px;
@@ -24,13 +24,22 @@
           background-color: var(--light);
         }
 
-        .product__title {
+        .review__title {
           flex: 1 1 auto;
           font-weight: bold;
           color: var(--dark-text);
         }
 
-        .product__controls {
+        .review__rating{
+          display: flex;
+          gap: 3px;
+
+          svg{
+            fill: var(--gold);
+          }
+        }
+
+        .review__controls {
           display: flex;
           justify-content: flex-end;
 

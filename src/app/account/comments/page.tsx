@@ -1,5 +1,4 @@
 import { Pagination } from '@/app/(components)'
-import Aside from '@/app/(components)/layout/Aside/profile/Aside'
 import { commentService } from '@/services/blog/comments'
 import { IUrlParams } from '@/utils/url'
 import { Metadata } from 'next'
@@ -25,13 +24,10 @@ async function getComments(searchParams: IUrlParams) {
 export default async function Comments({ searchParams }: IProps) {
   const { comments, totalCount } = await getComments(searchParams)
   return (
-    <div className="col">
-      <Aside />
-      <div className="section comments">
-        <div className="container">
-          <CommentItems comments={comments} />
-          <Pagination totalCount={totalCount} />
-        </div>
+    <div className="section comments">
+      <div className="container">
+        <CommentItems comments={comments} />
+        <Pagination totalCount={totalCount} />
       </div>
     </div>
   )

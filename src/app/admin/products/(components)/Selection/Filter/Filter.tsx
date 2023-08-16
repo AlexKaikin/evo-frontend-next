@@ -100,7 +100,6 @@ export default function Filter() {
 
     if (typeof window !== 'undefined') {
       queryParams = new URLSearchParams(window.location.search)
-      console.log('sub' + ratingsForUrl)
       if (ratingsForUrl.length) {
         if (queryParams.has('ratings')) {
           // @ts-ignore

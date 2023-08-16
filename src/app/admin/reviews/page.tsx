@@ -1,8 +1,8 @@
 import { Pagination } from '@/app/(components)'
-import { reviewService } from '@/services/shop/reviews'
+import { reviewService } from '@/services'
 import { IUrlParams } from '@/utils/url'
 import { Metadata } from 'next'
-import ReviewItems from './(components)/ReviewItems/ReviewItems'
+import { ReviewItems } from './(components)'
 import './styles.scss'
 
 interface IProps {
@@ -10,12 +10,12 @@ interface IProps {
 }
 
 export const metadata: Metadata = {
-  title: 'Отзывы |  EVO PLACE',
+  title: 'Отзывы | EVO PLACE',
   description: 'Отзывы...',
 }
 
 async function getReviews(searchParams: IUrlParams) {
-  const res = await reviewService.getAllForAccount(searchParams)
+  const res = await reviewService.getAllForAdmin(searchParams)
   const reviews = res.data
   const totalCount = res.headers['x-total-count']
   return { reviews, totalCount }
@@ -24,7 +24,7 @@ async function getReviews(searchParams: IUrlParams) {
 export default async function Reviews({ searchParams }: IProps) {
   const { reviews, totalCount } = await getReviews(searchParams)
   return (
-    <div className="section orders">
+    <div className="section admin reviews">
       <div className="container">
         <ReviewItems reviews={reviews} />
         <Pagination totalCount={totalCount} />

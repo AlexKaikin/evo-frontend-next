@@ -1,19 +1,20 @@
-.admin.products {
+.admin.posts {
   width: 100%;
   
-  > .container {
-    > .product__items {
+  .container {
+    .post__items {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
 
-      .product__item {
+      .post__item {
         display: grid;
         grid-auto-columns: 12fr;
-        grid-template-columns: 5fr 2fr 2fr 2fr 1fr;
+        grid-template-columns: 4fr 3fr 1fr 2fr 1fr;
         grid-template-rows: 1fr;
         align-items: center;
+        gap: 10px;
 
         border-radius: 5px;
         padding: 10px;
@@ -24,13 +25,21 @@
           background-color: var(--light);
         }
 
-        .product__title {
+        .post__title {
           flex: 1 1 auto;
           font-weight: bold;
           color: var(--dark-text);
         }
 
-        .product__controls {
+        .post__view{
+          text-align: center;
+        }
+
+        .post__published{
+          text-align: center;
+        }
+
+        .post__controls {
           display: flex;
           justify-content: flex-end;
 
@@ -79,7 +88,7 @@
   }
 }
 
-.form.create-product {
+.form.create-post {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;

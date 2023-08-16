@@ -1,5 +1,5 @@
 import { navigationService } from '@/services/navigation'
-import { INavigationItem, INavigationState } from '@/types/navigation'
+import { INavLink, INavigationState } from '@/types/navigation'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 
@@ -22,7 +22,7 @@ export const navigationSlice = createSlice({
       state.status = action.payload
     },
     
-    setNavigation: (state, action: PayloadAction<INavigationItem[]>) => {
+    setNavigation: (state, action: PayloadAction<INavLink[]>) => {
       state.navigation = action.payload
       state.status = Status.Success
     },

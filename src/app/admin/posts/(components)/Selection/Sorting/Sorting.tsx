@@ -1,18 +1,18 @@
 'use client'
 
-import { useOnClickOutside } from '@/hooks/useOnClickOutside'
-import { ISortLink } from '@/types/navigation'
-import { scrollToTop } from '@/utils'
 import cn from 'classnames'
+import React, { useRef, useState } from 'react'
+import { ISortLink } from '@/types/navigation'
+import {BsSortDown} from 'react-icons/bs'
+import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useRef, useState } from 'react'
-import { BsSortDown } from 'react-icons/bs'
+import { scrollToTop } from '@/utils'
 
-type PropsType = {
+interface IProps {
   items: ISortLink[]
 }
 
-export default function Sorting({ items }: PropsType) {
+export default function Sorting({ items }: IProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sortActive = getSortActive()
@@ -25,9 +25,7 @@ export default function Sorting({ items }: PropsType) {
     const _sort = searchParams.get('_sort')
     const _order = searchParams.get('_order')
 
-    if (_sort === 'price' && _order === 'desc') return 'priceDecrease'
-    else if (_sort === 'price' && _order === 'asc') return 'priceIncrease'
-    else if (_sort === 'rating' && _order === 'desc') return 'pop'
+    if (_sort === 'viewsCount' && _order === 'desc') return 'viewsCount'
     else return 'new'
   }
 
@@ -36,14 +34,8 @@ export default function Sorting({ items }: PropsType) {
     let _sort = ''
     let _order = ''
 
-    if (item === 'priceDecrease') {
-      _sort = 'price'
-      _order = 'desc'
-    } else if (item === 'priceIncrease') {
-      _sort = 'price'
-      _order = 'asc'
-    } else if (item === 'pop') {
-      _sort = 'rating'
+    if (item === 'viewsCount') {
+      _sort = 'viewsCount'
       _order = 'desc'
     } else {
       _sort = 'id'

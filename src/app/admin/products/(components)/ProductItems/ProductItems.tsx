@@ -48,8 +48,8 @@ export default function ProductItems({ products }: IProps) {
   }
 
   return (
-    <div className="admin__items">
-      <div className="admin__item item">
+    <div className="product__items">
+      <div className="product__item item">
         <div className="item__title">Заголовок</div>
         <div>Кол-во, шт.</div>
         <div>Цена, руб.</div>
@@ -59,7 +59,7 @@ export default function ProductItems({ products }: IProps) {
       </div>
       {products.map(product => {
         return (
-          <div key={product.id} className="admin__item item">
+          <div key={product.id} className="product__item item">
             <div className="product__title">{product.title}</div>
             <div>{product.quantity}</div>
             <div>{product.price}</div>

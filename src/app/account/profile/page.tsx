@@ -1,6 +1,5 @@
 'use client'
 
-import Aside from '@/app/(components)/layout/Aside/profile/Aside'
 import defaulAvatarUrl from '@/assets/img/user/defaultAvatar.png'
 import { useActions } from '@/hooks/useActions'
 import { authService } from '@/services/auth/auth'
@@ -64,40 +63,37 @@ export default function Profile() {
   }, [user?.avatarUrl])
 
   return (
-    <div className="col">
-      <Aside />
-      <div className="section profile">
-        <div className="container">
-          <div className="profile__columns">
-            <div className="profile__avatar">
-              <div className="avatar__wrapper">
-                <Image
-                  fill
-                  sizes="(max-width: 1800px) 50vw"
-                  src={avatarUrl ? avatarUrl : defaulAvatarUrl}
-                  alt="avatar"
+    <div className="section profile">
+      <div className="container">
+        <div className="profile__columns">
+          <div className="profile__avatar">
+            <div className="avatar__wrapper">
+              <Image
+                fill
+                sizes="(max-width: 1800px) 50vw"
+                src={avatarUrl ? avatarUrl : defaulAvatarUrl}
+                alt="avatar"
+              />
+              <form>
+                <input
+                  ref={avatarRef}
+                  type="file"
+                  name="avatarUrl"
+                  onChange={handleChangeFile}
+                  hidden
                 />
-                <form>
-                  <input
-                    ref={avatarRef}
-                    type="file"
-                    name="avatarUrl"
-                    onChange={handleChangeFile}
-                    hidden
-                  />
-                </form>
-                <div className="avatar__change">
-                  <button className="avatar__update" onClick={updateAvatar}>
-                    <BsArrowClockwise />
-                  </button>
-                  <button className="avatar__delete" onClick={deleteAvatar}>
-                    <BsTrash3 />
-                  </button>
-                </div>
+              </form>
+              <div className="avatar__change">
+                <button className="avatar__update" onClick={updateAvatar}>
+                  <BsArrowClockwise />
+                </button>
+                <button className="avatar__delete" onClick={deleteAvatar}>
+                  <BsTrash3 />
+                </button>
               </div>
             </div>
-            {user && <ProfileForm user={user} />}
           </div>
+          {user && <ProfileForm user={user} />}
         </div>
       </div>
     </div>

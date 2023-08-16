@@ -1,5 +1,5 @@
 import { api, options } from '@/config/api'
-import { IPost, NewPostItemType } from '@/types/blog/posts'
+import { IPost, ICreatePost, IUpdatePost } from '@/types/blog/posts'
 import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const postService = {
@@ -23,11 +23,11 @@ export const postService = {
     return api.post('/upload', formData, options.multipart)
   },
 
-  create(data: NewPostItemType) {
+  create(data: ICreatePost) {
     return api.post<IPost>(`admin/posts/`, data, options.json)
   },
 
-  update(data: IPost) {
+  update(data: IUpdatePost) {
     return api.patch<IPost>(`admin/posts/${data.id}`, data, options.json)
   },
 
