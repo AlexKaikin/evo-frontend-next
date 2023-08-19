@@ -3,8 +3,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import {
-  account,
-  admin,
   auth,
   club,
   navigation,
@@ -21,8 +19,6 @@ export const store = configureStore({
     ...posts,
     ...club,
     ...products,
-    ...admin,
-    ...account,
   },
 })
 

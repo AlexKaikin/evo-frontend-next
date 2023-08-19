@@ -37,7 +37,7 @@ export default async function Products({ searchParams }: IProps) {
   return (
     <div className="section admin products">
       <div className="container">
-        <AddProductButton />
+        <AddProductButton navigation={navigation} />
         <Selection navigation={navigation} />
         <ProductItems products={products} />
         <Pagination totalCount={totalCount} />

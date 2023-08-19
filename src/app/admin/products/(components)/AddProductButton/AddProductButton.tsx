@@ -2,8 +2,13 @@
 
 import { useState } from 'react'
 import { CreateProductForm } from '../crud'
+import { INavLink } from '@/types/navigation'
 
-export default function AddProductButton() {
+interface IProps {
+  navigation: INavLink[]
+}
+
+export default function AddProductButton({ navigation }: IProps) {
   const [createProductShow, setCreateProductShow] = useState<boolean>(false)
   
   function hideModal() {
@@ -19,7 +24,7 @@ export default function AddProductButton() {
         Добавить товар
       </button>
       {createProductShow && (
-        <CreateProductForm hideModal={hideModal} />
+        <CreateProductForm navigation={navigation} hideModal={hideModal} />
       )}
     </>
   )

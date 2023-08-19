@@ -5,14 +5,8 @@ import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { IReview } from '@/types/shop/reviews'
 import { formatTime, text } from '@/utils'
 import { useRef, useState } from 'react'
-import {
-
-  BsPencilSquare,
-  BsThreeDotsVertical,
-  BsTrash3,
-} from 'react-icons/bs'
+import { BsPencilSquare, BsThreeDotsVertical, BsTrash3 } from 'react-icons/bs'
 import { DeleteReviewForm, UpdateReviewForm } from '../crud'
-
 
 interface IProps {
   reviews: IReview[]
@@ -22,8 +16,6 @@ export default function ReviewItems({ reviews }: IProps) {
   const [reviewItem, setReviewItem] = useState<IReview | null>(null)
   const [updateReviewShow, setUpdateReviewShow] = useState<boolean>(false)
   const [deleteReviewShow, setDeleteReviewShow] = useState<boolean>(false)
-  // const [reviewShow, setReviewShow] = useState<IReview | null>(null)
-  // const [deleteShow, setdeleteShow] = useState<number | null>(null)
   const [activeControls, setActiveControls] = useState<number>(0)
   const controlsRef = useRef<HTMLDivElement>(null)
 
@@ -32,12 +24,6 @@ export default function ReviewItems({ reviews }: IProps) {
   function showControls(id: number) {
     setActiveControls(id)
   }
-
-  //const modaltoggle = () => setReviewShow(null)
-
-  // function modaltoggle2() {
-  //   setdeleteShow(null)
-  // }
 
   function updateModaltoggle() {
     setUpdateReviewShow(!updateReviewShow)
@@ -82,11 +68,6 @@ export default function ReviewItems({ reviews }: IProps) {
 
               {activeControls === review.id && (
                 <div ref={controlsRef} className="controls fade-in">
-                  {/* {review.published && (
-                    <Link href={`/reviews/${product.id}`}>
-                      <BsBoxArrowInUpRight /> Перейти в карточку
-                    </Link>
-                  )} */}
                   <button onClick={() => updateReview(review)}>
                     <BsPencilSquare /> Показать
                   </button>
@@ -96,29 +77,13 @@ export default function ReviewItems({ reviews }: IProps) {
                 </div>
               )}
             </div>
-            {/* <button
-              onClick={() => setReviewShow(review)}
-              className="btn btn-light p10 radius-10 width-100"
-            >
-              <BsPencilSquare />
-            </button>
-            <button
-              onClick={() => setdeleteShow(review.id)}
-              className="btn btn-light p10 radius-10 width-100"
-            >
-              <BsTrash3 />
-            </button> */}
           </div>
         )
       })}
-     
-
-     
-
       {updateReviewShow && reviewItem && (
         <UpdateReviewForm review={reviewItem} hideModal={updateModaltoggle} />
-      )} 
-       {deleteReviewShow && reviewItem && (
+      )}
+      {deleteReviewShow && reviewItem && (
         <DeleteReviewForm id={reviewItem.id} hideModal={deleteModaltoggle} />
       )}
     </div>

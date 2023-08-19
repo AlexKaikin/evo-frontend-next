@@ -2,22 +2,21 @@
 
 import { Modal } from '@/app/(components)'
 import { productService } from '@/services/shop/products'
-import { navigationSelector } from '@/store/navigation/navigation'
+import { INavLink } from '@/types/navigation'
 import { ICreateProduct } from '@/types/shop/products'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { BsTrash3 } from 'react-icons/bs'
-import { useSelector } from 'react-redux'
 
 interface IProps {
+  navigation: INavLink[]
   hideModal: () => void
 }
 
-export default function CreateProductForm({ hideModal }: IProps) {
+export default function CreateProductForm({ navigation, hideModal }: IProps) {
   const router = useRouter()
-  const { navigation } = useSelector(navigationSelector)
   const [imgUrl, setImgUrl] = useState('')
   const [galleryUrl, setGalleryUrl] = useState<string[]>([])
   const imgRef = useRef(null)

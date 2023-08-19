@@ -18,17 +18,15 @@ export default function AsideNav({ navItems }: IProps) {
  const pathname = usePathname()
   return (
     <nav className="aside__nav">
-      {navItems.map(item => (
+      {navItems.map(link => (
         <Link
-          key={item.id}
-          href={item.url}
+          key={link.id}
+          href={link.url}
           className={cn('nav__item', {
-            active: pathname === item.url ? 'active' : '',
+            active: pathname === link.url ? 'active' : '',
           })}
         >
-          <span>
-            {item.icon} {item.title}
-          </span>
+          <span>{link.icon} {link.title}</span>
         </Link>
       ))}
     </nav>

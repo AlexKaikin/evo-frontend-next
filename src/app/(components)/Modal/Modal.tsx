@@ -2,16 +2,6 @@ import cn from 'classnames'
 import { BsXLg } from 'react-icons/bs'
 import './Modal.scss'
 
-/**
- * Модальное окно
- *
- * title - заголовок, может быть пустым
- * full - во весь экран
- * modaltoggle - функция закрытия модального окна
- * modalMaxContent - true ширина окна по содержимому
- *
- */
-
 interface IProps {
   title: string
   full?: boolean

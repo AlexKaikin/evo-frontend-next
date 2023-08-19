@@ -1,8 +1,8 @@
 import { api } from '@/config/api'
-import { INavigationItem } from '@/types/navigation'
+import { INavLink } from '@/types/navigation'
 
 export const navigationService = {
   getAll() {
-    return api.get<INavigationItem[]>(`navigation`)
+    return api.get<INavLink[]>(`navigation`)
   },
 }
