@@ -353,6 +353,10 @@
         flex-direction: column;
         gap: 5px;
 
+        @media only screen and (max-width: 576px) {
+          flex-direction: row;
+        }
+
         .tab__title {
           padding: 10px 20px;
           background-color: var(--light);

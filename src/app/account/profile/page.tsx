@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from 'react'
 import { BsArrowClockwise, BsTrash3 } from 'react-icons/bs'
 import ProfileForm from './ProfileForm/ProfileForm'
 import './styles.scss'
+import { redirect } from 'next/navigation'
 
 export default function Profile() {
   const { data: user } = useAppSelector(authSelector)
@@ -61,6 +62,8 @@ export default function Profile() {
     setAvatarUrl(user?.avatarUrl)
     scrollToTop()
   }, [user?.avatarUrl])
+
+  if (!user) redirect('/login')
 
   return (
     <div className="section profile">

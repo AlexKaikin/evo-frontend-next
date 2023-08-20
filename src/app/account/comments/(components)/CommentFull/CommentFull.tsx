@@ -12,7 +12,7 @@ export default function CommentFull({
   hideModal,
 }: IProps) {
   return (
-    <Modal title={`Отзыв`} hideModal={hideModal}>
+    <Modal title={`Комментарий`} hideModal={hideModal}>
       <div className="comment__full items">
         <div className="item">
           {comment.body.split('\n').map((item, i) => (

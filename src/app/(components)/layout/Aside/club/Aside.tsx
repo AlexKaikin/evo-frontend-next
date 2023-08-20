@@ -11,7 +11,7 @@ export default function Aside() {
   const navItems = [
     {
       id: 1,
-      url: '/club',
+      url: '/club/profile',
       icon: <BsPersonCircle />,
       title: 'Моя страница',
       end: true,
