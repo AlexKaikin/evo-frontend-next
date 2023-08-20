@@ -1,13 +1,13 @@
 'use client'
 
-import { AuthForm, CartItems, OrderForm } from '.'
-import { useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
-import { BsChevronLeft } from 'react-icons/bs'
 import { authSelector } from '@/store/auth/auth'
 import { cartSelector } from '@/store/shop/cart/cart'
 import { scrollToTop } from '@/utils/scroll'
 import { useRouter } from 'next/navigation'
+import { useEffect, useRef, useState } from 'react'
+import { BsChevronLeft } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
+import { AuthForm, CartItems, OrderForm } from '.'
 import './Cart.scss'
 
 export default function Cart() {
@@ -58,16 +58,10 @@ export default function Cart() {
                 </div>
               </div>
               <div className="cart__btn">
-                <button
-                  onClick={() => router.back()}
-                  className="btn btn-light"
-                >
+                <button onClick={() => router.back()} className="btn btn-light">
                   <BsChevronLeft /> Вернуться назад
                 </button>
-                <button
-                  onClick={orderFormClick}
-                  className="btn btn__buy"
-                >
+                <button onClick={orderFormClick} className="btn btn__buy">
                   Оформить заказ
                 </button>
               </div>

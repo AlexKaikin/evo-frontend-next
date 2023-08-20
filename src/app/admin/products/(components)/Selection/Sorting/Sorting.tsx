@@ -2,18 +2,17 @@
 
 import cn from 'classnames'
 import React, { useRef, useState } from 'react'
-import { SortItemType } from '@/types/navigation'
+import { ISortLink } from '@/types/navigation'
 import {BsSortDown} from 'react-icons/bs'
-//import SortingSkeleton from '@/components/common/Skeleton/SortingSkeleton/SortingSkeleton'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { scrollToTop } from '@/utils'
 
-type PropsType = {
-  items: SortItemType[]
+interface IProps {
+  items: ISortLink[]
 }
 
-export default function Sorting({ items }: PropsType) {
+export default function Sorting({ items }: IProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sortActive = getSortActive()
@@ -71,8 +70,6 @@ export default function Sorting({ items }: PropsType) {
     scrollToTop()
     setSortShow(false)
   }
-
-  //if (!items.length) return <SortingSkeleton />
 
   return (
     <div ref={sortRef} className="filter__sort sort">

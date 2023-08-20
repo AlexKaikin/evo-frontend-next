@@ -1,13 +1,13 @@
 'use client'
 
-import { INavigationItem } from '@/types/navigation'
+import { INavLink } from '@/types/navigation'
 import Categories from './Categories/Categories'
 import Filter from './Filter/Filter'
 import './Selection.scss'
 import Sorting from './Sorting/Sorting'
 
 interface IProps {
-  navigation: INavigationItem[]
+  navigation: INavLink[]
 }
 
 export default function Selection({ navigation }: IProps) {

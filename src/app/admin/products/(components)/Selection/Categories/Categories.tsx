@@ -1,7 +1,7 @@
 'use client'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
-import { CategoryItemType } from '@/types/navigation'
+import { ICategoryLink } from '@/types/navigation'
 import { scrollToTop } from '@/utils'
 import cn from 'classnames'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -9,7 +9,7 @@ import { useRef, useState } from 'react'
 import { BsGrid } from 'react-icons/bs'
 
 interface IProps {
-  items: CategoryItemType[]
+  items: ICategoryLink[]
 }
 
 export default function Categories({ items }: IProps) {

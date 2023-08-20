@@ -8,11 +8,11 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { BsSortDown } from 'react-icons/bs'
 
-type PropsType = {
+interface IProps {
   items: ISortLink[]
 }
 
-export default function Sorting({ items }: PropsType) {
+export default function Sorting({ items }: IProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const sortActive = getSortActive()

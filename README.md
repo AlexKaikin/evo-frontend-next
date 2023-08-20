@@ -25,16 +25,22 @@
 | socket.io-client | social network chats |
 | sass | preprocessor |
 | classnames | style management |
-| | authorization |
-| | pagination (page navigation) |
-| | sorting (of goods) |
-| | search |
-| | light and dark theme |
 | prettier | general code style settings for collaborative development |
+
+<h3>Functionality enabled:</h3>
+<ul>
+    <li>Authorization</li>
+    <li>Pagination (page navigation)</li>
+    <li>Sorting (of goods) </li>
+    <li>Filtering (of goods) </li>
+    <li>Search</li>
+    <li>Light and dark theme</li>
+    <li>Infinite scroll (social media posts)</li>
+</ul>
 
 <h3>Backend:</h3>
 <ul>
-    <li>Programming language: JavaScript</li>
+    <li>Programming language: TypeScript</li>
     <li>Libraries: NodeJS, NestJS, @nestjs/websockets, mongoose, argon2, passport-jwt,  @types/multer</li>
     <li>Database: MongoDB</li>
     <li>Link to GitHub: <a href="https://github.com/AlexKaikin/evo-backend-nest" target="_blank">https://github.com/AlexKaikin/evo-backend-nest</a></li>

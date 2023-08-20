@@ -1,2 +1,2 @@
-export { default as UpdateReviewForm } from './UpdateProductForm'
-export { default as DeleteReviewForm } from './DeleteProductForm'
+export { default as UpdateReviewForm } from './UpdateReviewForm'
+export { default as DeleteReviewForm } from './DeleteReviewForm'

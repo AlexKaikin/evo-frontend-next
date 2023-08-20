@@ -28,7 +28,7 @@ export default function UpdateReviewForm({ review, hideModal }: IProps) {
   }
 
   return (
-    <Modal title="Обновить товар" hideModal={hideModal}>
+    <Modal title="Обновить отзыв" hideModal={hideModal}>
       <div className="review-full items">
         <div className="item review__title">
           <Rating number={review.rating} />

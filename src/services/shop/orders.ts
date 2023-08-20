@@ -1,5 +1,5 @@
 import { api } from '@/config/api'
-import { CreateOrderItemType, IOrder } from '@/types/shop/order'
+import { ICreateOrder, IOrder } from '@/types/shop/order'
 import { createUrlParams } from '@/utils'
 import { IUrlParams } from '@/utils/url'
 
@@ -12,7 +12,7 @@ export const orderService = {
     return api.get<IOrder[]>(`admin/orders?${createUrlParams(searchParams)}`)
   },
 
-  create(values: CreateOrderItemType) {
+  create(values: ICreateOrder) {
     return api.post<IOrder>(`orders`, values)
   },
 

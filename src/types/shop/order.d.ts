@@ -1,9 +1,3 @@
-export type OrderStateType = {
-  orderItems: OrderItemType[]
-  pagination: PaginationType
-  status: string
-}
-
 export interface IOrder {
   _id?: number
   id: number
@@ -21,22 +15,5 @@ export interface IOrder {
   created: string
 }
 
-export type PaginationType = {
-  pagesCount: number
-  totalItems: number
-  limitItems: number
-  currentPage: number
-}
-
-export type CreateOrderItemType = {
-  name: string
-  surname: string
-  middleName: string
-  region: string
-  city: string
-  street: string
-  home: string
-  index: number
-  cartItems: CartItemType[]
-  totalCost: number
-}
+export interface ICreateOrder
+  extends Omit<IProduct, 'id' | '_id' | 'status' | 'created'> {}

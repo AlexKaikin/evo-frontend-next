@@ -67,7 +67,12 @@ export default function CartItems(props: IProps) {
         return (
           <div key={item.id} className="cart__item product">
             <div className="product__img">
-              <Image fill src={item.imgUrl} alt={item.title} />
+              <Image
+                fill
+                sizes="(max-width: 1800px) 33vw"
+                src={item.imgUrl}
+                alt={item.title}
+              />
             </div>
             <div className="product__title">
               <Link href={`/products/${item.id}`}>{item.title}</Link>

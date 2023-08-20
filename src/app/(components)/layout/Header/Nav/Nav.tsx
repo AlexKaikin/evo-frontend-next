@@ -1,14 +1,14 @@
 'use client'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
-import { INavigationItem } from '@/types/navigation'
+import { INavLink } from '@/types/navigation'
 import cn from 'classnames'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { BsTextLeft } from 'react-icons/bs'
 
 interface IProps{
-  items: INavigationItem[]
+  items: INavLink[]
 }
 
 export default function Nav({ items }: IProps) {
