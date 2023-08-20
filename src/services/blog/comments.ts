@@ -3,7 +3,7 @@ import { IComment, ICreateComment } from '@/types/blog/comments'
 import { IUrlParams, createUrlParams } from '@/utils/url'
 
 export const commentService = {
-  getComments(post_id: string) {
+  getAll(post_id: string) {
     return api.get<IComment[]>(`posts/${post_id}/comments`)
   },
 
@@ -19,15 +19,15 @@ export const commentService = {
     )
   },
 
-  createComment(values: ICreateComment) {
+  create(values: ICreateComment) {
     return api.post<IComment>(`comments`, values)
   },
 
-  updateComment(data: IComment) {
+  update(data: IComment) {
     return api.patch<IComment>(`admin/comments/${data.id}`, data)
   },
 
-  deleteComment(id: string) {
+  delete(id: number) {
     return api.delete<IComment>(`admin/comments/${id}`)
   },
 }

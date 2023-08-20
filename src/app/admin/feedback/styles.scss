@@ -1,0 +1,27 @@
+.admin.feedback {
+  width: 100%;
+
+  > .container {
+    > .profile__columns {
+      display: flex;
+      gap: 20px;
+
+      .profile__left {
+        .profile__avatar {
+          max-width: 200px;
+
+          img {
+            width: 100%;
+            border-radius: 10px;
+          }
+        }
+      }
+
+      .profile__right {
+        .profile__name {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

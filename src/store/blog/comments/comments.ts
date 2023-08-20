@@ -83,7 +83,7 @@ export const commentsSelector = (state: RootState) => state.comments
 export const getComments = (post_id: string) => async (dispatch: Function) => {
   dispatch(setCommentsStatus(Status.Loading))
   try {
-    const res = await commentService.getComments(post_id)
+    const res = await commentService.getAll(post_id)
     dispatch(setComments(res.data))
     res.headers['x-total-count'] &&
       dispatch(setCommentsTotalItems(res.headers['x-total-count']))
@@ -109,7 +109,7 @@ export const createComment =
   (values: ICreateComment) =>
   async (dispatch: Function, getState: Function) => {
     try {
-      await commentService.createComment(values)
+      await commentService.create(values)
       return 'ok'
     } catch (err) {
       console.log(err)
