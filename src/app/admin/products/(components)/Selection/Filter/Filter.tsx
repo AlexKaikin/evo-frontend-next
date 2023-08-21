@@ -14,6 +14,9 @@ export default function Filter() {
   const router = useRouter()
   const filterRef = useRef<HTMLDivElement>(null)
   const [showFilter, setShowFilter] = useState<boolean>(false)
+  const { register, handleSubmit, formState, reset, setValue } =
+    useForm<IFilterProducts>()
+  const { errors, isDirty } = formState
   let queryParams = new URLSearchParams()
   if (typeof window !== 'undefined')
     queryParams = new URLSearchParams(window.location.search)
@@ -34,23 +37,6 @@ export default function Filter() {
   ])
   useOnClickOutside(filterRef, () => setShowFilter(false))
 
-  function checkChangedFilter() {
-    let queryParams
-
-    if (typeof window !== 'undefined') {
-      queryParams = new URLSearchParams(window.location.search)
-      if (
-        queryParams.has('q') ||
-        queryParams.has('manufacturer') ||
-        queryParams.has('price_gte') ||
-        queryParams.has('price_lte') ||
-        queryParams.has('ratings')
-      )
-        return true
-      return false
-    }
-  }
-
   function selectRating(e: any) {
     if (e.target.closest('.form__checkbox')) {
       const input = e.target
@@ -66,11 +52,12 @@ export default function Filter() {
         )
       )
 
-      setRatingsForUrl(
-        ratingsForUrl.includes(ratingNumber)
-          ? ratingsForUrl.filter(rating => rating !== ratingNumber)
-          : [...ratingsForUrl, ratingNumber]
-      )
+      const ratingsArr = ratingsForUrl.includes(ratingNumber)
+        ? ratingsForUrl.filter(rating => rating !== ratingNumber)
+        : [...ratingsForUrl, ratingNumber]
+
+      setRatingsForUrl(ratingsArr)
+      setValue('ratings', ratingsArr.join(), { shouldDirty: true }) 
     }
   }
 
@@ -82,11 +69,8 @@ export default function Filter() {
     setRatingsValue(ratingsValue.map(rating => ({ ...rating, checked: false })))
     setRatingsForUrl([])
     reset(filter)
+    router.push('/admin/products')
   }
-
-  const { register, handleSubmit, formState, reset } =
-    useForm<IFilterProducts>()
-  const { errors, isDirty } = formState
 
   const priceFromValidate = {
     min: { value: 1, message: 'Цена «от» должна быть больше 0' },
@@ -100,23 +84,6 @@ export default function Filter() {
 
     if (typeof window !== 'undefined') {
       queryParams = new URLSearchParams(window.location.search)
-      if (ratingsForUrl.length) {
-        if (queryParams.has('ratings')) {
-          // @ts-ignore
-          queryParams.set('ratings', ratingsForUrl)
-        } else {
-          // @ts-ignore
-          queryParams.append('ratings', ratingsForUrl)
-        }
-
-        if (queryParams.has('_page')) {
-          queryParams.set('_page', String(1))
-        }
-      } else {
-        if (queryParams.has('ratings')) {
-          queryParams.delete('ratings')
-        }
-      }
 
       for (let param in data) {
         // @ts-ignore
@@ -150,7 +117,7 @@ export default function Filter() {
     <div ref={filterRef} className="filter__filter-products">
       <button
         onClick={() => setShowFilter(!showFilter)}
-        className={cn('filter__icon', { active: checkChangedFilter() })}
+        className={cn('filter__icon', { active: isDirty })}
       >
         <BsFunnel /> <span>Фильтр</span>{' '}
       </button>
@@ -164,6 +131,14 @@ export default function Filter() {
 
         <form className="form form-filter" onSubmit={handleSubmit(onSubmit)}>
           <div className="filter__body">
+            <div hidden>
+              <input
+                {...register('ratings')}
+                defaultValue={ratingsForUrl}
+                type="text"
+                name="ratings"
+              />
+            </div>
             <div className="filter__item price">
               <div className="filter__title">Цена в рублях</div>
               <div className="filter__price">
@@ -209,11 +184,7 @@ export default function Filter() {
             <div className="filter__item rating">
               <div className="filter__title">Рейтинг</div>
               {ratingsValue.map(ratign => (
-                <div
-                  key={ratign.star}
-                  onClick={selectRating}
-                  className="form__checkbox"
-                >
+                <div key={ratign.star} className="form__checkbox">
                   <input
                     type="checkbox"
                     name={`${ratign.star}`}
@@ -221,7 +192,7 @@ export default function Filter() {
                     onChange={selectRating}
                     checked={ratign.checked}
                   />
-                  <label className="form-check-label">
+                  <label onClick={selectRating} className="form-check-label">
                     <Rating number={ratign.star} />
                   </label>
                 </div>
@@ -254,10 +225,10 @@ export default function Filter() {
             <button className="btn p-10" type="submit">
               Применить
             </button>
-            {(isDirty || checkChangedFilter()) && (
+            {isDirty && (
               <button
                 onClick={formReset}
-                type="reset"
+                type="button"
                 className="btn btn-light p-10"
               >
                 Сброс
