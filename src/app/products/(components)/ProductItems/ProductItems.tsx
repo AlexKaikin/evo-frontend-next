@@ -9,6 +9,13 @@ interface IProps {
 }
 
 export default function ProductItems({ products }: IProps) {
+  if(!products.length) return (
+    <div className="section products">
+      <div className="container">
+        <div className="products__items product">Не найдено</div>
+      </div>
+    </div>
+  )
   return (
     <div className="section products">
       <div className="container">

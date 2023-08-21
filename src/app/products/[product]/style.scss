@@ -355,6 +355,7 @@
 
         @media only screen and (max-width: 576px) {
           flex-direction: row;
+          flex-wrap: wrap;
         }
 
         .tab__title {

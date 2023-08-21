@@ -3,7 +3,7 @@ import './styles.scss'
 
 export default function Loading() {
   return (
-    <div className="section admin">
+    <div className="section admin comments">
       <div className="container">
         <TableSkeleton />
       </div>

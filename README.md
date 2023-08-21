@@ -62,5 +62,5 @@
     <li>Bonus program</li>
 </ul>
 
-<h3>Demo of the old version</h3>
+<h3>Demo</h3>
 <a href="https://evo-place.ru" target="_blank">https://evo-place.ru</a>
