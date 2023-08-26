@@ -21,7 +21,7 @@ export type NoteItemType = {
   created?: string
 }
 
-export type PostNoteItemType = {
+export interface CreateNote {
   _id?: string
   id: number
   galleryUrl: string[]

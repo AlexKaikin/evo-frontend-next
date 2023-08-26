@@ -1,45 +1,28 @@
-import cn from 'classnames'
-//import { Field, Form, Formik } from 'formik'
-import { useRef, useState } from 'react'
-import { AuthDataType } from '@/types/auth'
-import defaultAvatar from '@assets/img/user/defaultAvatar.png'
 import { Modal } from '@/app/(components)'
-import {BsArrowClockwise} from 'react-icons/bs'
+import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
 import { useActions } from '@/hooks/useActions'
 import { authService } from '@/services'
+import { AuthDataType } from '@/types/auth'
+import cn from 'classnames'
+import Image from 'next/image'
+import { useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { BsArrowClockwise } from 'react-icons/bs'
 
-type PropsType = {
+interface IProps {
   user: AuthDataType
   hideModal: () => void
 }
 
-function MyPageSettingsForm({ user, hideModal }: PropsType) {
+export default function MyPageSettingsForm({ user, hideModal }: IProps) {
   const { updateUser } = useActions()
+  const { register, handleSubmit, formState } = useForm<AuthDataType>()
 
   const imgRef = useRef(null)
   const [imgUrl, setImgUrl] = useState(user.avatarUrl)
   const [interestsInput, setInterestsInput] = useState(
     user.interests.join(', ')
   )
-
-  const formState: AuthDataType = {
-    id: user.id,
-    _id: user._id,
-    fullName: user.fullName,
-    about: user.about,
-    interests: user.interests,
-    location: user.location,
-    private: user.private,
-    avatarUrl: user.avatarUrl,
-    subscribers: user.subscribers,
-    subscriptionsUser: user.subscriptionsUser,
-    subscriptionsGroup: user.subscriptionsGroup,
-    email: user.email,
-    role: user.role,
-    createdAt: user.createdAt,
-    updatedAt: user.updatedAt,
-    __v: user.__v,
-  }
 
   const handleChangeFile = async (e: any) => {
     document.querySelector('.preloader')?.classList.remove('hide')
@@ -72,151 +55,121 @@ function MyPageSettingsForm({ user, hideModal }: PropsType) {
     setImgUrl('')
   }
 
-  function aboutValidate(value: string) {}
-
-  function locationValidate(value: string) {}
-
   function changeInterestsInput(e: any) {
     setInterestsInput(e.currentTarget.value)
   }
 
-  async function formSubmit(values: AuthDataType, { resetForm }: any) {
-    values.avatarUrl = imgUrl
-    values.interests = interestsInput === '' ? [] : interestsInput.split(', ')
-    const res: any = await updateUser(values)
+  async function onSubmit(data: AuthDataType) {
+    ;(data.id = user.id), (data._id = user._id), (data.avatarUrl = imgUrl)
+    data.interests = interestsInput === '' ? [] : interestsInput.split(', ')
+    const res: any = await updateUser(data)
     if (res.status === 200) return hideModal()
-    resetForm()
   }
 
   return (
     <Modal title="Настройки" hideModal={hideModal}>
-      {/* <Formik initialValues={formState} onSubmit={formSubmit}>
-        {({ errors, touched }) => (
-          <Form className="form">
-            <div className="column-2">
-              <div className="img-container">
-                <img
-                  src={
-                    imgUrl.length
-                      ? (process.env.REACT_APP_SERVER_URL || '') + imgUrl
-                      : defaultAvatar
-                  }
-                  alt="аватар"
-                />
-                <div className="img__control">
-                  <button
-                    type="button"
-                    onClick={uploadImgClick}
-                    className="btn btn-light p10 radius-10"
-                  >
-                    Загрузить
-                  </button>
-                  {imgUrl.length ? (
-                    <button
-                      type="button"
-                      onClick={removeImageClick}
-                      className="btn btn-light p10 radius-10"
-                    >
-                      Очистить
-                    </button>
-                  ) : (
-                    ''
-                  )}
-                </div>
-
-                <input
-                  ref={imgRef}
-                  type="file"
-                  name="imgUrl"
-                  onChange={handleChangeFile}
-                  hidden
-                />
-              </div>
-              <div className="info-container">
-                <div
-                  className={cn('form__field disabled', {
-                    form__field_error: errors.fullName && touched.fullName,
-                  })}
-                >
-                  <label>Никнейм</label>
-                  <Field
-                    type="text"
-                    name="fullName"
-                    value={user.fullName}
-                    disabled
-                  />
-                </div>
-
-                <div
-                  className={cn('form__field', {
-                    form__field_error: errors.about && touched.about,
-                  })}
-                >
-                  <label>О себе</label>
-                  <Field
-                    type="text"
-                    name="about"
-                    as="textarea"
-                    validate={aboutValidate}
-                  />
-                </div>
-
-                {errors.about && touched.about && (
-                  <div className="form__text_error">{errors.about}</div>
-                )}
-
-                <div
-                  className={cn('form__field', {
-                    form__field_error: errors.about && touched.about,
-                  })}
-                >
-                  <label>Интересы (через запятую)</label>
-                  <Field
-                    type="text"
-                    name="interests"
-                    value={interestsInput}
-                    onChange={(e: any) => changeInterestsInput(e)}
-                  />
-                </div>
-
-                <div
-                  className={cn('form__field', {
-                    form__field_error: errors.location && touched.location,
-                  })}
-                >
-                  <label>Местоположение</label>
-                  <Field
-                    type="text"
-                    name="location"
-                    validate={locationValidate}
-                  />
-                </div>
-
-                {errors.location && touched.location && (
-                  <div className="form__text_error">{errors.location}</div>
-                )}
-
-                <div className="form__full">
-                  <div className="form__checkbox">
-                    <Field id="private" type="checkbox" name="private" />
-                    <label htmlFor="private" className="form-check-label">
-                      Скрытный профиль
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="form__footer">
-              <button type="submit" className="form__btn">
-                <ArrowClockwiseSVG /> Обновить аккаунт
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
+        <div className="column-2">
+          <div className="img-container">
+            <Image
+              fill
+              sizes="(max-width: 1800px) 50vw"
+              src={imgUrl.length ? imgUrl : defaultAvatar}
+              alt="аватар"
+            />
+            <div className="img__control">
+              <button
+                type="button"
+                onClick={uploadImgClick}
+                className="btn btn-light p10 radius-10"
+              >
+                Загрузить
               </button>
+              {imgUrl.length ? (
+                <button
+                  type="button"
+                  onClick={removeImageClick}
+                  className="btn btn-light p10 radius-10"
+                >
+                  Очистить
+                </button>
+              ) : (
+                ''
+              )}
             </div>
-          </Form>
-        )}
-      </Formik> */}
+
+            <input
+              ref={imgRef}
+              type="file"
+              name="imgUrl"
+              onChange={handleChangeFile}
+              hidden
+            />
+          </div>
+          <div className="info-container">
+            <div className={cn('form__field disabled')}>
+              <label>Никнейм</label>
+              <input
+                {...register('fullName')}
+                type="text"
+                name="fullName"
+                value={user.fullName}
+                disabled
+              />
+            </div>
+
+            <div className={cn('form__field')}>
+              <label>О себе</label>
+              <textarea
+                {...register('about')}
+                name="about"
+                defaultValue={user.about}
+              />
+            </div>
+
+            <div className={cn('form__field')}>
+              <label>Интересы (через запятую)</label>
+              <input
+                {...register('interests')}
+                type="text"
+                name="interests"
+                value={interestsInput}
+                onChange={(e: any) => changeInterestsInput(e)}
+              />
+            </div>
+
+            <div className={cn('form__field')}>
+              <label>Местоположение</label>
+              <input
+                {...register('location')}
+                type="text"
+                name="location"
+                defaultValue={user.location}
+              />
+            </div>
+
+            <div className="form__full">
+              <div className="form__checkbox">
+                <input
+                  {...register('private')}
+                  id="private"
+                  type="checkbox"
+                  name="private"
+                />
+                <label htmlFor="private" className="form-check-label">
+                  Скрытный профиль
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="form__footer">
+          <button type="submit" className="form__btn">
+            <BsArrowClockwise /> Обновить аккаунт
+          </button>
+        </div>
+      </form>
     </Modal>
   )
 }
-
-export default MyPageSettingsForm

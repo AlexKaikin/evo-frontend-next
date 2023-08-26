@@ -1,16 +1,15 @@
-import { useRef, useState } from 'react'
-import { AuthDataType } from '@/types/auth'
-import {BsFlag} from 'react-icons/bs'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
+import { AuthDataType } from '@/types/auth'
 import { getNoun } from '@/utils'
-import SubscriptionsGroup from './SubscriptionsGroup/SubscriptionsGroup'
-import SubscriptionsUser from './SubscriptionsUser/SubscriptionsUser'
+import { useRef, useState } from 'react'
+import { BsFlag } from 'react-icons/bs'
+import { SubscriptionsGroup, SubscriptionsUser } from '.'
 
-type PropsType = {
+interface IProps {
   myProfile: AuthDataType
 }
 
-function Subscribers({ myProfile }: PropsType) {
+export default function Subscribers({ myProfile }: IProps) {
   const subscriptionsUserRef = useRef<HTMLDivElement>(null)
   const subscriptionsGroupRef = useRef<HTMLDivElement>(null)
   const subscribersRef = useRef<HTMLDivElement>(null)
@@ -102,5 +101,3 @@ function Subscribers({ myProfile }: PropsType) {
     </>
   )
 }
-
-export default Subscribers

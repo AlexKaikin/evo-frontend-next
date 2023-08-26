@@ -2,7 +2,7 @@ import { noteService } from '@/services/club/notes'
 import {
   NoteItemType,
   NoteStateType,
-  PostNoteItemType,
+  CreateNote,
 } from '@/types/club/notes'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { RootState } from '../../store'
@@ -67,7 +67,7 @@ export const getNote = (id: number) => async (dispatch: Function) => {
  * создать заметку
  */
 export const createNote =
-  (data: PostNoteItemType) => async (dispatch: Function) => {
+  (data: CreateNote) => async (dispatch: Function) => {
     try {
       const res = await noteService.createNote(data)
       dispatch(setNote(res.data))

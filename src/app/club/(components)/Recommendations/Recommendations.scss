@@ -1,0 +1,61 @@
+.club__recommendations {
+  flex: 1 0 180px;
+
+  .recommendations__container {
+    background-color: var(--grey);
+    padding: 20px;
+    border-radius: 10px;
+
+    .recommendations__title {
+      color: white;
+      font-weight: bold;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+
+      span {
+        display: inline-block;
+        opacity: 0.5;
+        font-size: initial;
+        font-weight: initial;
+      }
+    }
+
+    .recommendations__items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .recommendations__item {
+        display: flex;
+        gap: 10px;
+
+        color: rgb(208, 208, 208);
+
+        .user__avatar {
+          flex: 0 0 50px;
+          width: 50px;
+          height: 50px;
+
+          position: relative;
+
+          img {
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: top;
+            width: 100% !important;
+            position: relative !important;
+          }
+        }
+
+        .user__body {
+          color: rgb(208, 208, 208);
+
+          span {
+            font-weight: bold;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

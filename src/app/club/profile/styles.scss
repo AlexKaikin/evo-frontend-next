@@ -1,296 +1,296 @@
-.col {
-  .club {
-    .container {
+.club {
+  display: flex;
+  gap: 20px;
+
+  padding: 3% 0;
+
+  .club__content.user {
+    display: flex;
+    gap: 20px;
+
+    flex: 1 0 400px;
+
+    .user__content {
       display: flex;
+      flex-direction: column;
       gap: 20px;
 
-      .club__content.user {
+      width: 100%;
+
+      .column {
         display: flex;
         gap: 20px;
 
-        flex: 1 0 400px;
+        .user__avatar {
+          flex: 0 0 180px;
 
-        padding: 3% 0;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
 
-        .user__content {
+          position: relative;
+
+          img {
+            object-fit: contain;
+            width: 100% !important;
+            position: relative !important;
+            height: unset !important;
+            border-radius: 5px;
+          }
+        }
+
+        .user__info {
+          flex: 1 1 auto;
+
           display: flex;
           flex-direction: column;
-          gap: 20px;
+          gap: 30px;
 
-          width: 100%;
+          margin-bottom: 40px;
 
-          .column {
+          .info__header {
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
+            gap: 10px;
 
-            .user__avatar {
-              flex: 0 0 180px;
-
-              display: flex;
-              align-items: flex-start;
-              justify-content: space-between;
-
-              img {
-                object-fit: contain;
-                width: 100% !important;
-                position: relative !important;
-                height: unset !important;
-                border-radius: 5px;
-              }
+            .user__nicname {
+              color: var(--dark-text);
+              font-size: 2rem;
             }
 
-            .user__info {
-              flex: 1 1 auto;
-
-              display: flex;
-              flex-direction: column;
-              gap: 30px;
-
-              margin-bottom: 40px;
-
-              .info__header {
-                display: flex;
-                justify-content: space-between;
-                gap: 10px;
-
-                .user__nicname {
-                  color: var(--dark-text);
-                  font-size: 2rem;
-                }
-
-                .user__settings {
-                  button {
-                    svg {
-                      opacity: 0.5;
-                    }
-                  }
-                }
-              }
-
-              .user__about {
-                p:last-child {
-                  margin-bottom: 0;
-                }
-              }
-
-              .user__interests {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 10px;
-
-                div {
-                  span {
-                    color: var(--dark-text);
-                  }
-                }
-              }
-
-              .user__location {
+            .user__settings {
+              button {
                 svg {
-                  fill: var(--dark-text);
-                }
-              }
-
-              .user__followed {
-                display: flex;
-                gap: 20px;
-
-                .followed__item {
-                  cursor: pointer;
-
-                  span {
-                    font-weight: bold;
-                  }
-                }
-
-                .show-users {
-                  display: flex;
-                  flex-direction: column;
-                  gap: 20px;
-
-                  position: absolute;
-                  z-index: 1;
-
-                  background-color: var(--bg-color);
-                  box-shadow: 0 0 50px 0px #818181;
-                  padding: 20px;
-                  border-radius: 10px;
-                  width: 200px;
-                  max-height: 250px;
-                  overflow: auto;
-
-                  .followed-user {
-                    display: flex;
-                    align-items: center;
-                    gap: 10px;
-
-                    .followed-user__avatar {
-                      flex: 0 0 40px;
-
-                      height: 40px;
-                      overflow: hidden;
-
-                      img {
-                        border-radius: 50%;
-                        width: 100%;
-                        height: 100%;
-                        object-fit: cover;
-                        object-position: top;
-                      }
-                    }
-                  }
+                  opacity: 0.5;
                 }
               }
             }
           }
 
-          .user__new-note {
-            margin-bottom: 20px;
+          .user__about {
+            p:last-child {
+              margin-bottom: 0;
+            }
+          }
 
-            form {
-              .form__field {
-                position: relative;
+          .user__interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
 
-                border: 2px solid var(--light);
-                border-radius: 10px;
-                transition: all ease 0.5s;
-                margin-bottom: 10px;
+            div {
+              span {
+                color: var(--dark-text);
+              }
+            }
+          }
 
-                &:hover {
-                  border: 2px solid var(--primary);
-                }
+          .user__location {
+            svg {
+              fill: var(--dark-text);
+            }
+          }
 
-                textarea {
-                  width: 100%;
-                  padding: 20px;
-                  resize: none;
-                }
+          .user__followed {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
 
-                .new-note__send {
-                  position: absolute;
-                  bottom: 5px;
-                  right: 5px;
+            .followed__item {
+              cursor: pointer;
 
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
+              span {
+                font-weight: bold;
+              }
+            }
+
+            .show-users {
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+
+              position: absolute;
+              z-index: 1;
+
+              background-color: var(--bg-color);
+              box-shadow: 0 0 50px 0px #818181;
+              padding: 20px;
+              border-radius: 10px;
+              width: 200px;
+              max-height: 250px;
+              overflow: auto;
+
+              .followed-user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .followed-user__avatar {
+                  position: relative;
 
                   width: 40px;
                   height: 40px;
-                  border-radius: 50%;
-                  padding: 0;
+                  overflow: hidden;
 
-                  transition: all ease 0.5s;
-
-                  &:hover {
-                    background-color: var(--primary);
-
-                    svg {
-                      fill: white;
-                    }
+                  img {
+                    border-radius: 50%;
+                    object-fit: cover;
+                    object-position: top;
+                    width: 100% !important;
+                    position: relative !important;
                   }
                 }
               }
             }
           }
+        }
+      }
 
-          .user__notes {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
+      .user__new-note {
+        margin-bottom: 20px;
 
-            .user__note {
+        form {
+          .form__field {
+            position: relative;
+
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            transition: all ease 0.5s;
+            margin-bottom: 10px;
+
+            &:hover {
+              border: 2px solid var(--primary);
+            }
+
+            textarea {
+              width: 100%;
+              padding: 20px;
+              resize: none;
+            }
+
+            .new-note__send {
+              position: absolute;
+              bottom: 5px;
+              right: 5px;
+
               display: flex;
-              gap: 20px;
+              align-items: center;
+              justify-content: center;
 
-              position: relative;
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              padding: 0;
+
+              transition: all ease 0.5s;
 
               &:hover {
-                .note__edit {
-                  display: block;
+                background-color: var(--primary);
 
-                  position: absolute;
-                  right: 10px;
-                  top: 10px;
+                svg {
+                  fill: white;
+                }
+              }
+            }
+          }
+        }
+      }
 
-                  .delete-note {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+      .user__notes {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
 
-                    height: 25px;
-                    width: 25px;
-                    border-radius: 50%;
+        .user__note {
+          display: flex;
+          gap: 20px;
 
-                    transition: all ease 0.3s;
+          position: relative;
 
-                    svg {
-                      opacity: 0.7;
-                    }
+          &:hover {
+            .note__edit {
+              display: block;
 
-                    &:hover {
-                      background-color: var(--dark-red);
+              position: absolute;
+              right: 10px;
+              top: 10px;
 
-                      svg {
-                        fill: white;
-                        opacity: 1;
-                      }
-                    }
+              .delete-note {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                height: 25px;
+                width: 25px;
+                border-radius: 50%;
+
+                transition: all ease 0.3s;
+
+                svg {
+                  opacity: 0.7;
+                }
+
+                &:hover {
+                  background-color: var(--dark-red);
+
+                  svg {
+                    fill: white;
+                    opacity: 1;
                   }
                 }
               }
-
-              .note__edit {
-                display: none;
-
-                transition: all ease 0.3s;
-              }
-
-              .user__avatar {
-                flex: 0 0 50px;
-
-                position: relative;
-
-                width: 50px;
-                height: 50px;
-
-                border-radius: 50%;
-                overflow: hidden;
-
-                img {
-                  border-radius: 50%;
-                  width: 100%;
-                  height: 100%;
-                  object-fit: cover;
-                  object-position: top;
-                }
-              }
-
-              .note__content {
-                width: 100%;
-
-                .note__name {
-                  color: var(--dark-text);
-                  margin-bottom: 10px;
-                }
-
-                .note__time {
-                  display: flex;
-                  justify-content: flex-end;
-                  opacity: 0.5;
-                  font-size: 0.9rem;
-                }
-              }
-            }
-
-            .note__more {
-              position: absolute;
-              bottom: 0;
-              height: 400px;
-              z-index: -1;
-              width: 100%;
             }
           }
+
+          .note__edit {
+            display: none;
+
+            transition: all ease 0.3s;
+          }
+
+          .user__avatar {
+            flex: 0 0 50px;
+
+            position: relative;
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            }
+          }
+
+          .note__content {
+            width: 100%;
+
+            .note__name {
+              color: var(--dark-text);
+              margin-bottom: 10px;
+            }
+
+            .note__time {
+              display: flex;
+              justify-content: flex-end;
+              opacity: 0.5;
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        .note__more {
+          position: absolute;
+          bottom: 0;
+          height: 400px;
+          z-index: -1;
+          width: 100%;
         }
       }
     }
@@ -345,6 +345,24 @@
         }
       }
     }
+  }
+}
+
+.img-container {
+  flex: 0 0 180px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  position: relative;
+
+  img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+    border-radius: 5px;
   }
 }
 

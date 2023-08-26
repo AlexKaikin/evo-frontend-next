@@ -1,14 +1,13 @@
-
-import { SubscriptionsGroupType } from '@/types/club/users'
 import defaultAvatar from '@/assets/img/user/users.jpg'
+import { SubscriptionsGroupType } from '@/types/club/users'
 import Image from 'next/image'
 import Link from 'next/link'
 
-type PropsType = {
+interface IProps {
   groups: SubscriptionsGroupType[]
 }
 
-function SubscriptionsGroup({ groups }: PropsType) {
+export default function SubscriptionsGroup({ groups }: IProps) {
   return (
     <div className="show-users">
       {groups.map(item => (
@@ -31,5 +30,3 @@ function SubscriptionsGroup({ groups }: PropsType) {
     </div>
   )
 }
-
-export default SubscriptionsGroup

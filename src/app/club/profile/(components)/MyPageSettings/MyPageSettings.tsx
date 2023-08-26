@@ -1,10 +1,10 @@
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
-import {BsGear} from 'react-icons/bs'
 import { authSelector } from '@/store/auth/auth'
+import { useState } from 'react'
+import { BsGear } from 'react-icons/bs'
+import { useSelector } from 'react-redux'
 import MyPageSettingsForm from './MyPageSettingsForm/MyPageSettingsForm'
 
-function MyPageSettings() {
+export default function MyPageSettings() {
   const { data: user } = useSelector(authSelector)
   const [showSettings, setShowSettings] = useState(false)
 
@@ -23,5 +23,3 @@ function MyPageSettings() {
     </div>
   )
 }
-
-export default MyPageSettings

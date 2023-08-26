@@ -27,15 +27,17 @@
 | classnames | style management |
 | prettier | general code style settings for collaborative development |
 
-| <h3>EVO includes</h3> | <h3>Functionality enabled:</h3> | <h3>Features of the online store (in development)</h3> |
-| :------------- | :------------- | :------------- |
-| <ul>
+<br />
+
+<table>
+    <tr><th><h3>EVO includes</h3></th><th><h3>Functionality enabled</h3></th><th><h3>Features (in development)</h3></th></tr>
+    <tr><td valign="top"><ul>
     <li>Internet shop</li>
     <li>Blog</li>
     <li>Social network</li>
     <li>Personal Area</li>
     <li>Admin Panel</li>
-</ul> | <ul>
+</ul></td><td valign="top"><ul>
     <li>Authorization</li>
     <li>Pagination (page navigation)</li>
     <li>Sorting (of goods) </li>
@@ -43,11 +45,10 @@
     <li>Search</li>
     <li>Light and dark theme</li>
     <li>Infinite scroll (social media posts)</li>
-</ul> | <h5>Loyalty program:</h5>
-<ul>
-    <li>Bonus account in your account</li>
+</ul></td><td valign="top"><ul>
     <li>Bonus program</li>
-</ul> |
+</ul></td></tr>
+</table>
 
 <h3>Backend:</h3>
 <ul>

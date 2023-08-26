@@ -1,15 +1,14 @@
-import { api } from '@/config/api'
+import { api, options } from '@/config/api'
 import {
   NoteItemType,
   PaginationType,
-  PostNoteItemType,
+  CreateNote,
 } from '@/types/club/notes'
 
 export const noteService = {
   getNotes(user_Id: string, by: string, pagination: PaginationType) {
     const { currentPage, limitItems } = pagination
     const $pagination = `_page=${currentPage}&_limit=${limitItems}`
-
     return api.get<NoteItemType[]>(`notes/${user_Id}/?by=${by}&${$pagination}`)
   },
 
@@ -18,27 +17,15 @@ export const noteService = {
   },
 
   uploadNoteImg(formData: any) {
-    return api.post('/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    return api.post('/upload', formData, options.multipart)
   },
 
-  createNote(data: PostNoteItemType) {
-    return api.post<NoteItemType>(`notes/`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+  createNote(data: CreateNote) {
+    return api.post<NoteItemType>(`notes/`, data, options.json)
   },
 
   updateNote(data: NoteItemType) {
-    return api.patch<NoteItemType>(`notes/${data.id}`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return api.patch<NoteItemType>(`notes/${data.id}`, data, options.json)
   },
 
   deleteNote(id: number) {
