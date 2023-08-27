@@ -107,7 +107,7 @@ export const createGroup =
       const res = await groupService.createGroup(data)
       dispatch(setGroup(res.data))
       dispatch(getNotes(res.data._id, 'group'))
-      return { id: res.data.id, status: 'ok' }
+      return res
     } catch (err) {
       console.log(err)
       return { id: null, status: 'error' }
@@ -121,7 +121,7 @@ export const updateGroup =
   (data: GroupItemType) => async (dispatch: Function) => {
     try {
       const res = await groupService.updateGroup(data)
-      dispatch(setGroup(data))
+      dispatch(setGroup(res.data))
       return res
     } catch (err) {
       console.log(err)

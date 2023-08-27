@@ -1,28 +1,25 @@
 import { Modal } from '@/app/(components)'
-import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
+import defaultAvatar from '@/assets/img/user/users.jpg'
 import { useActions } from '@/hooks/useActions'
-import { authService } from '@/services'
-import { AuthDataType } from '@/types/auth'
+import { groupService } from '@/services/club/groups'
+import { GroupItemType } from '@/types/club/groups'
 import cn from 'classnames'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { BsArrowClockwise } from 'react-icons/bs'
 
 interface IProps {
-  user: AuthDataType
   hideModal: () => void
 }
 
-export default function MyPageSettingsForm({ user, hideModal }: IProps) {
-  const { updateUser } = useActions()
-  const { register, handleSubmit, formState } = useForm<AuthDataType>()
-
+export default function CreateGroupForm({ hideModal }: IProps) {
+  const router = useRouter()
+  const { createGroup } = useActions()
   const imgRef = useRef(null)
-  const [imgUrl, setImgUrl] = useState(user.avatarUrl)
-  const [interestsInput, setInterestsInput] = useState(
-    user.interests.join(', ')
-  )
+  const [imgUrl, setImgUrl] = useState('')
+  const { register, handleSubmit, formState } = useForm<GroupItemType>()
+  const { errors } = formState
 
   const handleChangeFile = async (e: any) => {
     document.querySelector('.preloader')?.classList.remove('hide')
@@ -32,8 +29,7 @@ export default function MyPageSettingsForm({ user, hideModal }: IProps) {
       const formData = new FormData()
       const file = e.target.files[0]
       formData.append('image', file)
-      const { data } = await authService.uploadUserAvatar(formData)
-
+      const { data } = await groupService.uploadGroupImg(formData)
       if (data.url) {
         setImgUrl(data.url)
 
@@ -55,19 +51,28 @@ export default function MyPageSettingsForm({ user, hideModal }: IProps) {
     setImgUrl('')
   }
 
-  function changeInterestsInput(e: any) {
-    setInterestsInput(e.currentTarget.value)
+  const titleValidate = {
+    required: {
+      value: true,
+      message: 'Обязательное поле',
+    },
   }
 
-  async function onSubmit(data: AuthDataType) {
-    (data.id = user.id), (data._id = user._id), (data.avatarUrl = imgUrl)
-    data.interests = interestsInput === '' ? [] : interestsInput.split(', ')
-    const res: any = await updateUser(data)
-    if (res.status === 200) return hideModal()
+  const aboutValidate = {
+    required: {
+      value: true,
+      message: 'Обязательное поле',
+    },
+  }
+
+  async function onSubmit(data: GroupItemType) {
+    data.avatarUrl = imgUrl
+    const res: any = await createGroup(data)
+    if (res.status === 201) router.push(`/club/groups/${res.data._id}`)
   }
 
   return (
-    <Modal title="Настройки" hideModal={hideModal}>
+    <Modal title="Новая группа" hideModal={hideModal}>
       <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <div className="column-2">
           <div className="img-container">
@@ -107,45 +112,39 @@ export default function MyPageSettingsForm({ user, hideModal }: IProps) {
             />
           </div>
           <div className="info-container">
-            <div className={cn('form__field disabled')}>
-              <label>Никнейм</label>
+            <div
+              className={cn('form__field', {
+                form__field_error: errors.title,
+              })}
+            >
+              <label>Название</label>
               <input
-                {...register('fullName')}
+                {...register('title', titleValidate)}
                 type="text"
-                name="fullName"
-                value={user.fullName}
-                disabled
+                name="title"
               />
             </div>
 
-            <div className={cn('form__field')}>
-              <label>О себе</label>
-              <textarea
-                {...register('about')}
-                name="about"
-                defaultValue={user.about}
-              />
+            {errors.title && (
+              <div className="form__text_error">{errors.title.message}</div>
+            )}
+
+            <div
+              className={cn('form__field', {
+                form__field_error: errors.about,
+              })}
+            >
+              <label>Описание</label>
+              <textarea {...register('about', aboutValidate)} name="about" />
             </div>
 
-            <div className={cn('form__field')}>
-              <label>Интересы (через запятую)</label>
-              <input
-                {...register('interests')}
-                type="text"
-                name="interests"
-                value={interestsInput}
-                onChange={(e: any) => changeInterestsInput(e)}
-              />
-            </div>
+            {errors.about && (
+              <div className="form__text_error">{errors.about.message}</div>
+            )}
 
             <div className={cn('form__field')}>
               <label>Местоположение</label>
-              <input
-                {...register('location')}
-                type="text"
-                name="location"
-                defaultValue={user.location}
-              />
+              <input {...register('location')} type="text" name="location" />
             </div>
 
             <div className="form__full">
@@ -157,7 +156,7 @@ export default function MyPageSettingsForm({ user, hideModal }: IProps) {
                   name="private"
                 />
                 <label htmlFor="private" className="form-check-label">
-                  Скрытный профиль
+                  Закрытая группа
                 </label>
               </div>
             </div>
@@ -166,7 +165,7 @@ export default function MyPageSettingsForm({ user, hideModal }: IProps) {
 
         <div className="form__footer">
           <button type="submit" className="form__btn">
-            <BsArrowClockwise /> Обновить аккаунт
+            Создать группу
           </button>
         </div>
       </form>

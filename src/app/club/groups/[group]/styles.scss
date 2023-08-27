@@ -1,0 +1,478 @@
+.club {
+  display: flex;
+  gap: 20px;
+
+  padding: 3% 0;
+
+  .club__content.group {
+    display: flex;
+    gap: 20px;
+
+    flex: 1 0 400px;
+
+    .group__content {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      width: 100%;
+
+      .column {
+        display: flex;
+        gap: 20px;
+
+        margin-bottom: 40px;
+
+        .group__avatar {
+          flex: 0 0 180px;
+
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+
+          position: relative;
+
+          img {
+            object-fit: contain;
+            width: 100% !important;
+            position: relative !important;
+            height: unset !important;
+            border-radius: 5px;
+          }
+        }
+
+        .group__info {
+          flex: 1 1 auto;
+
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .group__header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 20px;
+
+            .group__title {
+              flex: 1 1 auto;
+
+              font-size: 2rem;
+            }
+
+            .group__settings {
+              button {
+                display: flex;
+                align-items: center;
+
+                svg {
+                  opacity: 0.5;
+                }
+              }
+            }
+
+            .group__follow {
+              font-size: 13px;
+              border-radius: 5px;
+              padding: 5px 10px;
+            }
+          }
+
+          .group__followed {
+            display: flex;
+            gap: 20px;
+
+            .followed__item {
+              cursor: pointer;
+
+              span {
+                font-weight: bold;
+              }
+            }
+
+            .show-users {
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+
+              position: absolute;
+              z-index: 1;
+
+              background-color: var(--bg-color);
+              box-shadow: 0 0 50px 0px #818181;
+              padding: 20px;
+              border-radius: 10px;
+              width: 200px;
+              max-height: 250px;
+              overflow: auto;
+
+              .followed-user {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .followed-user__avatar {
+                  position: relative;
+
+                  width: 40px;
+                  height: 40px;
+                  overflow: hidden;
+
+                  img {
+                    border-radius: 50%;
+                    object-fit: cover;
+                    object-position: top;
+                    width: 100% !important;
+                    position: relative !important;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .group__new-note {
+        margin-bottom: 20px;
+
+        form {
+          .form__field {
+            position: relative;
+
+            border: 2px solid var(--light);
+            border-radius: 10px;
+            transition: all ease 0.5s;
+            margin-bottom: 10px;
+
+            &:hover {
+              border: 2px solid var(--primary);
+            }
+
+            textarea {
+              width: 100%;
+              padding: 20px;
+              resize: none;
+            }
+
+            .new-note__send {
+              position: absolute;
+              bottom: 5px;
+              right: 5px;
+
+              display: flex;
+              align-items: center;
+              justify-content: center;
+
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+
+              transition: all ease 0.5s;
+
+              &:hover {
+                background-color: var(--primary);
+
+                svg {
+                  fill: white;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .group__notes {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+
+        .group__note {
+          display: flex;
+          gap: 20px;
+
+          position: relative;
+
+          &:hover {
+            .note__edit {
+              display: block;
+
+              position: absolute;
+              right: 10px;
+              top: 10px;
+
+              .delete-note {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                height: 25px;
+                width: 25px;
+                border-radius: 50%;
+                background-color: var(--light);
+
+                transition: all ease 0.3s;
+
+                svg {
+                  opacity: 0.7;
+                  width: 13px;
+                  height: 13px;
+                }
+
+                &:hover {
+                  background-color: var(--dark-red);
+
+                  svg {
+                    fill: white;
+                    opacity: 1;
+                  }
+                }
+              }
+            }
+          }
+
+          .note__edit {
+            display: none;
+
+            transition: all ease 0.3s;
+          }
+
+          .group__avatar {
+            flex: 0 0 50px;
+
+            position: relative;
+
+            width: 50px;
+            height: 50px;
+
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            }
+          }
+
+          .note__content {
+            width: 100%;
+
+            .note__name {
+              margin-bottom: 10px;
+            }
+
+            .note__time {
+              display: flex;
+              justify-content: flex-end;
+              opacity: 0.5;
+              font-size: 0.9rem;
+            }
+          }
+        }
+
+        .note__more {
+          position: absolute;
+          bottom: 0;
+          height: 400px;
+          z-index: -1;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .club__news.news {
+    flex: 1 0 180px;
+
+    padding: 3% 0px;
+
+    .news__container {
+      background-color: var(--grey);
+      padding: 20px;
+      border-radius: 10px;
+
+      .news__title {
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+      }
+
+      .tabs {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+
+        .active {
+          border-bottom: 3px solid black;
+        }
+      }
+
+      .news__items {
+        .news__item {
+          .user__notes {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .user__note {
+              .note__content {
+                .note__text {
+                  span {
+                    font-weight: bold;
+                  }
+                }
+                .note__time {
+                  display: flex;
+                  justify-content: flex-end;
+
+                  font-size: 0.9rem;
+                  opacity: 0.5;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.img-container {
+  flex: 0 0 180px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  position: relative;
+
+  img {
+    object-fit: contain;
+    width: 100% !important;
+    position: relative !important;
+    height: unset !important;
+    border-radius: 5px;
+  }
+}
+
+
+.column.skeleton {
+  .group__avatar {
+    width: 180px;
+    height: 250px;
+    border-radius: 10px;
+    background: var(--light);
+    margin-bottom: 5px;
+
+    animation: fade 1s linear infinite alternate;
+  }
+
+  .group__info {
+    .group__header {
+      .group__title {
+        width: 70px;
+        height: 30px;
+        border-radius: 10px;
+        background: var(--light);
+        margin-bottom: 5px;
+
+        animation: fade 1s linear infinite alternate;
+      }
+    }
+
+    .group__about {
+      p {
+        width: 100%;
+        height: 20px;
+        border-radius: 10px;
+        background: var(--light);
+        margin-bottom: 5px;
+
+        animation: fade 1s linear infinite alternate;
+      }
+    }
+
+    .group__followed {
+      width: 150px;
+      height: 20px;
+      border-radius: 10px;
+      background: var(--light);
+      margin-bottom: 5px;
+
+      animation: fade 1s linear infinite alternate;
+    }
+
+    .group__location {
+      width: 100px;
+      height: 20px;
+      border-radius: 10px;
+      background: var(--light);
+      margin-bottom: 5px;
+
+      animation: fade 1s linear infinite alternate;
+    }
+  }
+}
+
+.group__notes.skeleton {
+  .group__note {
+    .group__avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+
+      background: var(--light);
+
+      animation: fade 1s linear infinite alternate;
+    }
+
+    .note__content {
+      .note__name {
+        width: 100px;
+        height: 25px;
+        border-radius: 10px;
+
+        background: var(--light);
+
+        animation: fade 1s linear infinite alternate;
+      }
+
+      .note__text {
+        width: 100%;
+        height: 20px;
+        border-radius: 10px;
+        margin-bottom: 5px;
+
+        background: var(--light);
+
+        animation: fade 1s linear infinite alternate;
+      }
+
+      .note__time {
+        opacity: 1;
+
+        span {
+          width: 150px;
+          height: 25px;
+          border-radius: 10px;
+
+          background: var(--light);
+
+          animation: fade 1s linear infinite alternate;
+        }
+      }
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}

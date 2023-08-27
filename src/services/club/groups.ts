@@ -1,4 +1,4 @@
-import { api } from '@/config/api'
+import { api, options } from '@/config/api'
 import {
   FilterGroupsType,
   GroupItemType,
@@ -18,25 +18,13 @@ export const groupService = {
     return api.get<GroupItemType>(`groups/${id}`)
   },
   uploadGroupImg(formData: any) {
-    return api.post('/upload', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    return api.post('/upload', formData, options.multipart)
   },
   createGroup(data: GroupItemType) {
-    return api.post<GroupItemType>(`groups/`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return api.post<GroupItemType>(`groups/`, data, options.json)
   },
   updateGroup(data: GroupItemType) {
-    return api.patch<GroupItemType>(`groups/${data.id}`, data, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    return api.patch<GroupItemType>(`groups/${data.id}`, data, options.json)
   },
   deleteGroup(id: number) {
     return api.delete<GroupItemType>(`groups/${id}`)
