@@ -1,8 +1,8 @@
 'use client'
 
+import cn from 'classnames'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import cn from 'classnames'
 import './styles.scss'
 
 interface IProps {
@@ -15,7 +15,7 @@ interface IProps {
 }
 
 export default function AsideNav({ navItems }: IProps) {
- const pathname = usePathname()
+  const pathname = usePathname()
   return (
     <nav className="aside__nav">
       {navItems.map(link => (
@@ -26,7 +26,9 @@ export default function AsideNav({ navItems }: IProps) {
             active: pathname === link.url ? 'active' : '',
           })}
         >
-          <span>{link.icon} {link.title}</span>
+          <span>
+            {link.icon} {link.title}
+          </span>
         </Link>
       ))}
     </nav>

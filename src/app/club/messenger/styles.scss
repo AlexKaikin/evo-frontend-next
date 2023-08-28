@@ -1,0 +1,150 @@
+.club {
+  display: flex;
+  gap: 20px;
+
+  padding: 3% 0;
+
+  .club__content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    flex: 1 0 400px;
+
+    .search-user {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      position: relative;
+
+      border: 1px solid var(--light);
+      width: max-content;
+      padding: 10px;
+      border-radius: 5px;
+
+      .search-user__clear {
+        display: flex;
+        align-items: center;
+      }
+
+      .search-user__get {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        border: 2px solid var(--bg-color);
+
+        padding: 5px 10px;
+        border-radius: 5px;
+
+        transition: all ease 0.3s;
+      }
+
+      .user__items {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+
+        background-color: var(--bg-color);
+        box-shadow: 0 0 10px 0 #8e8e8e;
+        border-radius: 10px;
+        padding: 20px;
+
+        .user__item {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          .user__avatar {
+            position: relative;
+
+            width: 50px;
+            height: 50px;
+
+            img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            }
+          }
+
+          .user__name {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+
+    .club__rooms {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      width: 100%;
+
+      .room {
+        display: flex;
+        gap: 10px;
+
+        .user__container {
+          flex: 1 1 auto;
+
+          display: flex;
+          gap: 10px;
+
+          padding: 10px;
+          border-radius: 10px;
+          transition: all ease 0.3s;
+
+          &:hover {
+            background-color: var(--light);
+          }
+
+          .user__avatar {
+            position: relative;
+
+            width: 50px;
+            height: 50px;
+
+            img {
+              border-radius: 50%;
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: top;
+            }
+          }
+
+          .user__body {
+            .body__header {
+              display: flex;
+              gap: 10px;
+
+              .user__name {
+                color: var(--dark-text);
+                font-weight: bold;
+              }
+
+              .user__date {
+                opacity: 0.5;
+                font-size: 13px;
+              }
+            }
+
+            .user__message {
+              opacity: 0.7;
+            }
+          }
+        }
+      }
+    }
+  }
+}

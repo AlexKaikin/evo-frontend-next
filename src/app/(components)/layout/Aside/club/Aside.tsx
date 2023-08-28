@@ -18,7 +18,7 @@ export default function Aside() {
     },
     {
       id: 2,
-      url: '/club/messages',
+      url: '/club/messenger',
       icon: <BsChatText />,
       title: 'Мессенджер',
       end: false,
