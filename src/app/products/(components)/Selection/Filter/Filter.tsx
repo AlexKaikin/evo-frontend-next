@@ -71,7 +71,14 @@ export default function Filter() {
     setRatingsValue(ratingsValue.map(rating => ({ ...rating, checked: false })))
     setRatingsForUrl([])
     reset(filter)
-    router.push('/products')
+    
+    if (typeof window !== 'undefined') {
+      const queryParams = new URLSearchParams(window.location.search)
+      const category = queryParams.get('category') || ''
+      const param = category.length ? `?category=${category}` : ''
+      router.push(`/products${param}`)
+    }
+    
   }
 
   const priceFromValidate = {

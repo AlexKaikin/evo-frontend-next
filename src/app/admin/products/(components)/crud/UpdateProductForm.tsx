@@ -29,7 +29,7 @@ export default function UpdateProductForm({ product, hideModal }: IProps) {
 
   const categories = navigation
     .find(item => item.url === '/products')
-    ?.filter.slice(1)
+    ?.filter
 
   const handleChangeFile = async (e: any) => {
     try {

@@ -18,14 +18,14 @@ export default function Categories({ items }: IProps) {
   const categoryActive =
     searchParams.get('category') !== null && searchParams.get('category') !== ''
       ? searchParams.get('category')
-      : 'Все чаи'
+      : 'Все товары'
   const categoryRef = useRef<HTMLDivElement>(null)
   const [categoryShow, setCategoryShow] = useState<boolean>(false)
 
   useOnClickOutside(categoryRef, () => setCategoryShow(false))
 
   const changeCategoryActive = (item: string) => {
-    if (item === 'Все чаи') item = ''
+    if (item === 'Все товары') item = ''
 
     let queryParams
 

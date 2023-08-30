@@ -75,7 +75,7 @@ export default function CreateProductForm({ navigation, hideModal }: IProps) {
 
   const categories = navigation
     .find(item => item.url === '/products')
-    ?.filter.slice(1)
+    ?.filter
 
   const titleValidate = {
     required: {

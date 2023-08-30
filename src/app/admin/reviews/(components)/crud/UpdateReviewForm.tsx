@@ -18,6 +18,7 @@ export default function UpdateReviewForm({ review, hideModal }: IProps) {
 
   async function onSubmit(data: IReview) {
     data.id = review.id
+    data.product = review.product
     const res: any = await reviewService.update(data)
     if (res?.status === 200) {
       router.refresh()
