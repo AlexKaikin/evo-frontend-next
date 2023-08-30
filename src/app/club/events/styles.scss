@@ -3,6 +3,7 @@
   gap: 20px;
 
   padding: 3% 0;
+  width: 100%;
 
   .club__content.events {
     display: flex;
@@ -14,8 +15,7 @@
       display: flex;
       flex-direction: column;
       gap: 40px;
-
-       width: 100%;
+      width: 100%;
 
       .user__note {
         display: flex;

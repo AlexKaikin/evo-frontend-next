@@ -1,4 +1,4 @@
-<h1>Development of a new front-end for EVO PLACE on the NextJS framework</h1>
+<h1>EVO PLACE</h1>
 
 <p>EVO PLACE is a community platform that includes a store, blog and social network.</p>
 
