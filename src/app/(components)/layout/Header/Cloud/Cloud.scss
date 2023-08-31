@@ -143,6 +143,11 @@
           fill: var(--text-color);
           transition: all ease 0.3s;
 
+          @media only screen and (max-width: 576px) {
+            width: 25px;
+            height: 25px;
+          }
+
           &:hover {
             transform: scale(1.2);
           }
@@ -158,6 +163,11 @@
             height: 30px;
             fill: var(--text-color);
             transition: all ease 0.3s;
+
+            @media only screen and (max-width: 576px) {
+              width: 25px;
+              height: 25px;
+            }
 
             &:hover {
               transform: scale(1.2);
@@ -179,6 +189,14 @@
           align-items: center;
           padding-top: 2px;
           border-radius: 50%;
+
+          @media only screen and (max-width: 576px) {
+            top: -8px;
+            left: 20px;
+            font-size: 10px;
+            width: 15px;
+            height: 15px;
+          }
         }
       }
 
