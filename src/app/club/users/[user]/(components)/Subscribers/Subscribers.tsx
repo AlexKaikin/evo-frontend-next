@@ -50,7 +50,7 @@ export default function Subscribers({ user, myProfile }: IProps) {
   }
 
   function writeMessage() {
-    router.push(`/club/messages/${user._id}`)
+    router.push(`/club/messenger/${user._id}`)
   }
 
   return (

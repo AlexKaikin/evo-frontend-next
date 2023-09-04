@@ -4,16 +4,15 @@ import { useActions } from '@//hooks/useActions'
 import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { authSelector } from '@/store/auth/auth'
+import { useAppSelector } from '@/store/store'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
 
 export default function Account() {
-  const { data: user } = useSelector(authSelector)
+  const { data: user } = useAppSelector(authSelector)
   const { logout } = useActions()
-  //const navigate = useNavigate()
   const [authShow, setAuthShow] = useState<boolean>(false)
   const authRef = useRef<HTMLDivElement>(null)
 
@@ -27,7 +26,6 @@ export default function Account() {
   function logoutClick() {
     logout()
     AuthShowChange()
-    //navigate('/login')
   }
 
   return (
