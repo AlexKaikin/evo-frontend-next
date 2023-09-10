@@ -19,7 +19,7 @@
     right: 0;
     z-index: 3;
 
-    background-color: none;
+    background-color: var(--bg-color);
     box-shadow: none;
 
     & .container .store__search input:focus + & {
@@ -41,8 +41,8 @@
 
     @media only screen and (max-width: 576px) {
       background-color: var(--bg-color);
-      margin-bottom: 5px;
-      border-radius: 5px;
+      // margin-bottom: 5px;
+      // border-radius: 5px;
 
       //background-color: var(--bg-color);
       box-shadow: none;
@@ -132,6 +132,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        transition: all ease .5s;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.2);
+        }
 
         i {
           color: var(--text-color);
@@ -146,10 +152,6 @@
           @media only screen and (max-width: 576px) {
             width: 25px;
             height: 25px;
-          }
-
-          &:hover {
-            transform: scale(1.2);
           }
         }
 
@@ -169,16 +171,16 @@
               height: 25px;
             }
 
-            &:hover {
-              transform: scale(1.2);
-            }
+            // &:hover {
+            //   transform: scale(1.2);
+            // }
           }
         }
 
         .count {
           position: absolute;
-          top: -20px;
-          left: 20px;
+          top: 5px;
+          left: 15px;
           font-size: 1rem;
           background-color: var(--primary);
           color: white;
@@ -190,13 +192,13 @@
           padding-top: 2px;
           border-radius: 50%;
 
-          @media only screen and (max-width: 576px) {
-            top: -8px;
-            left: 20px;
-            font-size: 10px;
-            width: 15px;
-            height: 15px;
-          }
+          // @media only screen and (max-width: 576px) {
+          //   top: 5px;
+          //   left: 15px;
+          //   font-size: 10px;
+          //   width: 15px;
+          //   height: 15px;
+          // }
         }
       }
 

@@ -41,11 +41,11 @@ export default function Focus(props: IProps) {
         )}
         <BsHeart />
       </Link>
-      <div className="item cart-block">
+      <div onClick={showCartOnClick} className="item cart-block">
         {cartState.cartItems.length > 0 && (
           <div className="count">{cartState.cartItems.length}</div>
         )}
-        <button onClick={showCartOnClick} className="cart">
+        <button className="cart">
           <BsBag />
         </button>
       </div>

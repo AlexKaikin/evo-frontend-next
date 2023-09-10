@@ -1,5 +1,5 @@
 import { navigationService } from '@/services'
-import { Account, Cloud, Logo, Nav, Theme } from '.'
+import { Account, Cloud, Logo, Nav } from '.'
 import './styles.scss'
 
 async function getNavigation() {
@@ -16,7 +16,6 @@ export default async function Header() {
         <Logo />
         <Nav items={navigation} />
         <Cloud />
-        <Theme />
         <Account />
       </div>
     </header>

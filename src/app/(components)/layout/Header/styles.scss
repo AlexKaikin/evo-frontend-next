@@ -1,8 +1,8 @@
 .header {
   > .container {
     display: grid;
-    grid-template-areas: 'Logo Nav Cloud Theme Account';
-    grid-template-columns: auto 1fr auto auto auto;
+    grid-template-areas: 'Logo Nav Cloud Account';
+    grid-template-columns: auto 1fr auto auto;
 
     margin-top: 10px;
     min-height: 80px;
@@ -10,12 +10,16 @@
     @media only screen and (max-width: 900px) {
       gap: 10px;
       grid-template-areas:
-        'Logo Nav Theme Account'
-        'Cloud Cloud Cloud Cloud';
-      grid-template-columns: auto 1fr auto auto;
+        'Logo Nav Account'
+        'Cloud Cloud Cloud';
+      grid-template-columns: auto 1fr auto;
     }
 
     @media only screen and (max-width: 576px) {
+      grid-template-areas:
+        'Nav Logo Account'
+        'Cloud Cloud Cloud';
+      grid-template-columns: 1fr 1fr 1fr;
       margin-top: 0px;
     }
 
@@ -32,6 +36,10 @@
 
       @media only screen and (max-width: 900px) {
         margin-right: 5px;
+      }
+
+      @media only screen and (max-width: 576px) {
+        justify-content: center;
       }
     }
 
@@ -215,6 +223,10 @@
         width: 100%;
         text-align: right;
 
+        @media only screen and (max-width: 576px) {
+          justify-content: flex-end;
+        }
+
         .auth__avatar {
           border: 3px solid var(--primary);
           padding: 3px;
@@ -252,13 +264,21 @@
         &.show {
           opacity: 1;
           visibility: visible;
+          width: max-content;
         }
 
         .auth__item {
           position: relative;
 
           .auth__link {
+            display: flex;
+            gap: 10px;
             color: white;
+
+            svg {
+              height: 20px;
+              width: 20px;
+            }
 
             &:after {
               content: '';
@@ -285,7 +305,7 @@
         svg {
           height: 2rem;
           width: 2rem;
-          margin-right: 10px;
+         
         }
 
         span {

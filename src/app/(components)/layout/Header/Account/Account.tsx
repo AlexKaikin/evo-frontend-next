@@ -5,14 +5,18 @@ import defaultAvatar from '@/assets/img/user/defaultAvatar.png'
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { authSelector } from '@/store/auth/auth'
 import { useAppSelector } from '@/store/store'
+import { themeSelector } from '@/store/theme/theme'
+import { getLocalStorage } from '@/utils'
 import cn from 'classnames'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { BsMoonFill, BsSun } from 'react-icons/bs'
 
 export default function Account() {
   const { data: user } = useAppSelector(authSelector)
-  const { logout } = useActions()
+  const { theme } = useAppSelector(themeSelector)
+  const { logout, setTheme } = useActions()
   const [authShow, setAuthShow] = useState<boolean>(false)
   const authRef = useRef<HTMLDivElement>(null)
 
@@ -27,6 +31,28 @@ export default function Account() {
     logout()
     AuthShowChange()
   }
+
+  function themeChange() {
+    if (theme === 'dark') {
+      setTheme('light')
+      localStorage.setItem('theme', JSON.stringify('light'))
+    } else {
+      setTheme('dark')
+      localStorage.setItem('theme', JSON.stringify('dark'))
+    }
+    AuthShowChange()
+  }
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  useEffect(() => {
+    const themeLocal = localStorage.getItem('theme')
+      ? getLocalStorage('theme').replace(/["]/g, '')
+      : 'light'
+    setTheme(themeLocal)
+  }, [setTheme])
 
   return (
     <div ref={authRef} className="auth">
@@ -64,6 +90,7 @@ export default function Account() {
                 </Link>
               </li>
             )}
+
             <li className="auth__item">
               <button onClick={logoutClick} className="auth__link">
                 Выход
@@ -92,6 +119,20 @@ export default function Account() {
             </li>
           </>
         )}
+        <li className="auth__item"></li>
+        <li className="auth__item">
+          <button onClick={themeChange} className="auth__link">
+            {theme === 'light' ? (
+              <>
+                <BsMoonFill /> Тёмная тема
+              </>
+            ) : (
+              <>
+                <BsSun /> Светлая тема
+              </>
+            )}
+          </button>
+        </li>
       </ul>
     </div>
   )

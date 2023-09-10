@@ -5,7 +5,7 @@ import { INavLink } from '@/types/navigation'
 import cn from 'classnames'
 import Link from 'next/link'
 import { useRef, useState } from 'react'
-import { BsTextLeft } from 'react-icons/bs'
+import { MdMenu } from 'react-icons/md'
 
 interface IProps{
   items: INavLink[]
@@ -34,7 +34,7 @@ export default function Nav({ items }: IProps) {
         ))}
       </ul>
       <button onClick={menuShowChange} className="mobile__menu">
-        <BsTextLeft /> Меню
+        <MdMenu />
       </button>
     </nav>
   )
